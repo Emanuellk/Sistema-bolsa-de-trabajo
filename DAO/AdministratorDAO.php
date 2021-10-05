@@ -2,24 +2,24 @@
     namespace DAO;
     require_once "__DIR__/../Config/Autoload.php";
 
-    use DAO\ICompanyDAO as ICompanyDAO;
-    use Models\Company as Company;
+    use DAO\IAdministratorDAO as IAdministratorDAO;
+    use Models\Administrator as Administrator;
 
-    class CompanyDAO implements ICompanyDAO
+    class AdministratorDAO implements IAdministratorDAO
     {
-        private $CompanyList = array();
+        private $AdministratorList = array();
         private $fileName;
     
         public function __construct()
         {
-            $this->fileName = dirname(__DIR__)."/Data/company.json";
+            $this->fileName = dirname(__DIR__)."/Data/administator.json";
         }
         
-        public function Add($company)
+        public function Add($administrator)
         {
             $this->RetrieveData();
             
-            array_push($this->CompanyDAO, $company);
+            array_push($this->AdministratorDAO, $administrator);
      
             $this->SaveData();
         }
@@ -28,18 +28,17 @@
         {
             $this->RetrieveData();
     
-            return $this->CompanyList;
+            return $this->administratorList;
         }
 
         private function SaveData()
         {
             $arrayToEncode = array();
     
-            foreach($this->CompanyDAO as $company)
+            foreach($this->AdministratorDAO as $administrator)
             {
-                $valuesArray["companyId"] = $company->getCompanyId();
-                $valuesArray["nameCompany"] = $company->getNameCompany();
-                $valuesArray["password"] = $company->getPassword();
+                $valuesArray["emailAdmin"] = $administrator->getEmailAdmin();
+                $valuesArray["passwordAdmin"] = $administrator->getPasswordAdmin();
     
                 array_push($arrayToEncode, $valuesArray);
             }
@@ -51,7 +50,7 @@
 
         private function RetrieveData()
         {
-            $this->CompanyList = array();
+            $this->AdministratorList = array();
     
             if(file_exists($this->fileName))
             {
@@ -61,13 +60,12 @@
     
                 foreach($arrayToDecode as $valuesArray)
                 {
-                    $company = new Company();
+                    $administrator = new Administrator();
     
-                    $company->setCompanyId($valuesArray["companyId"]);
-                    $company->setNameCompany($valuesArray["nameCompany"]);
-                    $company->setPassword($valuesArray["password"]);
+                    $administrator->setEmailAdmin($valuesArray["emailAdmin"]);
+                    $administrator->setPasswordAdmin($valuesArray["passwordAdmin"]);
 
-                    array_push($this->CompanyList, $company);
+                    array_push($this->administratorList, $administrator);
                 }
             }
         }
