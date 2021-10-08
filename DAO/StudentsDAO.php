@@ -2,10 +2,10 @@
     namespace DAO;
     require_once "__DIR__/../Config/Autoload.php";
 
-    use DAO\IRepositoryDAO as IRepositoryDAO;
+    use DAO\CompanyDAO as ICompanyDAO;
     use Models\Students as Students;
 
-    class StudentsDAO implements IRepositoryDAO
+    class StudentsDAO implements ICompanyDAO
     {
         private $StudentsList = array();
         private $fileName;
