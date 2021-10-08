@@ -2,7 +2,7 @@
     namespace Models;
 
     class Students {
-        private $studentsId;
+        private $studentId;
         private $careerId;
         private $firstName;
         private $lastName;
@@ -14,9 +14,9 @@
         private $phoneNumber;
         private $active;
 
-        public function __construct($studentsId = '',$careerId = '',$firstName = '', $lastName = "", $dni = '', $fileNumber = '', $gender = '', $email = '', $birthDate = '', $phoneNumber = '', $active = '')
+        public function __construct($studentId = '',$careerId = '',$firstName = '', $lastName = "", $dni = '', $fileNumber = '', $gender = '', $email = '', $birthDate = '', $phoneNumber = '', $active = '')
         {
-            $this->studentsId = $studentsId;
+            $this->studentId = $studentId;
             $this->careerId = $careerId;  
             $this->firstName = $firstName; 
             $this->lastName = $lastName;
@@ -30,21 +30,21 @@
         }       
 
         /**
-         * Get the value of studentsId
+         * Get the value of studentId
          */ 
-        public function getStudentsId()
+        public function getStudentId()
         {
-                return $this->studentsId;
+                return $this->studentId;
         }
 
         /**
-         * Set the value of studentsId
+         * Set the value of studentId
          *
          * @return  self
          */ 
-        public function setStudentsId($studentsId)
+        public function setStudentId($studentId)
         {
-                $this->studentsId = $studentsId;
+                $this->studentId = $studentsId;
 
                 return $this;
         }
@@ -247,6 +247,6 @@
                 $this->active = $active;
 
                 return $this;
-        }
-    
+        }        
+}
 ?>
