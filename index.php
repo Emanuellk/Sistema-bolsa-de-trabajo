@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=ç, initial-scale=1.0">
     <title>Login and register</title>
-    <link rel="stylesheet" href="Assets/Css/Style.css">
+    <link rel="stylesheet" href="Views/Css/Style.css">
 </head>
 <body>
     <main>
@@ -52,6 +52,6 @@
 
     </main>
 
-    <script src="assets/js/script.js"></script>
+    <script src="Views/js/script.js"></script>
 </body>
 </html>
