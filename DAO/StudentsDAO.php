@@ -108,7 +108,7 @@
             //}
         } 
         
-        public function BuscarStudentByEmail($studentEmail){
+        public function SearchStudentByEmail($studentEmail){
             
             $studentsAux = new Students();
             $this->RetrieveData();

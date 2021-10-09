@@ -17,21 +17,23 @@
             $this->UserDAO = new UserDAO();
         }
 
-        public function loguear($email = "", $password = "") {               
-                $userAux = $this->UserDAO->verifExistenciaUser($email);
+        public function login($email = "", $password = "") {               
+                $userAux = $this->UserDAO->SearchUserByEmail($email);
                
                 if(!empty($userAux)){
                     
-                   $studentAux = $this->StudentsDAO->BuscarStudentByEmail($userAux->getEmail());
+                    $studentAux = $this->StudentsDAO->SearchStudentByEmail($userAux->getEmail());
                     
-                    if(!empty($studentAux) && ($userAux->getPassword() == $password))
-                    {
-                    
-                        require_once(VIEWS_PATH."");
-                    
+                    if($userAux->getPassword() == $password && $userAux->getAdmin() == 1)
+                    {                        
+                        require_once(VIEWS_PATH."login.php");                    
                     }
-                    else {
-                    
+                    elseif($userAux->getPassword() == $password)                    {
+
+                        require_once(VIEWS_PATH."company-add.php");
+                    }
+                    else
+                    {                    
                         $_SESSION["Alertmessage"] = "ERROR! USUARIO Y/O password INCORRECTOS";
                         $this->ShowLoginView();
                     }
@@ -42,6 +44,36 @@
                     $this->ShowLoginView();
                 }
             }
+
+            public function registerUser($email,$password) {
+                
+                    $User = $this->UserDAO->SearchUserByEmail($email);
+                    
+                    if(!empty($User)) {
+
+                        $Student= $this->StudentsDAO->SearchStudentByEmail($email);
+
+                        if(empty($Student)){
+                            $newUser = new User();
+                            $newUser->setEmail($email);
+                            $newUser->setPassword($password);
+                            $this->UserDAO->Add($newUser);
+                            $_SESSION["Alertmessage"] = "Registro de Usuario Exitoso!";
+                            $this->ShowLoginView();
+                        }
+                        else{
+                            $_SESSION["Alertmessage"] = "Email incorrecto";
+                            $this->ShowRegisterView();
+                        }
+                    }
+                    else {
+                        $_SESSION["Alertmessage"] = "ERROR! Ya existe una cuenta registrada con ese email!";
+                        $this->ShowRegisterView();
+                    }
+            }
+       
+                   
+                
         
 
             

@@ -58,7 +58,7 @@
             }
         }
 
-        public function VerifExistenciaUser($userEmail) {
+        public function SearchUserByEmail($userEmail) {
             $UserAux = new User();
             $this->RetrieveData();
            

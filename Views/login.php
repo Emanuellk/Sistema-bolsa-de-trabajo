@@ -27,7 +27,12 @@
             <!--Formulario de Login y registro-->
             <div class="contenedor__login-register">
                 <!--Login-->
+<<<<<<< HEAD
                 <form action="" class="formulario__login">
+=======
+                
+                <form class="form-signin" method="post" action="<?php echo FRONT_ROOT ?>User/login">
+>>>>>>> 0872f971e4d09eb1d21f37c12318ff59cb346663
                     <h2>Iniciar Sesión</h2>
                     <input type="email" placeholder="Correo Electronico">
                     <input type="password" placeholder="Contraseña">
