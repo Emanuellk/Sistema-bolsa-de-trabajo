@@ -53,10 +53,9 @@
         
         public function ShowRegisterView()
         {
-            require_once(VIEWS_PATH."login.php");
+            require_once(VIEWS_PATH."register.php");
         }
 
- 
     }
 
 ?>
