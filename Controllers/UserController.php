@@ -87,7 +87,6 @@
             require_once(VIEWS_PATH."register.php");
         }
 
- 
     }
 
 ?>

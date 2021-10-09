@@ -23,5 +23,10 @@
         "nameCompany": "Accenture",
         "email": "lola@utn.com",
         "createDate": "2002-02-12"
+    },
+    {
+        "nameCompany": "Cigma",
+        "email": "cigma-cm@gmail.com",
+        "createDate": "2021-06-19"
     }
 ]
