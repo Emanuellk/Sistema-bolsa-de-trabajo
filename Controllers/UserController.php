@@ -28,20 +28,19 @@
                     {                        
                         require_once(VIEWS_PATH."login.php");                    
                     }
-                    elseif($userAux->getPassword() == $password)                    {
-
+                    elseif($userAux->getPassword() == $password)
+                    {
                         require_once(VIEWS_PATH."company-add.php");
                     }
                     else
                     {                    
-                        $_SESSION["Alertmessage"] = "ERROR! USUARIO Y/O password INCORRECTOS";
-                        $this->ShowLoginView();
+                        
+                        $this->ShowLoginView("ERROR! USUARIO Y/O password INCORRECTOS");
+                        
                     }
                 }
-                else{
-                    
-                    $_SESSION["Alertmessage"] = "ERROR! EL USUARIO NO EXISTE UWU ";
-                    $this->ShowLoginView();
+                else{                                        
+                    $this->ShowLoginView("ERROR! EL USUARIO NO EXISTE UWU ");
                 }
             }
 
@@ -58,17 +57,16 @@
                             $newUser->setEmail($email);
                             $newUser->setPassword($password);
                             $this->UserDAO->Add($newUser);
-                            $_SESSION["Alertmessage"] = "Registro de Usuario Exitoso!";
-                            $this->ShowLoginView();
+                            
+                            $this->ShowLoginView("Registro de Usuario Exitoso!");
                         }
                         else{
-                            $_SESSION["Alertmessage"] = "Email incorrecto";
-                            $this->ShowRegisterView();
+                            
+                            $this->ShowRegisterView("Email incorrecto");
                         }
                     }
-                    else {
-                        $_SESSION["Alertmessage"] = "ERROR! Ya existe una cuenta registrada con ese email!";
-                        $this->ShowRegisterView();
+                    else {                        
+                        $this->ShowRegisterView("ERROR! Ya existe una cuenta registrada con ese email!");
                     }
             }
        
@@ -78,13 +76,14 @@
 
             
 
-        public function ShowLoginView()
-        {            
+        public function ShowLoginView($message = "")
+        {    //echo "<script>alert('$message')</script>";         
             require_once(VIEWS_PATH."login.php");
         }
         
-        public function ShowRegisterView()
+        public function ShowRegisterView($message = "")
         {
+            //echo "<script>alert('$message')</script>";  
             require_once(VIEWS_PATH."register.php");
         }
 

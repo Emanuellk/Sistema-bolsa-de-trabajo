@@ -9,7 +9,13 @@
 </head>
 <body>
     <main>
-
+    <div class="alert alert-warning" role="alert">
+         This is a warning alert—check it out!
+    </div>
+        <?php 
+        if(!empty($messaje))
+        echo "<script>alert('$message')</script>"; 
+        ?>
         <div class="contenedor__todo">
             <div class="caja__trasera">
                 <div class="caja__trasera-login">
