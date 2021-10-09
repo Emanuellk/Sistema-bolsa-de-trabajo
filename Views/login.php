@@ -28,7 +28,7 @@
             <div class="contenedor__login-register">
                 <!--Login-->
                 
-                <form class="form-signin" method="post" action="<?php echo FRONT_ROOT ?>User/loguear">
+                <form class="form-signin" method="post" action="<?php echo FRONT_ROOT ?>User/login">
                     <h2>Iniciar Sesión</h2>
                     <input type="email" placeholder="Correo" name="email">
                     <input type="password" placeholder="Contraseña" name="password">

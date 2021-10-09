@@ -9,7 +9,7 @@
         
         public function Index($message = "")
         {
-            require_once(VIEWS_PATH."company-add.php");
+            require_once(VIEWS_PATH."login.php");
         }        
     }
 ?>  
