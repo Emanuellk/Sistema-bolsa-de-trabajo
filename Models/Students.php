@@ -44,7 +44,7 @@
          */ 
         public function setStudentId($studentId)
         {
-                $this->studentId = $studentsId;
+                $this->studentId = $studentId;
 
                 return $this;
         }
