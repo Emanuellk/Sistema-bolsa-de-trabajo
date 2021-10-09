@@ -70,13 +70,7 @@
                         $_SESSION["Alertmessage"] = "ERROR! Ya existe una cuenta registrada con ese email!";
                         $this->ShowRegisterView();
                     }
-            }
-       
-                   
-                
-        
-
-            
+            }      
 
         public function ShowLoginView()
         {            
