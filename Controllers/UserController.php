@@ -3,9 +3,9 @@
 
     use DAO\UserDAO;
     use DAO\StudentsDAO;
-    
-    
-    
+    use Models\User;
+    use Models\Students;
+
     class UserController
     {
         private $StudentsDAO;
@@ -17,23 +17,32 @@
             $this->UserDAO = new UserDAO();
         }
 
-        public function loguear($email = "", $password = "") {
-            require_once(VIEWS_PATH."login.php");
+        public function loguear($email = "", $password = "") {               
                 $userAux = $this->UserDAO->verifExistenciaUser($email);
-          
-                if(!empty($userAux) && ($userAux -> getPassword() == $password))
-                {
-                
-                require_once(VIEWS_PATH."");
-                
+               
+                if(!empty($userAux)){
+                    
+                   $studentAux = $this->StudentsDAO->BuscarStudentByEmail($userAux->getEmail());
+                    
+                    if(!empty($studentAux) && ($userAux->getPassword() == $password))
+                    {
+                    
+                        require_once(VIEWS_PATH."");
+                    
+                    }
+                    else {
+                    
+                        $_SESSION["Alertmessage"] = "ERROR! USUARIO Y/O password INCORRECTOS";
+                        $this->ShowLoginView();
+                    }
                 }
-                else {
-                
-                    $_SESSION["Alertmessage"] = "ERROR! USUARIO Y/O password INCORRECTOS";
+                else{
+                    
+                    $_SESSION["Alertmessage"] = "ERROR! EL USUARIO NO EXISTE UWU ";
                     $this->ShowLoginView();
                 }
-           
-        }
+            }
+        
 
             
 

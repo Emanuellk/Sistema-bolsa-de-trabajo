@@ -2,17 +2,15 @@
     namespace Models; 
     
     class user {
-        private $idAlumno;
+       
         private $email;
-        private $password;
-        private $name;
+        private $password;        
         private $admin;
         
-        public function __construct($idAlumno = '', $email = '', $password = '', $name = '', $admin = 0) {
-            $this->idAlumno = $idAlumno;
+        public function __construct( $email = '', $password = '', $admin = 0) {
+            
             $this->email = $email;
-            $this->password = $password;
-            $this->name = $name;
+            $this->password = $password;            
             $this->admin = $admin;
         }
 
@@ -51,25 +49,7 @@
             $this->admin = $admin;
         }
 
-            public function getName()
-            {
-                return $this->name;
-            }
-
-            public function setName($name)
-            {
-                $this->name = $name;
-            }
-
-        public function getidAlumno()
-        {
-            return $this->idAlumno;
-        }
-
-        public function setidAlumno($idAlumno)
-        {
-            $this->idAlumno = $idAlumno;
-        }
+        
     }
 
 ?>
