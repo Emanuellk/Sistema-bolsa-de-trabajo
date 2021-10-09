@@ -19,7 +19,7 @@
         {
             $this->RetrieveData();
             
-            array_push($this->CompanyDAO, $company);
+            array_push($this->CompanyList, $company);
      
             $this->SaveData();
         }
@@ -35,12 +35,12 @@
         {
             $arrayToEncode = array();
     
-            foreach($this->CompanyDAO as $company)
+            foreach($this->CompanyList as $company)
             {
-                $valuesArray["companyId"] = $company->getCompanyId();
                 $valuesArray["nameCompany"] = $company->getNameCompany();
-                $valuesArray["password"] = $company->getPassword();
-    
+                $valuesArray["email"] = $company->getEmail();
+                $valuesArray["createDate"] = $company->getCreateDate();
+
                 array_push($arrayToEncode, $valuesArray);
             }
     
@@ -62,10 +62,10 @@
                 foreach($arrayToDecode as $valuesArray)
                 {
                     $company = new Company();
-    
-                    $company->setCompanyId($valuesArray["companyId"]);
+
                     $company->setNameCompany($valuesArray["nameCompany"]);
-                    $company->setPassword($valuesArray["password"]);
+                    $company->setEmail($valuesArray["email"]);
+                    $company->setCreateDate($valuesArray["createDate"]);
 
                     array_push($this->CompanyList, $company);
                 }

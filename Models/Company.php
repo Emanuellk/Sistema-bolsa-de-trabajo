@@ -2,34 +2,15 @@
     namespace Models;
 
     class Company{
-         private $companyId;
          private $nameCompany;
-         private $password;
+         private $email;
+         private $createDate;
 
-         /**
-          * Get the value of companyId
-          */ 
-         public function getCompanyId()
-         {
-                  return $this->companyId;
-         }
-
-         /**
-          * Set the value of companyId
-          *
-          * @return  self
-          */ 
-         public function setCompanyId($companyId)
-         {
-                  $this->companyId = $companyId;
-
-                  return $this;
-         }
 
          /**
           * Get the value of nameCompany
           */ 
-         public function getnameCompany()
+         public function getNameCompany()
          {
                   return $this->nameCompany;
          }
@@ -39,7 +20,7 @@
           *
           * @return  self
           */ 
-         public function setnameCompany($nameCompany)
+         public function setNameCompany($nameCompany)
          {
                   $this->nameCompany = $nameCompany;
 
@@ -47,21 +28,41 @@
          }
 
          /**
-          * Get the value of password
+          * Get the value of email
           */ 
-         public function getPassword()
+         public function getEmail()
          {
-                  return $this->password;
+                  return $this->email;
          }
 
          /**
-          * Set the value of password
+          * Set the value of email
           *
           * @return  self
           */ 
-         public function setPassword($password)
+         public function setEmail($email)
          {
-                  $this->password = $password;
+                  $this->email = $email;
+
+                  return $this;
+         }
+
+         /**
+          * Get the value of createDate
+          */ 
+         public function getCreateDate()
+         {
+                  return $this->createDate;
+         }
+
+         /**
+          * Set the value of createDate
+          *
+          * @return  self
+          */ 
+         public function setCreateDate($createDate)
+         {
+                  $this->createDate = $createDate;
 
                   return $this;
          }
