@@ -2,10 +2,10 @@
     namespace DAO;
     require_once "__DIR__/../Config/Autoload.php";
 
-    use DAO\CompanyDAO as ICompanyDAO;
+    
     use Models\Students as Students;
 
-    class StudentsDAO implements ICompanyDAO
+    class StudentsDAO 
     {
         private $StudentsList = array();
         private $fileName;
@@ -59,28 +59,46 @@
         {
             $this->StudentsList = array();
     
-            if(file_exists($this->fileName))
-            {
-                $jsonContent = file_get_contents($this->fileName);
+            //if(file_exists($this->fileName))
+            //{
+                //$jsonContent = file_get_contents($this->fileName);
     
-                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
-    
+                //$arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+                $opt = array(
+                    "http" => array(
+                      "method" => "GET",
+                      "header" => "x-api-key: 4f3bceed-50ba-4461-a910-518598664c08\r\n"
+                    )
+                  );
+                
+                  $ctx = stream_context_create($opt);
+                
+                  $jsonContent = file_get_contents("https://utn-students-api.herokuapp.com/api/Career", false, $ctx);
+                  $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+
                 foreach($arrayToDecode as $valuesArray)
                 {
                     $students = new Students();
-    
-                    $students->setCareer($valuesArray["career"]);
-                    $students->setPhoneNumber($valuesArray["phoneNumber"]);
-                    $students->setBirthdayDate($valuesArray["birthdayDate"]);
-                    $students->setEmail($valuesArray["email"]);
-                    $students->setPassword($valuesArray["password"]);
-                    $students->setName($valuesArray["name"]);
+                    
+                    $students->setStudentId($valuesArray["studentId"]);
+                    $students->setCareerId($valuesArray["careerId"]);
+                    $students->setFirstName($valuesArray["firstName"]);
                     $students->setLastName($valuesArray["lastName"]);
                     $students->setDni($valuesArray["dni"]);
+                    $students->setFileNumber($valuesArray["fileNumber"]);
+                    
+                    $students->setGender($valuesArray["gender"]);
+                    $students->setBirthDate($valuesArray["birthdayDate"]);
+                    $students->setEmail($valuesArray["email"]);
+                    $students->setPhoneNumber($valuesArray["phoneNumber"]);
+                    $students->setActive($valuesArray["active"]);
+                    
+                    
 
                     array_push($this->StudentsList, $students);
                 }
-            }
+                
+            //}
         }
     }
 ?>
