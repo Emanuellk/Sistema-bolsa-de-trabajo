@@ -29,6 +29,7 @@
                         require_once(VIEWS_PATH."login.php");                    
                     }
                     elseif($userAux->getPassword() == $password)
+                    
                     {
                         require_once(VIEWS_PATH."company-add.php");
                     }
@@ -48,11 +49,12 @@
                 
                     $User = $this->UserDAO->SearchUserByEmail($email);
                     
-                    if(!empty($User)) {
+                    
+                    if(empty($User)) {
 
                         $Student= $this->StudentsDAO->SearchStudentByEmail($email);
-
-                        if(empty($Student)){
+                        
+                        if(!empty($Student)){
                             $newUser = new User();
                             $newUser->setEmail($email);
                             $newUser->setPassword($password);
@@ -62,30 +64,22 @@
                         }
                         else{
                             
-                            $this->ShowRegisterView("Email incorrecto");
+                            $this->ShowLoginView("Email incorrecto");
                         }
                     }
                     else {                        
-                        $this->ShowRegisterView("ERROR! Ya existe una cuenta registrada con ese email!");
+                        $this->ShowLoginView("ERROR! Ya existe una cuenta registrada con ese email!");
                     }
             }
        
-                   
-                
-        
 
-            
-
-        public function ShowLoginView($message = "")
-        {    //echo "<script>alert('$message')</script>";         
-            require_once(VIEWS_PATH."login.php");
-        }
+             public function ShowLoginView($message = "")
+             {   
+                     
+                 require_once(VIEWS_PATH."login.php");
+             }
         
-        public function ShowRegisterView($message = "")
-        {
-            //echo "<script>alert('$message')</script>";  
-            require_once(VIEWS_PATH."register.php");
-        }
+        
 
     }
 
