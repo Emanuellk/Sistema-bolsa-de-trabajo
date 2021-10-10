@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=ç, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login and register</title>
     <link rel="stylesheet" href="Views/Css/Style.css">
 </head>
 <body>
-    <main>
 
+    <main>
+   
+    
+        
         <div class="contenedor__todo">
             <div class="caja__trasera">
                 <div class="caja__trasera-login">
@@ -30,9 +33,9 @@
                 
                 <form class="form-signin" method="post" action="<?php echo FRONT_ROOT ?>User/login">
                     <h2>Iniciar Sesión</h2>
-                    <input type="email" placeholder="Correo Electronico">
-                    <input type="password" placeholder="Contraseña">
-                    <button>Entrar</button>
+                    <input type="email" placeholder="Correo Electronico" name="email">
+                    <input type="password" placeholder="Contraseña" name="password">
+                    <button type="submit">Entrar</button>
                 </form>
 
                 <!--Register-->
@@ -47,7 +50,7 @@
         </div>
 
     </main>
-
     <script src="Views/js/script.js"></script>
+    
 </body>
 </html>
