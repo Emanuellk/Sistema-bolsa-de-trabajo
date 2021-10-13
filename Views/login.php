@@ -31,7 +31,7 @@
             <div class="contenedor__login-register">
                 <!--Login-->
                 
-                <form class="form-signin" method="post" action="<?php echo FRONT_ROOT ?>User/login">
+                <form action="<?php echo FRONT_ROOT ?>User/login" class="form-signin" method="post" >
                     <h2>Iniciar Sesión</h2>
                     <input type="email" placeholder="Correo Electronico" name="email">
                     <input type="password" placeholder="Contraseña" name="password">
@@ -39,7 +39,7 @@
                 </form>
 
                 <!--Register-->
-                <form action="" class="formulario__register">
+                <form action="<?php echo FRONT_ROOT ?>User/registerUser" class="formulario__register" method="post">
 
                 <h2>Regístrarse</h2>
                     <input type="email" placeholder="Correo Electronico">
