@@ -26,7 +26,7 @@
                     
                     if($userAux->getPassword() == $password && $userAux->getAdmin() == 1)
                     {                        
-                        require_once(VIEWS_PATH."login.php");                    
+                        //require_once(VIEWS_PATH."login.php");                    
                     }
                     elseif($userAux->getPassword() == $password)
                     
@@ -73,11 +73,12 @@
             }
        
 
-             public function ShowLoginView($message = "")
-             {   
-                     
+            public function ShowLoginView($message = "")
+            {   
+                 echo "<script>alert('$message');</script>";
                  require_once(VIEWS_PATH."login.php");
-             }
+                
+            }
         
         
 

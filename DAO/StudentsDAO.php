@@ -111,6 +111,7 @@
         public function SearchStudentByEmail($studentEmail){
             
             $studentsAux = new Students();
+            $studentsAux = null;
             $this->RetrieveData();
 
             foreach($this->StudentsList as $value)

@@ -181,6 +181,9 @@ main{
     .contenedor__login-register form{
         position: relative;
     }
+    .alertsucces{
+        text-size-adjust: 333px;
+    }
 
     
 }

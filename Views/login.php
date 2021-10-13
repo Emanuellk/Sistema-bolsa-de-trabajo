@@ -26,7 +26,7 @@
                     <button id="btn__registrarse">Regístrarse</button>
                 </div>
             </div>
-
+            
             <!--Formulario de Login y registro-->
             <div class="contenedor__login-register">
                 <!--Login-->
