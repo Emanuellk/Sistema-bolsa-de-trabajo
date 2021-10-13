@@ -1,18 +1,8 @@
 [
     {
         "nameCompany": "Google",
-        "email": "emanuel.maggiolk@gmail.com",
-        "createDate": "d"
-    },
-    {
-        "nameCompany": "Google",
         "email": "google@hotmail.com",
         "createDate": "2001-02-20"
-    },
-    {
-        "nameCompany": "Google",
-        "email": "emanuel.maggiolk@gmail.com",
-        "createDate": "e"
     },
     {
         "nameCompany": "Globant",

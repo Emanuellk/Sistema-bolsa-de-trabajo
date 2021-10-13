@@ -5,6 +5,7 @@
          private $nameCompany;
          private $email;
          private $createDate;
+         private $idCompany;
 
 
          /**
@@ -63,6 +64,26 @@
          public function setCreateDate($createDate)
          {
                   $this->createDate = $createDate;
+
+                  return $this;
+         }
+
+         /**
+          * Get the value of idCompany
+          */ 
+         public function getIdCompany()
+         {
+                  return $this->idCompany;
+         }
+
+         /**
+          * Set the value of idCompany
+          *
+          * @return  self
+          */ 
+         public function setIdCompany($idCompany)
+         {
+                  $this->idCompany = $idCompany;
 
                   return $this;
          }

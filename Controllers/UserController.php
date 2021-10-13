@@ -1,6 +1,6 @@
 <?php
     namespace Controllers;
-
+    
     use DAO\UserDAO;
     use DAO\StudentsDAO;
     use Models\User;
@@ -47,7 +47,7 @@
 
             public function registerUser($email,$password) {
                 
-                    $User = $this->UserDAO->SearchUserByEmail($email);
+                   $User = $this->UserDAO->SearchUserByEmail($email);
                     
                     
                     if(empty($User)) {
@@ -78,8 +78,6 @@
                  require_once(VIEWS_PATH."login.php");
              }
         
-        
-
     }
 
 ?>

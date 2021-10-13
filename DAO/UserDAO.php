@@ -9,7 +9,7 @@
    
        public function __construct()
        {
-           $this->fileName= dirname(__DIR__)."/data/User.json";        
+           $this->fileName= dirname(__DIR__)."/Data/User.json";        
        }
    
    

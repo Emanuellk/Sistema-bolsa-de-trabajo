@@ -75,7 +75,7 @@
                 
                   $ctx = stream_context_create($opt);
                 
-                  $jsonContent = file_get_contents("https://utn-students-api.herokuapp.com/api/Student", false, $ctx);
+                  $jsonContent = file_get_contents("https://utn-students-api.herokuapp.com/api/Student/", false, $ctx);
                   
                   $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
                   

@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login and register</title>
-    <link rel="stylesheet" href="Views/Css/Style.css">
-</head>
-<body>
+<?php
+    require_once('header.php');
+?>
 
     <main>
-   
-    
-        
         <div class="contenedor__todo">
             <div class="caja__trasera">
                 <div class="caja__trasera-login">
@@ -30,27 +20,27 @@
             <!--Formulario de Login y registro-->
             <div class="contenedor__login-register">
                 <!--Login-->
-                
-                <form action="<?php echo FRONT_ROOT ?>User/login" class="form-signin" method="post" >
+                <form action="<?php echo FRONT_ROOT ?>User/login" class="formulario__login" method="post">
                     <h2>Iniciar Sesión</h2>
-                    <input type="email" placeholder="Correo Electronico" name="email">
-                    <input type="password" placeholder="Contraseña" name="password">
+                    <input type="email" placeholder="Email" name="email">
+                    <input type="password" placeholder="Password" name="password">
                     <button type="submit">Entrar</button>
                 </form>
 
                 <!--Register-->
                 <form action="<?php echo FRONT_ROOT ?>User/registerUser" class="formulario__register" method="post">
-
-                <h2>Regístrarse</h2>
-                    <input type="email" placeholder="Correo Electronico">
-                    <input type="password" placeholder="Contraseña">
-                    <button>Regístrarse</button>
+                    <h2>Regístrarse</h2>
+                    <input type="email" placeholder="Email" name="email">
+                    <input type="password" placeholder="Password" name="password">
+                    <button type="submit">Regístrarse</button>
                 </form>
             </div>
         </div>
 
+     <script src="Views/js/script.js"></script>
+
     </main>
-    <script src="Views/js/script.js"></script>
-    
-</body>
-</html>
+
+<?php
+    require_once('footer.php');
+?>

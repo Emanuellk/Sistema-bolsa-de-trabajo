@@ -27,14 +27,20 @@
 
         public function Add($nameCompany, $email, $createDate)
         {
-            $company = new Company();
-            $company->setNameCompany($nameCompany);
-            $company->setEmail($email);
-            $company->setCreateDate($createDate);
-
+            $company = $this->companyDAO->createCompany($nameCompany,$email,$createDate);
             $this->companyDAO->Add($company);
 
             $this->ShowAddView();
         }
+        public function Dalete($id){
+            $this->companyDao->deleteCompany($id);
+            $this->ShowAddView();
+        }
+        public function Update($nameCompany, $email, $createDate, $id){
+            $this->companyDAO->updateCompany($nameCompany, $email, $createDate, $id);
+            $this->ShowAddView();
+        }
+        
+
     }
 ?>
