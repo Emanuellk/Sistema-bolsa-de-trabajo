@@ -6,8 +6,9 @@
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowAddView">Agregar Empresa</a>
           </li>
+          <br>
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListView">Listar Empresa</a>
-          </li>          
+          </li>         
      </ul>
 </nav>

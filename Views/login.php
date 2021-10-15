@@ -30,8 +30,7 @@
             <!--Formulario de Login y registro-->
             <div class="contenedor__login-register">
                 <!--Login-->
-                
-                <form class="form-signin" method="post" action="<?php echo FRONT_ROOT ?>User/login">
+                <form action="<?php echo FRONT_ROOT ?>User/login" class="formulario__login" method="get">
                     <h2>Iniciar Sesión</h2>
                     <input type="email" placeholder="Correo Electronico" name="email">
                     <input type="password" placeholder="Contraseña" name="password">
@@ -39,18 +38,18 @@
                 </form>
 
                 <!--Register-->
-                <form action="" class="formulario__register">
-
-                <h2>Regístrarse</h2>
-                    <input type="email" placeholder="Correo Electronico">
-                    <input type="password" placeholder="Contraseña">
-                    <button>Regístrarse</button>
+                <form action="<?php echo FRONT_ROOT ?>User/registerUser" class="formulario__register" method="get">
+                    <h2>Regístrarse</h2>
+                    <input type="email" placeholder="Correo Electronico" name="email">
+                    <input type="password" placeholder="Contraseña" name="password">
+                    <button type="submit">Regístrarse</button>
                 </form>
             </div>
         </div>
 
     </main>
-    <script src="Views/js/script.js"></script>
+    
+    <script text="Views/js/script.js" src="Views/js/script.js"></script>
     
 </body>
 </html>

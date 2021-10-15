@@ -8,7 +8,11 @@
      <!-- Bootstrap CSS -->
      <link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH ?>bootstrap.min.css">
      <link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH ?>Style.css">
+     
 
      <title>Bolsa de Trabajo</title>
 </head>
+
+
+
 <body>
