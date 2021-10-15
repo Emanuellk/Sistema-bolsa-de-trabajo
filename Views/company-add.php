@@ -1,5 +1,5 @@
 <?php
-    require_once('nav.php');
+    require_once('navAdmin.php');
 ?>
 <div class="company-add">
         <section id="listado" class="mb-5">

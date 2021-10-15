@@ -1,30 +1,36 @@
-<?php
-    require_once('nav.php');
+<?php     
+    require_once('nav.php');   
 ?>
+
 <div class="company-add">
      <section id="listado" class="mb-5">
           <div class="container">
                <h2 class="mb-4">Listado de Empresas</h2>
                <table class="table bg-light-alpha">
                     <thead>
-                         <th>Nombre</th>
-                         <th>Email</th>
-                         <th>Fecha de creación</th>
+                         <th> <li class="list-group-item list-group-item-dark">Nombre</li></th>
+                         <th><li class="list-group-item list-group-item-dark">Email</li></th>
+                         <th><li class="list-group-item list-group-item-dark">Fecha de creación</li></th>
+                         
                     </thead>
                     <tbody>
+                         
+                         
                          <?php
                               foreach($companyList as $company)
                               {
                                    ?>
                                         <tr>
-                                             <td><?php echo $company->getNameCompany() ?></td>
-                                             <td><?php echo $company->getEmail() ?></td>
-                                             <td><?php echo $company->getCreateDate() ?></td>
+                                             <td><li class="list-group-item list-group-item-info"><?php echo $company->getNameCompany() ?></li></td>
+                                             <td><li class="list-group-item list-group-item-info"><?php echo $company->getEmail() ?> </li></td>
+                                             <td><li class="list-group-item list-group-item-info"><?php echo $company->getCreateDate() ?> </li></td>
+                                            
+
                                         </tr>
                                    <?php
                               }
-                         ?>
-                         </tr>
+                        ?>
+                         
                     </tbody>
                </table>
           </div>
