@@ -8,21 +8,13 @@
     class StudentsDAO 
     {
         private $StudentsList = array();
-        private $fileName;
+        
     
         public function __construct()
         {
-            $this->fileName = dirname(__DIR__)."/Data/students.json";
-        }
-        
-        public function Add($students)
-        {
-            $this->RetrieveData();
             
-            array_push($this->StudentsDAO, $students);
-     
-            $this->SaveData();
-        }
+        }       
+       
     
         public function GetAll()
         {
@@ -31,30 +23,7 @@
             return $this->StudentsList;
         }
 
-        private function SaveData()
-        {
-            $arrayToEncode = array();
-    
-            foreach($this->StudentsDAO as $students)
-            {
-                $valuesArray["career"] = $students->geCareer();
-                $valuesArray["phoneNumber"] = $students->getPhoneNumber();
-                $valuesArray["birthdayDate"] = $students->getBirthdayDate();
-                $valuesArray["email"] = $students->getEmail();
-                $valuesArray["password"] = $students->getPassword();
-                $valuesArray["name"] = $students->getName();
-                $valuesArray["lastName"] = $students->getLastName();
-                $valuesArray["dni"] = $students->getDni();
-    
-    
-                array_push($arrayToEncode, $valuesArray);
-            }
-    
-            $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-            
-            file_put_contents($this->fileName, $jsonContent);
-        }
-
+       
         private function RetrieveData()
         {
             $this->StudentsList = array();
@@ -75,7 +44,7 @@
                 
                   $ctx = stream_context_create($opt);
                 
-                  $jsonContent = file_get_contents("https://utn-students-api.herokuapp.com/api/Student", false, $ctx);
+                  $jsonContent = file_get_contents("https://utn-students-api.herokuapp.com/api/Student/", false, $ctx);
                   
                   $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
                   
@@ -111,6 +80,7 @@
         public function SearchStudentByEmail($studentEmail){
             
             $studentsAux = new Students();
+            $studentsAux = null;
             $this->RetrieveData();
 
             foreach($this->StudentsList as $value)

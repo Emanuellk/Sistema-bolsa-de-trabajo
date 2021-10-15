@@ -1,8 +1,9 @@
 <?php
     namespace Controllers;
-
+    
     use DAO\UserDAO;
     use DAO\StudentsDAO;
+    use DAO\CareerDAO;
     use Models\User;
     use Models\Students;
 
@@ -10,11 +11,14 @@
     {
         private $StudentsDAO;
         private $UserDAO;
+        private $CareerDAO;
 
         public function __construct()
         {
             $this->StudentsDAO = new StudentsDAO();
             $this->UserDAO = new UserDAO();
+            $this->CareerDAO = new CareerDAO();
+
         }
 
         public function login($email = "", $password = "") {               
@@ -25,13 +29,15 @@
                     $studentAux = $this->StudentsDAO->SearchStudentByEmail($userAux->getEmail());
                     
                     if($userAux->getPassword() == $password && $userAux->getAdmin() == 1)
-                    {                        
-                        require_once(VIEWS_PATH."login.php");                    
+                    {    
+                        $_SESSION['loggedUser'] = $userAux->getEmail();                   
+                        require_once(VIEWS_PATH."navAdmin.php");                    
                     }
                     elseif($userAux->getPassword() == $password)
                     
                     {
-                        require_once(VIEWS_PATH."company-add.php");
+                        $_SESSION['loggedUser'] = $userAux->getEmail();
+                        require_once(VIEWS_PATH."nav.php");
                     }
                     else
                     {                    
@@ -44,12 +50,16 @@
                     $this->ShowLoginView("ERROR! EL USUARIO NO EXISTE UWU ");
                 }
             }
+            public function Logout(){
+                session_destroy();
+                header('location: /TP_LabIV');
+            }
 
             
 
             public function registerUser($email,$password) {
                 
-                    $User = $this->UserDAO->SearchUserByEmail($email);
+                   $User = $this->UserDAO->SearchUserByEmail($email);
                     
                     
                     if(empty($User)) {
@@ -75,14 +85,30 @@
             }
        
 
-             public function ShowLoginView($message = "")
-             {   
-                     
+            public function ShowLoginView($message = "")
+            {   
+                 echo "<script>alert('$message');</script>";
                  require_once(VIEWS_PATH."login.php");
-             }
-        
-        
+                
+            }
+            public function StudentStatus()
+            {   
 
+                $Student= $this->StudentsDAO->SearchStudentByEmail($_SESSION['loggedUser']);
+                $Career = $this->CareerDAO->SearchCareerById($Student->getCareerId());
+                require_once(VIEWS_PATH."student-view.php");
+                
+            }
+            public static function CheckUserLog() {
+                if(!isset($_SESSION['loggedUser']))
+                {
+                    require_once(VIEWS_PATH."login.php");
+                }
+
+               
+            }
+
+        
     }
 
 ?>

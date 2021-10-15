@@ -60,6 +60,7 @@
 
         public function SearchUserByEmail($userEmail) {
             $UserAux = new User();
+            $UserAux = null;
             $this->RetrieveData();
            
             foreach($this->userList as $value)

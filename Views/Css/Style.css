@@ -8,6 +8,25 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.listStudent{
+    
+    
+    width: 600px;
+    text-align: center;
+    background-color:rgb(86, 194, 86);
+    border-radius: 20px;
+    
+}
+.listStudent__ul{
+    list-style: none;
+}
+.container-listStudent {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 100px);
+}
 body{
     background-image: url(../images/im1.jpg);
     background-size: cover;

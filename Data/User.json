@@ -1,12 +1,12 @@
 [
     {
         "email": "wlorant1@sbwire.com",
-        "password": "kkk",
+        "password": "111",
         "admin": 0
     },
     {
-        "email": "wlorant1@sbwire.com",
-        "password": "ggg",
-        "admin": 0
+        "email": "ddouthwaite0@goo.gl",
+        "password": "111",
+        "admin": 1
     }
 ]
