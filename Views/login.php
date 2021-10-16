@@ -1,7 +1,7 @@
 <?php
     require_once('header.php');
 ?>
-
+    <img src="Views/Images/utn.jpg" alt="">
     <main>
         <div class="contenedor__todo">
             <div class="caja__trasera">
