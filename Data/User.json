@@ -8,5 +8,10 @@
         "email": "ddouthwaite0@goo.gl",
         "password": "111",
         "admin": 1
+    },
+    {
+        "email": "dhasely4@blinklist.com",
+        "password": "555",
+        "admin": 0
     }
 ]
