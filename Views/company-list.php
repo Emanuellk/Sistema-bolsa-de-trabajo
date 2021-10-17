@@ -5,6 +5,7 @@
 <div class="company-add">
      <section id="listado" class="mb-5">
           <div class="container">
+               <br>
                <h2 class="mb-4">Listado de Empresas</h2>
                     <link rel="stylesheet" href="style.css">
                     <div class="box">

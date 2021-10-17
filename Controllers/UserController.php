@@ -55,6 +55,8 @@
                 header('location: /TP_LabIV');
             }
 
+            
+
             public function registerUser($email,$password) {
                 
                    $User = $this->UserDAO->SearchUserByEmail($email);
@@ -80,7 +82,8 @@
                     else {                        
                         $this->ShowLoginView("ERROR! Ya existe una cuenta registrada con ese email!");
                     }
-            }      
+            }
+       
 
             public function ShowLoginView($message = "")
             {   

@@ -9,7 +9,7 @@
 }
 
 .listStudent{
-    
+
     
     width: 600px;
     text-align: center;
@@ -28,11 +28,12 @@
     height: calc(100vh - 100px);
 }
 body{
-    background-image: url(../images/im1.jpg);
+    background-image: url(../images/im4.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    overflow:hidden;
 }
 
 .company-add{
@@ -49,6 +50,7 @@ main{
 }
 
 .contenedor__todo{
+    top: -100px;
     width: 100%;
     max-width: 800px;
     margin: auto;
@@ -158,17 +160,14 @@ main{
 }
 
 
-
-
 .formulario__login{
     opacity: 1;
     display: block;
 }
+
 .formulario__register{
     display: none;
 }
-
-
 
 @media screen and (max-width: 850px){
 
@@ -200,12 +199,59 @@ main{
     .contenedor__login-register form{
         position: relative;
     }
-    .alertsucces{
-        text-size-adjust: 333px;
-    }
-
-    
 }
+
+.listado{
+    text-align: center;
+}
+
+.mb-4{
+    font-size: 42px;
+    margin-left: 2%;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+/*Buscador*/
+
+.box{
+    position: absolute;
+    top: 10%;
+    right: 5%;
+}
+
+input.src{
+    padding: 9px 10px 9px 32px;
+    font-size: 18px;
+    border-radius: 10px;
+    width: 300px;
+    border-color: black;
+}
+
+/*input.src:hover{
+    width: 200px;
+    background-color: #ffffff;
+}*/
+
+/*Icono UTN*/
+
+.brand{
+    width: 5px;
+    height: 5px;
+    background: url('../Images/utn.jpg') no-repeat;
+}
+
+.div-brand{
+    top: -100;
+}
+
+/*Letras*/
+
+.nav-link{
+    font-size: 20px;
+    font-family: cursive;
+}
+
 
 /*Buscador*/
 

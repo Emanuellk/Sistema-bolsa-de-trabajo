@@ -12,7 +12,7 @@
                 <li class="list-group-item list-group-item-info"><strong>Nombre:  </strong><?php echo $Student->getFirstName() ?></li>
                 <li class="list-group-item list-group-item-info"><strong>Apellido:  </strong><?php echo $Student->getLastName() ?></li>
                 <li class="list-group-item list-group-item-info"><strong>DNI:  </strong><?php echo $Student->getDni() ?></li>
-                <li class="list-group-item list-group-item-info"><strong>?  :</strong><?php echo $Student->getFileNumber() ?></li>
+                <li class="list-group-item list-group-item-info"><strong>Legajo:</strong><?php echo $Student->getFileNumber() ?></li>
                 <li class="list-group-item list-group-item-info"><strong>Genero:  </strong><?php echo $Student->getGender() ?></li>
                 <li class="list-group-item list-group-item-info"><strong>Fecha de nacimiento:  </strong><?php echo $Student->getBirthDate() ?></li>
                 <li class="list-group-item list-group-item-info"><strong>Telefono:  </strong><?php echo $Student->getPhoneNumber() ?></li>

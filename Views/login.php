@@ -1,7 +1,7 @@
 <?php
     require_once('header.php');
 ?>
-
+    <img src="Views/Images/utn.jpg" alt="">
     <main>
         <div class="contenedor__todo">
             <div class="caja__trasera">
@@ -20,7 +20,7 @@
             <!--Formulario de Login y registro-->
             <div class="contenedor__login-register">
                 <!--Login-->
-                <form action="<?php echo FRONT_ROOT ?>User/login" class="formulario__login" method="post">
+                <form action="<?php echo FRONT_ROOT ?>User/login" class="formulario__login" method="get">
                     <h2>Iniciar Sesión</h2>
                     <input type="email" placeholder="Email" name="email">
                     <input type="password" placeholder="Password" name="password">
@@ -28,10 +28,10 @@
                 </form>
 
                 <!--Register-->
-                <form action="<?php echo FRONT_ROOT ?>User/registerUser" class="formulario__register" method="post">
+                <form action="<?php echo FRONT_ROOT ?>User/registerUser" class="formulario__register" method="get">
                     <h2>Regístrarse</h2>
-                    <input type="email" placeholder="Email" name="email">
-                    <input type="password" placeholder="Password" name="password">
+                    <input type="email" placeholder="Correo Electronico" name="email">
+                    <input type="password" placeholder="Contraseña" name="password">
                     <button type="submit">Regístrarse</button>
                 </form>
             </div>
@@ -40,7 +40,8 @@
      <script src="Views/js/script.js"></script>
 
     </main>
-
-<?php
-    require_once('footer.php');
-?>
+    
+    <script text="Views/js/script.js" src="Views/js/script.js"></script>
+    
+</body>
+</html>
