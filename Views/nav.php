@@ -2,9 +2,7 @@
     require_once('header.php');
 ?>
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-     <span class="navbar-text">
-     <img src="Views/Images/utn.jpg" alt="" class="brand">
-     </span>
+    
      <div class="brand"></div>
      <ul class="navbar-nav ml-auto">
      
