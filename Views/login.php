@@ -30,14 +30,12 @@
                 <!--Register-->
                 <form action="<?php echo FRONT_ROOT ?>User/registerUser" class="formulario__register" method="get">
                     <h2>Regístrarse</h2>
-                    <input type="email" placeholder="Correo Electronico" name="email">
-                    <input type="password" placeholder="Contraseña" name="password">
+                    <input type="email" placeholder="Email" name="email">
+                    <input type="password" placeholder="Password" name="password">
                     <button type="submit">Regístrarse</button>
                 </form>
             </div>
         </div>
-
-     <script src="Views/js/script.js"></script>
 
     </main>
     

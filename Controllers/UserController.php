@@ -48,8 +48,10 @@
                 }
                 else{                                        
                     $this->ShowLoginView("ERROR! EL USUARIO NO EXISTE UWU ");
+                    require_once(VIEWS_PATH."login.php");
                 }
             }
+            
             public function Logout(){
                 session_destroy();
                 header('location: /TP_LabIV');
@@ -82,6 +84,7 @@
                     else {                        
                         $this->ShowLoginView("ERROR! Ya existe una cuenta registrada con ese email!");
                     }
+                    require_once(VIEWS_PATH."login.php");
             }
        
 

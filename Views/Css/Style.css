@@ -28,7 +28,7 @@
     height: calc(100vh - 100px);
 }
 body{
-    background-image: url(../images/im4.jpg);
+    background-image: url(../images/im5.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -64,8 +64,8 @@ main{
     justify-content: center;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    background-color: rgba(0, 128, 255, 0.5);
-
+    background-color: rgba(63, 104, 104, 0.883);
+    border-radius: 20px;
 }
 
 .caja__trasera div{
@@ -125,7 +125,7 @@ main{
 .contenedor__login-register form{
     width: 100%;
     padding: 80px 20px;
-    background: white;
+    background: rgb(255, 255, 255);
     position: absolute;
     border-radius: 20px;
 }
@@ -134,7 +134,17 @@ main{
     font-size: 30px;
     text-align: center;
     margin-bottom: 20px;
-    color: #46A2FD;
+    color: #28805e;
+    font-family: cursive;
+    font-size: 150%;
+}
+
+.button__logout{
+    background-color: #303e44;
+    font-family: cursive;
+    margin-top: 5px;
+    border: solid;
+    font-size: 20px;
 }
 
 .contenedor__login-register form input{
@@ -152,7 +162,7 @@ main{
     margin-top: 40px;
     border: none;
     font-size: 14px;
-    background: #46A2FD;
+    background: #2b6e65;
     font-weight: 600;
     cursor: pointer;
     color: white;
@@ -215,9 +225,12 @@ main{
 /*Buscador*/
 
 .box{
-    position: absolute;
+    position:fixed;
     top: 10%;
     right: 5%;
+    margin-top: 50px;
+    font-size: 42px;
+    margin-left: 2%;
 }
 
 input.src{
@@ -236,8 +249,8 @@ input.src{
 /*Icono UTN*/
 
 .brand{
-    width: 5px;
-    height: 5px;
+    width: 100px;
+    height: 100px;
     background: url('../Images/utn.jpg') no-repeat;
 }
 
