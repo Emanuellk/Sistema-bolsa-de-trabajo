@@ -206,3 +206,23 @@ main{
 
     
 }
+
+/*Buscador*/
+
+.box{
+    position: absolute;
+    top: 12%;
+    left: 72%;
+}
+
+input.src{
+    padding: 9px 10px 9px 32px;
+    font-size: 18px;
+    border-radius: 10px;
+    width: 200px;
+}
+
+input.src:hover{
+    width: 200px;
+    background-color: #ffffff;
+}
