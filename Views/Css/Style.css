@@ -285,3 +285,29 @@ input.src:hover{
     width: 200px;
     background-color: #ffffff;
 }
+
+/*Página Principal (Cuadrado)*/
+
+.ctn-welcome{
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 40px;
+    margin: auto;
+    margin-top: 120px;
+    background: rgb(185, 180, 180);
+    border-radius: 20px;
+    border: solid;
+}
+
+.logo-welcome{
+    width: 200px;
+    margin: 16px;
+}  
+
+.title-welcome{
+    font-weight: 400;
+    font-size: 29px;
+    margin-top: -10px; 
+    font-family:cursive;
+}
