@@ -33,7 +33,6 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    overflow:hidden;
 }
 
 .company-add{
@@ -129,7 +128,7 @@ main{
     position: absolute;
     border-radius: 20px;
 }
-
+ 
 .contenedor__login-register form h2{
     font-size: 30px;
     text-align: center;
@@ -140,12 +139,23 @@ main{
 }
 
 .button__logout{
-    background-color: #303e44;
+    cursor: pointer;
+    /*background-color: #303e44;*/
+    background-image: linear-gradient(to left,rgb(212, 132, 132) 50%,rgb(231, 10, 10) 50%);
+    background-size: 200%;
+    background-repeat: no-repeat;
+    background-position: right;
     font-family: cursive;
     margin-top: 5px;
     border: solid;
     font-size: 20px;
+    transition:background-position .3s ease;
 }
+
+.button__logout:hover{
+    background-position: left;
+}
+
 
 .contenedor__login-register form input{
     width: 100%;

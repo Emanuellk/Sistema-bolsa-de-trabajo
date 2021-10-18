@@ -45,7 +45,7 @@
             
             $this->companyDAO->updateCompany($nameCompany, $email, $createDate, $id);
             $this->ShowManageView();
-        }
+        }   
         public function CompanyList()
         {
             $companyList = $this->companyDAO->GetAll();
