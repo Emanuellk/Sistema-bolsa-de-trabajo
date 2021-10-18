@@ -13,5 +13,10 @@
         "email": "dhasely4@blinklist.com",
         "password": "555",
         "admin": 0
+    },
+    {
+        "email": "ediben3@multiply.com",
+        "password": "123",
+        "admin": 0
     }
 ]

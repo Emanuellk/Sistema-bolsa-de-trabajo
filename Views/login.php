@@ -20,7 +20,7 @@
             <!--Formulario de Login y registro-->
             <div class="contenedor__login-register">
                 <!--Login-->
-                <form action="<?php echo FRONT_ROOT ?>User/login" class="formulario__login" method="get">
+                <form action="<?php echo FRONT_ROOT ?>User/login" class="formulario__login" method="POST">
                     <h2>Iniciar Sesión</h2>
                     <input type="email" placeholder="Email" name="email">
                     <input type="password" placeholder="Password" name="password">
@@ -28,7 +28,7 @@
                 </form>
 
                 <!--Register-->
-                <form action="<?php echo FRONT_ROOT ?>User/registerUser" class="formulario__register" method="get">
+                <form action="<?php echo FRONT_ROOT ?>User/registerUser" class="formulario__register" method="POST">
                     <h2>Regístrarse</h2>
                     <input type="email" placeholder="Email" name="email">
                     <input type="password" placeholder="Password" name="password">

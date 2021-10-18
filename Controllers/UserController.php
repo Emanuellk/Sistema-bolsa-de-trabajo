@@ -46,9 +46,8 @@
                         
                     }
                 }
-                else{                                        
-                    $this->ShowLoginView("ERROR! EL USUARIO NO EXISTE UWU ");
-                    require_once(VIEWS_PATH."login.php");
+                else{                          
+                    $this->ShowLoginView("ERROR! EL USUARIO NO EXISTE"); 
                 }
             }
             
@@ -81,19 +80,18 @@
                             $this->ShowLoginView("Email incorrecto");
                         }
                     }
-                    else {                        
+                    else {                      
                         $this->ShowLoginView("ERROR! Ya existe una cuenta registrada con ese email!");
                     }
-                    require_once(VIEWS_PATH."login.php");
             }
        
 
             public function ShowLoginView($message = "")
             {   
-                 echo "<script>alert('$message');</script>";
-                 require_once(VIEWS_PATH."login.php");
-                
+                 echo "<script>alert('$message');</script>"; 
+                 echo "<script>setTimeout(\"location.href = '/TP_LabIV';\",1500);</script>"; 
             }
+            
             public function StudentStatus()
             {   
 
