@@ -2,9 +2,7 @@
     require_once('header.php');
 ?>
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-     <span class="navbar-text">
-     
-     </span>
+    
      <div class="brand"></div>
      <ul class="navbar-nav ml-auto">
      
@@ -21,5 +19,7 @@
           <a  href="<?php echo FRONT_ROOT ?>User/Logout"> <button class="button__logout">Cerrar sesión <i class="fas fa-sign-out-alt"></i></button></a>
 
      </ul>
+
 </nav>
+
      

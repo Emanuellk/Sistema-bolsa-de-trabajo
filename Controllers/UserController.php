@@ -31,13 +31,13 @@
                     if($userAux->getPassword() == $password && $userAux->getAdmin() == 1)
                     {    
                         $_SESSION['loggedUser'] = $userAux->getEmail();                   
-                        require_once(VIEWS_PATH."navAdmin.php");                    
+                        require_once(VIEWS_PATH."pagAdmin.php");                    
                     }
                     elseif($userAux->getPassword() == $password)
                     
                     {
                         $_SESSION['loggedUser'] = $userAux->getEmail();
-                        require_once(VIEWS_PATH."nav.php");
+                        require_once(VIEWS_PATH."pagPrincipal.php");
                     }
                     else
                     {                    
