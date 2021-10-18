@@ -15,9 +15,7 @@
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/CompanyList">Ver Empresas</a>
           </li>  
-
           <a  href="<?php echo FRONT_ROOT ?>User/Logout"> <button class="button__logout">Cerrar sesión <i class="fas fa-sign-out-alt"></i></button></a>
-
      </ul>
 
 </nav>
