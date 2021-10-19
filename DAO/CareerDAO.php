@@ -58,12 +58,11 @@
                     $Career->setId($valuesArray["careerId"]);
                     $Career->setDescription($valuesArray["description"]);
                     $Career->setActive($valuesArray["active"]);
-                    
-                    
+                    array_push($this->CareerList, $Career);
                     
                 }
 
-                    array_push($this->CareerList, $Career);
+                   
                     
         }
 
