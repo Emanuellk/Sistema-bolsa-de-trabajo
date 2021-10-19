@@ -23,7 +23,6 @@
 
         public function login($email = "", $password = "") {               
                 $userAux = $this->UserDAO->SearchUserByEmail($email);
-               
                 if(!empty($userAux)){
                     
                     $studentAux = $this->StudentsDAO->SearchStudentByEmail($userAux->getEmail());

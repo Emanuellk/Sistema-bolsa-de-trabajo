@@ -18,5 +18,10 @@
         "email": "ediben3@multiply.com",
         "password": "123",
         "admin": 0
+    },
+    {
+        "email": "walelsandrowicz5@nasa.gov",
+        "password": "12345",
+        "admin": 0
     }
 ]
