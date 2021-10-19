@@ -18,5 +18,10 @@
         "email": "ediben3@multiply.com",
         "password": "123",
         "admin": 0
+    },
+    {
+        "email": "sjanteta@businessinsider.com",
+        "password": "123456",
+        "admin": 0
     }
 ]
