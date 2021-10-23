@@ -1,9 +1,10 @@
 <?php
     require_once('navAdmin.php');
 ?>
-<div class="company-add">
+<div class="companyadd">
         <section id="listado" class="mb-5">
             <div class="container">
+                <br>
                 <br>
                 <h2 class="mb-4">Agregar empresa</h2>
                 <form action="<?php echo FRONT_ROOT ?>Company/Add" method="POST" class="bg-light-alpha p-5">

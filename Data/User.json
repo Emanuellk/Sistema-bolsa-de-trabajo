@@ -33,5 +33,10 @@
         "email": "bblew2i@biglobe.ne.jp",
         "password": "111",
         "admin": 0
+    },
+    {
+        "email": "jdoringb@un.org",
+        "password": "ss",
+        "admin": 0
     }
 ]
