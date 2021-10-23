@@ -44,6 +44,7 @@
                 $valuesArray["email"] = $company->getEmail();
                 $valuesArray["createDate"] = $company->getCreateDate();
                 $valuesArray["id"] = $company->getIdCompany();
+                $valuesArray["description"] = $company->getDescription();
 
                 array_push($arrayToEncode, $valuesArray);
             }
@@ -71,6 +72,7 @@
                     $company->setEmail($valuesArray["email"]);
                     $company->setCreateDate($valuesArray["createDate"]);
                     $company->setIdCompany($valuesArray["id"]);
+                    $company->setDescription($valuesArray["description"]);
 
 
                     array_push($this->CompanyList, $company);
@@ -118,7 +120,7 @@
             return null;
         }
         
-        function createCompany($name,$email,$date)
+        function createCompany($name,$email,$date,$description)
         {
             $company = new Company();
 
@@ -126,11 +128,11 @@
             $company->setNameCompany($name);
             $company->setEmail($email);
             $company->setCreateDate($date);
-            
+            $company->setDescription($description);
             return $company;
         }
 
-        function updateCompany($name,$email,$date,$id){
+        function updateCompany($name,$email,$date,$description,$id){
             $this->RetrieveData();
             
             foreach($this->CompanyList as $company){
@@ -139,6 +141,8 @@
                     $company->setNameCompany($name);
                     $company->setEmail($email);
                     $company->setCreateDate($date);
+                    $company->setDescription($description);
+
                 }
             }
 

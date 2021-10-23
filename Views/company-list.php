@@ -2,7 +2,7 @@
     require_once('nav.php');   
 ?>
 
-<div class="company-add">
+<div class="company-add " >
      <section id="listado" class="mb-5">
           <div class="container">
                <br>
@@ -16,6 +16,7 @@
                          <th> <li class="list-group-item list-group-item-dark">Nombre</li></th>
                          <th><li class="list-group-item list-group-item-dark">Email</li></th>
                          <th><li class="list-group-item list-group-item-dark">Fecha de creación</li></th>
+                         <th><li class="list-group-item list-group-item-dark">Ver empresa</li></th>
                          
                     </thead>
                     
@@ -30,13 +31,69 @@
                                              <td><li class="list-group-item list-group-item-info"><?php echo $company->getNameCompany() ?></li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $company->getEmail() ?> </li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $company->getCreateDate() ?> </li></td>
-                                            
+                                             <td>
+                                             <button  class = "btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#Ver<?= $company->getIdCompany()?> " >
+                                                   <i class="fas fa-eye"></i>    
+                                             </button>
+                                             <!-- Modal -->
+                                             </td>
+                                             <div class="modal fade" id="Ver<?= $company->getIdCompany()?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg">
+                                                  <div class="modal-content" style="background-color:cadetblue;">
+                                                       <div class="modal-header">
+                                                       <h5 style="color:black;">Ver empresa:</h5>
+                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                       </div>
+                                                       <div class="modal-body">
+                                                       
+                                                       <div class="container">
+                                                                 
+                                                                
+                                                                      <div class="row">                         
+                                                                           
+                                                                                <div class="form">
+                                                                                <li class="list-group-item list-group-item-info"> <Strong>Nombre: </Strong><?php echo $company->getNameCompany() ?></li>
+                                                                                     
+                                                                                </div>
+                                                                           
+                                                                           
+                                                                                <div class="form">
+                                                                                <li class="list-group-item list-group-item-info"> <strong>Email: </strong><?php echo $company->getEmail() ?> </li>
+                                                                                     
+                                                                                </div>
+                                                                           
+                                                                           
+                                                                                <div class="form">
+                                                                                <li class="list-group-item list-group-item-info"><strong>Fecha: </strong><?php echo $company->getCreateDate() ?> </li>
+                                                                                     
+                                                                                </div>
+
+                                                                                <div class="form">
+                                                                                     
+                                                                                     <li class="list-group-item list-group-item-info"><strong>Descripcion: </strong><?php echo $company->getDescription() ?> </li>
+                                                                                     
+                                                                                </div>
+                                                                               
+
+                                                                      </div>
+                                                                          
+                                                                      
+                                                                      
+                                                                
+                                                       </div>
+                                                       </div>
+                                                                               
+                                                                
+                                                  </div></div></div>                                                  
+                                                  <!-////////////////////////////////////////////////////////////////////////////––> 
+                                             
+                                             
 
                                         </tr>
                                    <?php
                               }
                         ?>
-                         
+                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
                     </tbody>
                </table>
           </div>

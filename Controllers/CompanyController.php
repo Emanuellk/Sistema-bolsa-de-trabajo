@@ -30,12 +30,12 @@
             require_once(VIEWS_PATH."company-manage.php");
         }
 
-        public function Add($nameCompany, $email, $createDate)
+        public function Add($nameCompany, $email, $createDate, $description)
         {
             $companyAux = NULL;
             $companyAux = $this->companyDAO->SearchNameCompany($nameCompany);
             if($companyAux == NULL){
-                $company = $this->companyDAO->createCompany($nameCompany,$email,$createDate);
+                $company = $this->companyDAO->createCompany($nameCompany,$email,$createDate,$description);
                 $this->companyDAO->Add($company);
                 $this->ShowAddMesaggeView("Registro de empresa exitoso");
             }else{
@@ -53,9 +53,9 @@
         }
 
 
-        public function Update($nameCompany, $email, $createDate, $id){
+        public function Update($nameCompany, $email, $createDate,$description, $id){
             
-            $this->companyDAO->updateCompany($nameCompany, $email, $createDate, $id);
+            $this->companyDAO->updateCompany($nameCompany, $email, $createDate,$description, $id);
             $this->ShowManageView();
         }   
         public function CompanyList()

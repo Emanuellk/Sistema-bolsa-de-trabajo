@@ -84,7 +84,13 @@
                                                                                      <label for="">Fecha de creación</label>
                                                                                      <input type="date" name="createDate" value="<?= $company->getCreateDate()?>" class="form-control">
                                                                                 </div>
+
+                                                                                <div class="form">
+                                                                                     <label for="">Descripcion de la Empresa</label>
+                                                                                     <input type="text" name="description" value="<?= $company->getDescription()?>" class="form-control">
+                                                                                </div>
                                                                                 <input type="hidden" name="id" value="<?php echo $company->getIdCompany()?>" class="form-control">
+
                                                                       </div>
                                                                           
                                                                       

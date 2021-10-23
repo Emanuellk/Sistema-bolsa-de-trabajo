@@ -17,10 +17,13 @@
                     <li class="list-group-item list-group-item-info"><strong>Fecha de nacimiento:  </strong><?php echo $Student->getBirthDate() ?></li>
                     <li class="list-group-item list-group-item-info"><strong>Telefono:  </strong><?php echo $Student->getPhoneNumber() ?></li>
                     <li class="list-group-item list-group-item-info"><strong>Email:  </strong><?php echo $Student->getEmail() ?></li>
-                    <li class="list-group-item list-group-item-info"><strong>Activo:  </strong><?php if($Student->getActive() == 1){echo ("Si");}else{echo ("No");}
- ?></li>
+                    <li class="list-group-item list-group-item-info"><strong>Activo:  </strong><?php if($Student->getActive() == 1){echo ("Si");}else{echo ("No");}?></li>
                 </ul> 
             </div>
         </div>
     </div>
 </div>
+
+
+
+
