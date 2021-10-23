@@ -13,9 +13,14 @@
             $this->companyDAO = new CompanyDAO();
         }
 
+        
         public function ShowAddView()
         {
             require_once(VIEWS_PATH."company-add.php");
+        }
+        
+        public function ShowAddMesaggeView($message = ""){
+            echo "<script>alert('$message');</script>"; 
         }
 
         public function ShowManageView()
@@ -27,9 +32,16 @@
 
         public function Add($nameCompany, $email, $createDate)
         {
-            $company = $this->companyDAO->createCompany($nameCompany,$email,$createDate);
-            $this->companyDAO->Add($company);
+            $companyAux = NULL;
+            $companyAux = $this->companyDAO->SearchNameCompany($nameCompany);
+            if($companyAux == NULL){
+                $company = $this->companyDAO->createCompany($nameCompany,$email,$createDate);
+                $this->companyDAO->Add($company);
+                $this->ShowAddMesaggeView("Registro de empresa exitoso");
+            }else{
+                $this->ShowAddMesaggeView("ERROR! Ya existe una empresa con ese nombre!");
 
+            }
             $this->ShowAddView();
         }
 

@@ -23,5 +23,15 @@
         "email": "sjanteta@businessinsider.com",
         "password": "123456",
         "admin": 0
+    },
+    {
+        "email": "mdevil2f@ox.ac.uk",
+        "password": "123",
+        "admin": 0
+    },
+    {
+        "email": "bblew2i@biglobe.ne.jp",
+        "password": "111",
+        "admin": 0
     }
 ]

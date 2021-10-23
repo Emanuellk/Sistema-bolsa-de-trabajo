@@ -78,6 +78,22 @@
             }
         }
 
+        //----------Que no se repita el nombre de una empresa------------
+        public function SearchNameCompany($company) {
+            $CompanyAux = new Company();
+            $CompanyAux = null;
+            $this->RetrieveData();
+           
+            foreach($this->CompanyList as $value)
+            {
+                if($company == $value->getNameCompany())
+                {
+                    $CompanyAux = $value;
+                }
+            }
+            return $CompanyAux;  
+        }
+
         //----------Logica para actualizar y eliminar compañias----------
 
         public function getCompanys(){          
