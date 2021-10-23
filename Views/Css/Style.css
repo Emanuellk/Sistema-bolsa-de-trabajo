@@ -141,13 +141,13 @@ main{
 .button__logout{
     cursor: pointer;
     /*background-color: #303e44;*/
-    background-image: linear-gradient(to left,rgb(212, 132, 132) 50%,rgb(231, 10, 10) 50%);
+    background-image: linear-gradient(to left,rgb(83, 81, 81) 50%,rgb(231, 10, 10) 50%);
     background-size: 200%;
     background-repeat: no-repeat;
     background-position: right;
     font-family: cursive;
     margin-top: 5px;
-    border: solid;
+    /*border: solid;*/
     font-size: 20px;
     transition:background-position .3s ease;
 }
@@ -273,6 +273,8 @@ input.src{
 .nav-link{
     font-size: 20px;
     font-family: cursive;
+    padding: 12px 22px;
+    display: block;
 }
 
 
@@ -321,4 +323,38 @@ input.src:hover{
     margin-top: -10px; 
     font-family:cursive;
 }
+
+
+
+/*Submenu*/
+
+#menu #desple{
+    display: none;
+    min-width: 100px;
+}
+
+#menu:hover #desple{
+    display: block;
+ }
+
+ #menu #item a:hover{
+    background: rgba(0, 102, 204, 1);
+    color: rgba(0, 204, 255, 1);
+}
+
+.user{
+    color: #46A2FD;
+}
+
+/*Palabras e iconos menu*/
+
+.icon{
+    font-size: 38px;
+}
+
+.nav-link{
+   font-size: 20px;
+}
+
+
 
