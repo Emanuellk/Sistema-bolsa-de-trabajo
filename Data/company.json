@@ -3,66 +3,79 @@
         "nameCompany": "Cigma",
         "email": "Cigma@gmail.com",
         "createDate": "2021-04-19",
-        "id": 1470522
+        "id": 1470522,
+        "description": "La compa\u00f1\u00eda Band es un gran ejemplo de c\u00f3mo una descripci\u00f3n de empresas no tiene por qu\u00e9 ser seria. La empresa ha distribuido im\u00e1genes sencillas de sus productos con el apoyo de una tipograf\u00eda divertida, logrando plasmar su personalidad con un dise\u00f1o equilibrado y dejando as\u00ed que sean estos rasgos los que le hablen a los visitantes."
     },
     {
         "nameCompany": "Accenture",
         "email": "Accenture@gmail.com",
         "createDate": "2014-08-04",
-        "id": 1382183
+        "id": 1382183,
+        "description": null
     },
     {
         "nameCompany": "Tesla",
         "email": "tesla@gmail.com",
         "createDate": "2003-07-01",
-        "id": 1333229
+        "id": 1333229,
+        "description": null
     },
     {
         "nameCompany": "Google",
         "email": "google@hotmail.com",
         "createDate": "2001-01-01",
-        "id": 1506659
+        "id": 1506659,
+        "description": null
     },
     {
         "nameCompany": "Amazon",
         "email": "Amazon@gmail.com",
         "createDate": "2008-07-04",
-        "id": 1571376
+        "id": 1571376,
+        "description": null
     },
     {
         "nameCompany": "Globant",
         "email": "globant@hotmail.com",
         "createDate": "2006-03-05",
-        "id": 1637628
+        "id": 1637628,
+        "description": null
     },
     {
         "nameCompany": "Polestar",
         "email": "Polestar@gmail.com",
         "createDate": "2008-03-04",
-        "id": 1957181
+        "id": 1957181,
+        "description": null
     },
     {
         "nameCompany": "Cepita",
         "email": "emanuel.maggiolk@gmail.com",
         "createDate": "2021-02-12",
-        "id": 1921785
+        "id": 1921785,
+        "description": null
     },
     {
         "nameCompany": "Jack Daniels",
         "email": "JackDaniels@gmail.com",
         "createDate": "2001-10-08",
-        "id": 1792286
+        "id": 1792286,
+        "description": null
     },
     {
         "nameCompany": "Nice",
         "email": "Nice@gmail.com",
         "createDate": "2008-04-02",
-        "id": 1035750
+        "id": 1035750,
+        "description": null
     },
     {
         "nameCompany": "Virus",
         "email": "virus@gmail.com",
         "createDate": "2002-02-13",
-        "id": 1815374
+        "id": 1815374,
+        "description": null
     }
+    
+    
 ]

@@ -26,6 +26,12 @@
                                     <input type="date" name="createDate" value="" class="form-control" required>
                                 </div>
                             </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="">Descripcion</label>
+                                    <input type="text" name="description" value="" class="form-control" required>
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-dark ml-auto d-block">Agregar</button>
                 </form>
