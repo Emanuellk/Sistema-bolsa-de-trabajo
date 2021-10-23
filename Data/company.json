@@ -40,5 +40,29 @@
         "email": "Polestar@gmail.com",
         "createDate": "2008-03-04",
         "id": 1957181
+    },
+    {
+        "nameCompany": "Cepita",
+        "email": "emanuel.maggiolk@gmail.com",
+        "createDate": "2021-02-12",
+        "id": 1921785
+    },
+    {
+        "nameCompany": "Jack Daniels",
+        "email": "JackDaniels@gmail.com",
+        "createDate": "2001-10-08",
+        "id": 1792286
+    },
+    {
+        "nameCompany": "Nice",
+        "email": "Nice@gmail.com",
+        "createDate": "2008-04-02",
+        "id": 1035750
+    },
+    {
+        "nameCompany": "Virus",
+        "email": "virus@gmail.com",
+        "createDate": "2002-02-13",
+        "id": 1815374
     }
 ]
