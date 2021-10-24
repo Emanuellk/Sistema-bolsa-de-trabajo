@@ -268,8 +268,10 @@ input.src{
 /*Icono UTN*/
 
 .brand{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+    margin-top: -10px;
+    margin-right: 16px;
     background: url('../Images/utn.jpg') no-repeat;
 }
 
@@ -340,7 +342,9 @@ input.src:hover{
 
 #menu #desple{
     display: none;
-    min-width: 100px;
+    min-width: 200px;
+    left: -50px;
+    height: 100px;
 }
 
 #menu:hover #desple{
@@ -348,8 +352,11 @@ input.src:hover{
  }
 
  #menu #item a:hover{
-    background: rgba(0, 102, 204, 1);
-    color: rgba(0, 204, 255, 1);
+    background: rgb(24, 25, 26);
+}
+
+#item:hover{
+    background-color: rgba(20, 20, 20, 0.856);
 }
 
 .user{
@@ -359,7 +366,7 @@ input.src:hover{
 /*Palabras e iconos menu*/
 
 .icon{
-    font-size: 38px;
+    font-size: 26px;
 }
 
 .nav-link{
@@ -377,6 +384,27 @@ input.src:hover{
 .tittle-admin{
     font-size: 20px;
 }
+
+
+
+#menu li {
+    position: relative;
+  }
+  
+#menu ul {
+    display: none;
+    background-color: rgb(34, 38, 42);
+    position: absolute;
+    padding: 7px;
+    left: 0;
+    top: 100%;
+  }
+  
+
+  #menu li:hover > ul {
+    display: block;
+  }
+
 
 @font-face {
     font-family: "FuenteLogin";

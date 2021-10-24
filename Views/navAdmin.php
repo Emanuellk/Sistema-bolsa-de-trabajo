@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
 <div class="brand"></div>
      <span class="navbar-text">
+
           <strong  class="tittle-admin">Admininistrador</strong>
      </span>
      <ul class="navbar-nav ml-auto">
