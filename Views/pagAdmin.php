@@ -14,7 +14,7 @@
   <div class="ctn-welcome">
  
   <img src="" alt="" class="logo-welcome">
-  <h1 class="title-welcome">Bienvenido a la Bolsa de Trabajo de la UTN</h1>
+  <h1 class="title-welcome">Bienvenido <strong>Administrador</strong>  a la Bolsa de Trabajo de la UTN</h1>
   </div>
 </body>
 </html>

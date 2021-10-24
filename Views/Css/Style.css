@@ -363,10 +363,20 @@ input.src:hover{
 }
 
 .nav-link{
-   font-size: 20px;
+   font-size: 19px;
 }
 
+/*Iconos del menu del administrador*/
 
+.icon-admin{
+    font-size: 24px;
+}
+
+/*Titulo de administrador*/
+
+.tittle-admin{
+    font-size: 20px;
+}
 
 @font-face {
     font-family: "FuenteLogin";
