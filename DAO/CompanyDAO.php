@@ -73,7 +73,7 @@
                     $company->setCreateDate($valuesArray["createDate"]);
                     $company->setIdCompany($valuesArray["id"]);
                     $company->setDescription($valuesArray["description"]);
-
+                   
 
                     array_push($this->CompanyList, $company);
                 }
