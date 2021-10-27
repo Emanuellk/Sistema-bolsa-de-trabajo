@@ -62,8 +62,7 @@
 
         public function SearchUserByEmail($userEmail) {
            
-            try
-            {
+            try{
             
             $query = "SELECT * FROM `".$this->tableName."` WHERE email='$userEmail'";
             $this->connection = Connection::GetInstance();            
