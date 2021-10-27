@@ -1,16 +1,16 @@
 <?php
     namespace DAO;
 
-    use DAO\ICompanyDAO as ICompanyDAO;
-    use DAO\QueryType as QueryType;
+    use DAO\ICompanyDAO as ICompanyDAO;    
     use Models\Company as Company;
+    use \Exception as Exception;
 
     class CompanyDAO implements ICompanyDAO
     {
         private $connection;
         private $tablename = "companys";
 
-        public fuction Add(Company $company){
+        public function Add(Company $company){
             try{
                 $query = "INSERT INTO".$this->tableName."(id, nameCompany, description, createDate, email) VALUES (:id, :nameCompany, :description, :createDate, :email);";
                 $parameters["nameCompany"] = $company->getNameCompany();
@@ -34,7 +34,8 @@
                 $query = "SELECT * FROM".$this->tableName;
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->Connection->Excute($query);
-                foreach($resultSet as $row){
+                foreach($resultSet as $row)
+                {
 
                     $company = new Company();
                     $company->setNameCompany($row["nameCompany"]);
@@ -47,7 +48,7 @@
                 }
 
                 return $companyList;
-            }catch(Exception row){
+            }catch(Exception $ex){
                 throw $ex;
             }
         }

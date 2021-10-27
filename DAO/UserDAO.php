@@ -1,80 +1,92 @@
 <?php
     namespace DAO;
-    use Models\User;
 
-   class UserDAO 
-   {
-       private $userList = array();
-       private $fileName;
-   
-       public function __construct()
-       {
-           $this->fileName= dirname(__DIR__)."/Data/User.json";        
-       }
-   
-   
-        public function Add(User $User)
-        { 
-            $this->RetrieveData();
-            array_push($this->userList,$User);
-            $this->SaveData();
+    use \Exception as Exception;   
+    use Models\User as User;    
+    use DAO\Connection as Connection;
+
+    class UserDAO 
+    {
+        private $connection;
+        private $tableName = "users";
+
+        public function Add(User $user)
+        {
+            try
+            {
+                $query = "INSERT INTO ".$this->tableName." (email, password, admin) VALUES (:email, :password, :admin);";
+                
+                $parameters["email"] = $user->getEmail();
+                $parameters["password"] = $user->getPassword();
+                $parameters["admin"] = $user->getAdmin();
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
         }
 
         public function GetAll()
         {
-            $this->RetrieveData();
-            return $this->userList;
-        }
-
-        private function SaveData() {
-            $arrayToEncode = array();
-        
-            foreach($this->userList as $user)
+            try
             {
-                $valuesArray['email'] = $user->getEmail();
-                $valuesArray['password'] = $user->getPassword();
-                $valuesArray['admin'] = $user->getAdmin();
+                $userList = array();
 
-                array_push($arrayToEncode, $valuesArray);
-            }
-            $jsonContent = json_encode($arrayToEncode,JSON_PRETTY_PRINT);
-            file_put_contents($this->fileName, $jsonContent);
-        }
-    
-    
-        private function RetrieveData() {
-            $this->userList = array();
-            if(file_exists($this->fileName))
-            {
-                $jsonContent = file_get_contents($this->fileName);
-                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+                $query = "SELECT * FROM ".$this->tableName;
+
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
                 
-                foreach($arrayToDecode as $valuesArray) {
-                    $user = new User($valuesArray['email'],$valuesArray['password'],$valuesArray['admin']);
-                    
-                    array_push($this->userList, $user);
-                   
+                foreach ($resultSet as $row)
+                {                
+                    $user = new User();
+                    $user->setEmail($row["email"]);
+                    $user->setPassword($row["password"]);
+                    $user->setAdmin($row["admin"]);
+
+                    array_push($userList, $user);
                 }
+
+                return $userList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
             }
         }
 
         public function SearchUserByEmail($userEmail) {
-            $UserAux = new User();
-            $UserAux = null;
-            $this->RetrieveData();
            
-            foreach($this->userList as $value)
+            try
             {
-                if($userEmail == $value->getEmail())
-                {
-                    $UserAux = $value;
-                }
+            
+            $query = "SELECT * FROM `".$this->tableName."` WHERE email='$userEmail'";
+            $this->connection = Connection::GetInstance();            
+            $resultSet = $this->connection->Execute($query);
+            
+            $UserAux = NULL;
+            
+            if(!empty($resultSet[0]))
+            {
+                
+                $UserAux = new User($resultSet[0]['email'],$resultSet[0]['password'],$resultSet[0]['admin']);       
                 
             }
-            return $UserAux;  
+            
+             return $UserAux;           
+            
+            
+            } 
+            catch(Exception $ex)
+            {
+                throw $ex;
+            } 
         }
-        
-
+       
     }
-
 ?>
