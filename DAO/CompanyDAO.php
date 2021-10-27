@@ -1,18 +1,18 @@
 <?php
     namespace DAO;
 
-    use DAO\ICompanyDAO as ICompanyDAO;    
-    use Models\Company as Company;
-    use \Exception as Exception;
+    use \Exception as Exception;   
+    use Models\Company as Company;    
+    use DAO\Connection as Connection;
 
-    class CompanyDAO implements ICompanyDAO
+    class CompanyDAO 
     {
         private $connection;
-        private $tablename = "companys";
+        private $tableName = "companys";
 
         public function Add(Company $company){
             try{
-                $query = "INSERT INTO".$this->tableName."(id, nameCompany, description, createDate, email) VALUES (:id, :nameCompany, :description, :createDate, :email);";
+                $query = "INSERT INTO ".$this->tableName."(id, nameCompany, description, createDate, email) VALUES (:id, :nameCompany, :description, :createDate, :email);";
                 $parameters["nameCompany"] = $company->getNameCompany();
                 $parameters["email"] = $company->getEmail();
                 $parameters["createDate"] = $company->getCreateDate();
@@ -31,9 +31,9 @@
             try{
                 $companyList = array();
 
-                $query = "SELECT * FROM".$this->tableName;
+                $query = "SELECT * FROM ".$this->tableName;
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->Connection->Excute($query);
+                $resultSet = $this->connection->Execute($query);
                 foreach($resultSet as $row)
                 {
 
@@ -52,5 +52,99 @@
                 throw $ex;
             }
         }
+
+        public function SearchNameCompany($nameCompany) {
+
+            try{
+                $query = "SELECT * FROM `".$this->tableName."` WHERE nameCompany='$nameCompany'";
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                $CompanyAux = NULL;
+                
+                if(!empty($resultSet[0]))
+                {        
+                    $CompanyAux = new Company($resultSet[0]['nameCompany'],$resultSet[0]['email'],$resultSet[0]['createDate'],$resultSet[0]['description']);       
+                }
+                
+                return $CompanyAux;
+
+            }catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+        function createCompany($name,$email,$date,$description)
+        {
+            $company = new Company();
+
+            $company->setIdCompany(rand(1000000, 2000000));
+            $company->setNameCompany($name);
+            $company->setEmail($email);
+            $company->setCreateDate($date);
+            $company->setDescription($description);
+            return $company;
+        }
+
+        /*
+        function deleteCompany($id)
+        {
+            $this->RetrieveData();
+            $NewList = array();
+            foreach ($this->CompanyList as $company) {
+                if ($company->getIdCompany() != $id) {
+                   
+                    array_push($NewList, $company);
+
+                }
+            }
+            $this->CompanyList = $NewList;
+            $this->SaveData();
+        }*/
+
+        function deleteCompany($id){
+            try{
+                $query = "DELETE FROM `". $this->tableName."` WHERE id= :id";
+
+                $parameters["id"] = $id;
+
+                $this->connection = Connection::GetInstance();
+                
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+            }
+            catch(Exception $ex){
+                throw $ex;
+            }
+         }
+        
+
+        function updateCompany($name,$email,$date,$description,$id){
+            try
+            {
+                $query = "UPDATE ".$this->tableName." SET nameCompany=:nameCompany,email=:email,createDate=:createDate,description=:description where id =:id";
+                
+                $parameters["id"] = $id;
+                $parameters["nameCompany"] = $name;
+                $parameters["email"] = $email;
+                $parameters["createDate"] = $date;
+                $parameters["description"] = $description;
+                
+                $this->connection = Connection::GetInstance();
+                    
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+           
+        }
+
+        
+
+
+       
     }
 ?>

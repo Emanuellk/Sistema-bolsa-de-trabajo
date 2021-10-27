@@ -3,7 +3,6 @@
 
     use DAO\CompanyDAO as CompanyDAO;
     use Models\Company as Company;
-
     class CompanyController
     {
         private $companyDAO;
@@ -34,17 +33,21 @@
         {
             $companyAux = NULL;
             $companyAux = $this->companyDAO->SearchNameCompany($nameCompany);
-            if($companyAux == NULL){
+
+            if(empty($companyAux)){
+                $company = new Company();
                 $company = $this->companyDAO->createCompany($nameCompany,$email,$createDate,$description);
                 $this->companyDAO->Add($company);
-                $this->ShowAddMesaggeView("Registro de empresa exitoso");
-            }else{
-                $this->ShowAddMesaggeView("ERROR! Ya existe una empresa con ese nombre!");
 
+                $this->ShowAddMesaggeView("Registro de empresa exitoso");
+            }
+            else{
+                $this->ShowAddMesaggeView("ERROR! Ya existe una empresa con ese nombre!");
             }
             $this->ShowAddView();
         }
 
+        
 
         public function Delete($id){
             

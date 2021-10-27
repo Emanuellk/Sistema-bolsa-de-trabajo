@@ -159,8 +159,6 @@
                    
                     array_push($NewList, $company);
 
-                    
-                   
                 }
             }
             $this->CompanyList = $NewList;
