@@ -5,7 +5,7 @@
     use Models\Offer as Offer;    
     use DAO\Connection as Connection;
 
-    class JobOfferDAO 
+    class OfferDAO 
     {
         private $connection;
         private $tableName = "offers";
@@ -15,7 +15,7 @@
                 $query = "INSERT INTO ".$this->tableName."(id, idCompany, idJobPosition, title, description, publicationDate,expirationDate,workLoad,salary,requiriments) VALUES (:id, :idCompany, :idJobPosition, :title, :description,:publicationDate,expirationDate,workLoad,salary,requiriments);";
                 $parameters["id"] = $offer->getId();
                 $parameters["idCompany"] = $offer->getIdCompany();
-                $parameters["idJobPosition"] = $Offer->getIdJobPosition();
+                $parameters["idJobPosition"] = $offer->getIdJobPosition();
                 $parameters["title"] = $offer->getTitle();
                 $parameters["description"] = $offer->getDescription();
                 $parameters["publicationDate"] = $offer->getPublicationDate();
@@ -45,14 +45,14 @@
                     $offer = new Offer();
                     $offer->setId($row["id"]);
                     $offer->setIdCompany($row["idCompany"]);
-                    $offer->setIdJobPosition($row["idJobCompany"]);
+                    $offer->setIdJobPosition($row["idJobPosition"]);
                     $offer->setTitle($row["title"]);
                     $offer->setDescription($row["description"]);
                     $offer->setPublicationDate($row["publicationDate"]);
                     $offer->setExpirationDate($row["expirationDate"]);
-                    $offer->setworkDate($row["workDate"]);
+                    $offer->setWorkLoad($row["workLoad"]);
                     $offer->setSalary($row["salary"]);
-                    $offer->setRequirement($row["requirement"]);
+                    $offer->setRequirements($row["requirements"]);
                     
                     array_push($OfferList,$offer);
                 }

@@ -53,8 +53,8 @@
                 {
                     $job = new Job();
                     
-                    $job->setJobId($valuesArray["jobPositionId"]);
-                    $job->setCareerId($valuesArray["carrerId"]);
+                    $job->setJobPositionId($valuesArray["jobPositionId"]);
+                    $job->setCareerId($valuesArray["careerId"]);
                     $job->setDescription($valuesArray["description"]);           
                     
                     
@@ -76,7 +76,7 @@
 
             foreach($this->jobList as $value)
             {
-                if($id == $value->getId())
+                if($id == $value->getJobPositionId())
                 {
                     $jobAux = $value;
                 }

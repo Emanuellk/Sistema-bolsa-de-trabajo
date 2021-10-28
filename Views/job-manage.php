@@ -14,24 +14,32 @@
                <table class="table bg-light-alpha table-primary">
                     <thead>
                          <th>Título</th>
-                         <th>Descripción</th>
-                         <th>Requerimientos</th>
-                         <th>Carga Horaria</th>
+                         <th>Empresa</th>
+                         <th>Carrera</th>
+                         <th>Empleo</th>                         
                          <th>Fecha de Publicación</th>
                          <th>Fecha de Caducidad</th>
+                         <th>Carga Horaria</th>
                          <th>Salario</th>
                          <th>Actualizar</th>
                     </thead>
                     <tbody>
 
                     <?php
-                              foreach($jobList as $offer)
+                    
+                    
+                 
+                   
+                    
+                              foreach($jobOfferList as $offer)
                               {
                                    ?>
                                         <tr>
+           
                                              <td><?php echo $offer->getTitle() ?></td>
-                                             <td><?php echo $offer->getDescription() ?></td>
-                                             <td><?php echo $offer->getRequirements() ?></td>
+                                             <td><?php echo $offer->getNameCompany() ?></td>
+                                             <td><?php echo $offer->getCareerDescription() ?></td>
+                                             <td><?php echo $offer->getPositionDescription() ?></td>
                                              <td><?php echo $offer->getWorkLoad() ?></td>
                                              <td><?php echo $offer->getPublicationDate() ?></td>
                                              <td><?php echo $offer->getExpirationDate() ?></td>

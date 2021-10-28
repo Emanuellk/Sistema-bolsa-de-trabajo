@@ -1,18 +1,43 @@
 <?php
 namespace Models;
 
-    class Offer {
+    class JobOffer {
         private $id;
         private $idCompany;
         private $idJobPosition;
         private $title;
-        private $description;
+        private $offerDescription;
         private $publicationDate;
         private $expirationDate;
         private $workLoad;
         private $salary;
         private $requirements;
+        private $careerId;
+        private $positionDescription;
+        private $careerDescription;
+        private $nameCompany;
+        private $companyEmail;
         
+        
+        public function __construct($id = '',$idCompany = '',$idJobPosition = '', $title = "", $offerDescription = '', $publicationDate = '', $expirationDate = '', $workLoad = '', $salary = '', $requirements = '', $careerId = '', $positionDescription = '', $careerDescription = '', $nameCompany = '', $companyEmail = '')
+        {
+            $this->id = $id;
+            $this->idCompany = $idCompany;  
+            $this->idJobPostion = $idJobPosition;
+            $this->title = $title;
+            $this->offerDescription = $offerDescription;
+            $this->publicationDate = $publicationDate;
+            $this->expirationDate = $expirationDate;
+            $this->workLoad = $workLoad;
+            $this->salary = $salary;
+            $this->requirements = $requirements;
+            $this->careerId = $careerId;
+            $this->positionDescription = $positionDescription;
+            $this->careerDescription = $careerDescription;
+            $this->nameCompany = $nameCompany;
+            $this->companyEmail = $companyEmail;
+        }       
+
 
         /**
          * Get the value of id
@@ -95,21 +120,21 @@ namespace Models;
         }
 
         /**
-         * Get the value of description
+         * Get the value of offerDescription
          */ 
-        public function getDescription()
+        public function getOfferDescription()
         {
-                return $this->description;
+                return $this->offerDescription;
         }
 
         /**
-         * Set the value of description
+         * Set the value of offerDescription
          *
          * @return  self
          */ 
-        public function setDescription($description)
+        public function setOfferDescription($offerDescription)
         {
-                $this->description = $description;
+                $this->offerDescription = $offerDescription;
 
                 return $this;
         }
@@ -213,6 +238,107 @@ namespace Models;
 
                 return $this;
         }
-    }
 
-?>
+        /**
+         * Get the value of careerId
+         */ 
+        public function getCareerId()
+        {
+                return $this->careerId;
+        }
+
+        /**
+         * Set the value of careerId
+         *
+         * @return  self
+         */ 
+        public function setCareerId($careerId)
+        {
+                $this->careerId = $careerId;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of positionDescription
+         */ 
+        public function getPositionDescription()
+        {
+                return $this->positionDescription;
+        }
+
+        /**
+         * Set the value of positionDescription
+         *
+         * @return  self
+         */ 
+        public function setPositionDescription($positionDescription)
+        {
+                $this->positionDescription = $positionDescription;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of careerDescription
+         */ 
+        public function getCareerDescription()
+        {
+                return $this->careerDescription;
+        }
+
+        /**
+         * Set the value of careerDescription
+         *
+         * @return  self
+         */ 
+        public function setCareerDescription($careerDescription)
+        {
+                $this->careerDescription = $careerDescription;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of nameCompany
+         */ 
+        public function getNameCompany()
+        {
+                return $this->nameCompany;
+        }
+
+        /**
+         * Set the value of nameCompany
+         *
+         * @return  self
+         */ 
+        public function setNameCompany($nameCompany)
+        {
+                $this->nameCompany = $nameCompany;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of companyEmail
+         */ 
+        public function getCompanyEmail()
+        {
+                return $this->companyEmail;
+        }
+
+        /**
+         * Set the value of companyEmail
+         *
+         * @return  self
+         */ 
+        public function setCompanyEmail($companyEmail)
+        {
+                $this->companyEmail = $companyEmail;
+
+                return $this;
+        }
+    }        
+        
+
+

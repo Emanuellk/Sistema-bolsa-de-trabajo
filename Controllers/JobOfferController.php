@@ -1,16 +1,31 @@
 <?php
     namespace Controllers;
 
-    use DAO\JobOfferDAO as JobOfferDAO;
+    use Models\JobOffer as JobOffer;
     use Models\Offer as Offer;
+    use Models\Career;
+    use Models\Job;
 
-    
-        class OfferController{
-            private $jobOfferDAO;
+    use DAO\OfferDAO as OfferDAO;    
+    use DAO\CareerDAO as CareerDAO;
+    use DAO\JobDAO as JobDAO;
+    use DAO\CompanyDAO as CompanyDAO;
+    use \Exception as Exception;
+    use Models\Company;
+
+class JobOfferController{
+            
+            private $OfferDAO;
+            private $JobDAO;
+            private $CareerDAO;
+            private $CompanyDAO;
 
             public function __construct()
             {
-                $this->jobOfferDAO = new JobOfferDAO();
+                $this->OfferDAO = new OfferDAO();
+                $this->JobDAO = new JobDAO();
+                $this->CareerDAO = new CareerDAO();
+                $this->CompanyDAO = new CompanyDAO();          
             }
 
             public function ShowAddView()
@@ -25,8 +40,29 @@
 
             public function ShowManageView()
             {
-                $jobList = $this->jobOfferDAO->GetAll();
-            
+                
+                $offerList = $this->OfferDAO->GetAll();
+                $jobOfferList = array();
+
+                foreach($offerList as $offer){
+                    $jobPosition= new Job();
+                    $career= new Career();
+                    $company = new Company();
+
+                    
+
+                    $jobPosition= $this->JobDAO->SearchById($offer->getIdJobPosition());
+                    
+                    $career = $this->CareerDAO->SearchCareerById($jobPosition->getCareerId());
+                    
+                    $company = $this->CompanyDAO->SearchById($offer->getIdCompany());
+
+                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail());
+
+                    array_push($jobOfferList, $jobOffer);
+                }
+                
+                
                 require_once(VIEWS_PATH."job-manage.php");
             }
             

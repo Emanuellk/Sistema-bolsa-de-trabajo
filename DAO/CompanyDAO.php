@@ -64,7 +64,28 @@
                 
                 if(!empty($resultSet[0]))
                 {        
-                    $CompanyAux = new Company($resultSet[0]['nameCompany'],$resultSet[0]['email'],$resultSet[0]['createDate'],$resultSet[0]['description']);       
+                    $CompanyAux = new Company($resultSet[0]['id'],$resultSet[0]['nameCompany'],$resultSet[0]['email'],$resultSet[0]['createDate'],$resultSet[0]['description']);       
+                }
+                
+                return $CompanyAux;
+
+            }catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+        public function SearchById($id) {
+
+            try{
+                $query = "SELECT * FROM `".$this->tableName."` WHERE id='$id'";
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                $CompanyAux = NULL;
+                
+                if(!empty($resultSet[0]))
+                {        
+                    $CompanyAux = new Company($resultSet[0]['id'],$resultSet[0]['nameCompany'],$resultSet[0]['email'],$resultSet[0]['createDate'],$resultSet[0]['description']);       
                 }
                 
                 return $CompanyAux;
