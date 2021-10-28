@@ -86,21 +86,7 @@
             return $company;
         }
 
-        /*
-        function deleteCompany($id)
-        {
-            $this->RetrieveData();
-            $NewList = array();
-            foreach ($this->CompanyList as $company) {
-                if ($company->getIdCompany() != $id) {
-                   
-                    array_push($NewList, $company);
-
-                }
-            }
-            $this->CompanyList = $NewList;
-            $this->SaveData();
-        }*/
+        
 
         function deleteCompany($id){
             try{
