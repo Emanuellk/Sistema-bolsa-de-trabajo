@@ -1,0 +1,18 @@
+<?php
+    namespace Models;
+
+    class Offer {
+        private $id;
+        private $idCompany;        
+        private $idJobPosition;        
+        private $title;        
+        private $description;
+        private $publicationDate;
+        private $expirationDate;
+        private $workLoad;
+        private $salary;
+        private $requirements;
+        
+    }
+
+?>
