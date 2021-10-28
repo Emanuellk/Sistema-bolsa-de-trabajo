@@ -68,6 +68,5 @@
             require_once(VIEWS_PATH."company-list.php");
         }
 
-
     }
 ?>
