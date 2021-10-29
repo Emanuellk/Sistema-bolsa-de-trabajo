@@ -31,7 +31,6 @@
 
         public function Add($nameCompany, $email, $createDate, $description)
         {
-            $companyAux = NULL;
             $companyAux = $this->companyDAO->SearchNameCompany($nameCompany);
 
             if(empty($companyAux)){

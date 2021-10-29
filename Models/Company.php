@@ -8,7 +8,6 @@
          private $idCompany;
          private $description;
 
-
          public function __construct($idCompany = '',$nameCompany = '',$email = '', $createDate = '', $description = '') {
             $this->idCompany = $idCompany;
             $this->nameCompany = $nameCompany; 
@@ -16,6 +15,7 @@
             $this->createDate = $createDate;
             $this->description = $description;
         }
+
 
          /**
           * Get the value of nameCompany

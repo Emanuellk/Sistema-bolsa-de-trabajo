@@ -12,11 +12,10 @@
 
         public function Add(Company $company){
             try{
-                $query = "INSERT INTO ".$this->tableName."(id, nameCompany, description, createDate, email) VALUES (:id, :nameCompany, :description, :createDate, :email);";
+                $query = "INSERT INTO ".$this->tableName."(nameCompany, description, createDate, email) VALUES (:nameCompany, :description, :createDate, :email);";
                 $parameters["nameCompany"] = $company->getNameCompany();
                 $parameters["email"] = $company->getEmail();
                 $parameters["createDate"] = $company->getCreateDate();
-                $parameters["id"] = $company->getIdCompany();
                 $parameters["description"] = $company->getDescription();
 
                 $this->connection = Connection::GetInstance();
@@ -98,8 +97,7 @@
         function createCompany($name,$email,$date,$description)
         {
             $company = new Company();
-
-            $company->setIdCompany(rand(1000000, 2000000));
+            
             $company->setNameCompany($name);
             $company->setEmail($email);
             $company->setCreateDate($date);
