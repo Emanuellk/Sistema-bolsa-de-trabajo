@@ -30,7 +30,7 @@
                     
                  
                    
-                    
+                    var_dump($jobOfferList);
                               foreach($jobOfferList as $offer)
                               {
                                    ?>

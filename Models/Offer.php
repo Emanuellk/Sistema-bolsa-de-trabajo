@@ -13,7 +13,18 @@ namespace Models;
         private $salary;
         private $requirements;
         
-
+        public function __construct($id = '',$idCompany = '',$idJobPosition = '',  $title = '', $description = '', $publicationDate = '', $expirationDate = '', $workLoad = '', $salary= '', $requirements = '') {
+                $this->id = $id;
+                $this->idCompany = $idCompany; 
+                $this->idJobPosition= $idJobPosition;
+                $this->title = $title;
+                $this->description = $description;
+                $this->publicationDate=$publicationDate;
+                $this->expirationDate=$expirationDate;
+                $this->workLoad=$workLoad;
+                $this->salary=$salary;
+                $this->requirements=$requirements;
+        }
         /**
          * Get the value of id
          */ 

@@ -5,12 +5,16 @@
           <strong  class="tittle-admin">Admininistrador</strong>
      </span>
      <ul class="navbar-nav ml-auto">
-     <li class="nav-item">
+           <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/ShowAddView"><span class="icon-admin"> <i class="fas fa-plus"> </i> </span> Agregar Empleo</a>
+          </li>
+           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/ShowManageView"><span class="icon-admin"> <i class="fas fa-tasks"> </i> </span> Administrar Empleos</a>
           </li>
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowAddView"><span class="icon-admin"> <i class="fas fa-plus"> </i> </span> Agregar Empresas</a>
           </li>
+
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowManageView"><span class="icon-admin"><i class="fas fa-address-book"> </i> </span> Gestionar Empresas</a>
           </li> 

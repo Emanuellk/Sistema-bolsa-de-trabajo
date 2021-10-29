@@ -11,9 +11,10 @@
         private $tableName = "offers";
 
         public function Add(Offer $offer){
+            
             try{
-                $query = "INSERT INTO ".$this->tableName."(id, idCompany, idJobPosition, title, description, publicationDate,expirationDate,workLoad,salary,requiriments) VALUES (:id, :idCompany, :idJobPosition, :title, :description,:publicationDate,expirationDate,workLoad,salary,requiriments);";
-                $parameters["id"] = $offer->getId();
+                $query = "INSERT INTO ".$this->tableName."( idCompany, idJobPosition, title, description, publicationDate,expirationDate,workLoad,salary,requirements) VALUES ( :idCompany, :idJobPosition, :title, :description,:publicationDate,:expirationDate,:workLoad,:salary,:requirements);";
+                
                 $parameters["idCompany"] = $offer->getIdCompany();
                 $parameters["idJobPosition"] = $offer->getIdJobPosition();
                 $parameters["title"] = $offer->getTitle();
