@@ -28,10 +28,7 @@ class JobOfferController{
                 $this->CompanyDAO = new CompanyDAO();          
             }
 
-            public function ShowAddView()
-            {
-                require_once(VIEWS_PATH."job-add.php");
-            }
+           
 
             public function ShowAddMesaggeView($message = "")
             {
@@ -40,7 +37,7 @@ class JobOfferController{
 
             public function ShowManageView()
             {
-                
+
                 $offerList = $this->OfferDAO->GetAll();
                 $jobOfferList = array();
 
@@ -49,29 +46,38 @@ class JobOfferController{
                     $career= new Career();
                     $company = new Company();
 
-                    
+
 
                     $jobPosition= $this->JobDAO->SearchById($offer->getIdJobPosition());
-                    
+
                     $career = $this->CareerDAO->SearchCareerById($jobPosition->getCareerId());
-                    
+
                     $company = $this->CompanyDAO->SearchById($offer->getIdCompany());
 
                     $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail());
-
+                    
                     array_push($jobOfferList, $jobOffer);
                 }
-                
-                
+
+            
                 require_once(VIEWS_PATH."job-manage.php");
             }
-            
 
-            public function Add($title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requeriments)
+
+            public function ShowAddView()
+            {   
+                $jobList = $this->JobDAO->GetAll();                
+                $companyList = $this->CompanyDAO->GetAll();
+                require_once(VIEWS_PATH."offer-add.php");
+            }
+           
+
+            public function Add($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements)
             {
                 try{
-                    $offer = new Offer($title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requeriments);
-                    $this->JobOfferDAO->Add($offer);
+                    $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
+                    
+                    $this->OfferDAO->Add($offer);
                     $this->ShowAddMesaggeView("Registro de oferta laboral exitoso");
                     $this->ShowManageView();
                 }
