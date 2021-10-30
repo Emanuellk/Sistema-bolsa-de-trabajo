@@ -13,10 +13,10 @@
                </div>
                <table class="table bg-light-alpha">
                     <thead>
-                         <th> <li class="list-group-item list-group-item-dark">Nombre</li></th>
+                         <th><li class="list-group-item list-group-item-dark">Nombre</li></th>
                          <th><li class="list-group-item list-group-item-dark">Email</li></th>
-                         <th><li class="list-group-item list-group-item-dark">Fecha de creación</li></th>
-                         <th><li class="list-group-item list-group-item-dark">Ver empresa</li></th>
+                         <th><li class="list-group-item list-group-item-dark"style="white-space:nowrap;">Fecha de creación</li></th>
+                         <th><li class="list-group-item list-group-item-dark"style="white-space:nowrap;">Ver empresa</li></th>
                          
                     </thead>
                     
@@ -28,20 +28,20 @@
                               {
                                    ?>
                                         <tr>
-                                             <td><li class="list-group-item list-group-item-info"><?php echo $company->getNameCompany() ?></li></td>
-                                             <td><li class="list-group-item list-group-item-info"><?php echo $company->getEmail() ?> </li></td>
-                                             <td><li class="list-group-item list-group-item-info"><?php echo $company->getCreateDate() ?> </li></td>
+                                             <td><li class="list-group-item list-group-item-info" style="white-space:nowrap;"><?php echo $company->getNameCompany() ?></li></td>
+                                             <td><li class="list-group-item list-group-item-info" style="white-space:nowrap;"><?php echo $company->getEmail() ?> </li></td>
+                                             <td><li class="list-group-item list-group-item-info" style="white-space:nowrap;"><?php echo $company->getCreateDate() ?> </li></td>
                                              <td>
-                                             <button  class = "btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#Ver<?= $company->getIdCompany()?> " >
+                                             <button  class = "btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#See<?= $company->getIdCompany()?> " >
                                                    <i class="fas fa-eye"></i>    
                                              </button>
                                              <!-- Modal -->
                                              </td>
-                                             <div class="modal fade" id="Ver<?= $company->getIdCompany()?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                             <div class="modal fade" id="See<?= $company->getIdCompany()?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                   <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg">
                                                   <div class="modal-content" style="background-color:cadetblue;">
                                                        <div class="modal-header">
-                                                       <h5 style="color:black;">Ver empresa:</h5>
+                                                       <h5 style="color:black; ">Empresa:</h5>
                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                        </div>
                                                        <div class="modal-body">

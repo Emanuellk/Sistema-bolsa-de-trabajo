@@ -105,17 +105,23 @@
             }
          }
         
-         /*
-        function updateOffer($id,$idCompany,$idJobPosition,$title,$description,$publicationDate,){
+         
+        function updateOffer($title,$idCompany ,$idJobPosition, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$description, $id){
             try
             {
-                $query = "UPDATE ".$this->tableName." SET nameOffer=:nameOffer,email=:email,createDate=:createDate,description=:description where id =:id";
+                var_dump($description);
+                $query = "UPDATE ".$this->tableName." SET title=:title,idCompany=:idCompany,idJobPosition=:idJobPosition,publicationDate=:publicationDate,expirationDate=:expirationDate,workLoad=:workLoad,salary=:salary,requirements=:requirements,description=:description where id =:id";
                 
                 $parameters["id"] = $id;
-                $parameters["nameOffer"] = $name;
-                $parameters["email"] = $email;
-                $parameters["createDate"] = $date;
-                $parameters["description"] = $description;
+                $parameters["title"] = $title;
+                $parameters["idCompany"] = $idCompany;
+                $parameters["idJobPosition"] = $idJobPosition;
+                $parameters["publicationDate"] = $publicationDate;
+                $parameters["expirationDate"] = $expirationDate;
+                $parameters["workLoad"] = $workLoad;
+                $parameters["salary"] = $salary;
+                $parameters["requirements"] = $requirements;
+                $parameters["description"] = $description;                
                 
                 $this->connection = Connection::GetInstance();
                     
@@ -127,6 +133,6 @@
                 throw $ex;
             }
            
-        }*/
+        }
     }
 ?>

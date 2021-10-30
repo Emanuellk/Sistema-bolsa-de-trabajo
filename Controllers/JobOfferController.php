@@ -58,8 +58,8 @@ class JobOfferController{
                     
                     array_push($jobOfferList, $jobOffer);
                 }
-
-            
+                $jobList = $this->JobDAO->GetAll();
+                $companyList = $this->CompanyDAO->GetAll();
                 require_once(VIEWS_PATH."job-manage.php");
             }
 
@@ -90,20 +90,20 @@ class JobOfferController{
             public function Delete($id)
             {
                 
-                $this->JobOffferDAO->deleteOffer($id);
+                $this->OfferDAO->deleteOffer($id);
                 $this->ShowManageView();
             }
 
-            public function Update($id, $title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requeriments)
+            public function Update( $title,$idCompany ,$idJobPosition, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$description, $id)
             {
                 
-                $this->JobOfferDAO->updateOffer($id, $title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requeriments);
+                $this->OfferDAO->updateOffer($title,$idCompany ,$idJobPosition, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$description, $id);
                 $this->ShowManageView();
             } 
 
             public function JobList()
             {
-                $jobList = $this->JobOfferDAO->GetAll(); 
+                $jobList = $this->OfferDAO->GetAll(); 
                 require_once(VIEWS_PATH."job-list.php");
             }
 

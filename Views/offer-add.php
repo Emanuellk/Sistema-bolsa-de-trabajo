@@ -55,7 +55,7 @@
                             
                          <div class="col-lg-4">
                               <div class="form-group">
-                                   <label for="">Compañia</label>
+                                   <label for="">Empresa</label>
                                    <select class="form-control" name="idCompany">
                                         <?php  foreach($companyList as $company){
                                                    ?>

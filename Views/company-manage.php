@@ -12,7 +12,7 @@
                <input type="text" name="search" id="search" placeholder="Buscar..." class="src" autocomplete="off">
                </div>
                <table class="table bg-light-alpha table-primary">
-                    <thead>
+                    <thead class="table-dark">
                          <th>Nombre</th>
                          <th>Email</th>
                          <th>Fecha de creación</th>
