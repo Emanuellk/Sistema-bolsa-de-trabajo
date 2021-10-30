@@ -4,8 +4,12 @@
     use Models\JobOffer as JobOffer;
     use Models\Offer as Offer;
     use Models\Career;
-    use Models\Job;
+    use Models\Job;   
+    use Models\User;
+    use Models\userXOffer as UserXOffer;
 
+    use DAO\userXOfferDAO as UserXOfferDAO;
+    use DAO\UserDAO as UserDAO;
     use DAO\OfferDAO as OfferDAO;    
     use DAO\CareerDAO as CareerDAO;
     use DAO\JobDAO as JobDAO;
@@ -15,17 +19,21 @@
 
 class JobOfferController{
             
+            private $UserDAO;
             private $OfferDAO;
             private $JobDAO;
             private $CareerDAO;
             private $CompanyDAO;
+            private $UserXOfferDAO;
 
             public function __construct()
             {
+                $this->UserXOfferDAO = new UserXOfferDAO();
                 $this->OfferDAO = new OfferDAO();
                 $this->JobDAO = new JobDAO();
                 $this->CareerDAO = new CareerDAO();
-                $this->CompanyDAO = new CompanyDAO();          
+                $this->CompanyDAO = new CompanyDAO(); 
+                $this->UserDAO = new UserDAO();         
             }
 
            
@@ -61,6 +69,52 @@ class JobOfferController{
                 $jobList = $this->JobDAO->GetAll();
                 $companyList = $this->CompanyDAO->GetAll();
                 require_once(VIEWS_PATH."job-manage.php");
+            }
+
+
+            public function ShowOfferView()
+            {
+
+                $offerList = $this->OfferDAO->GetAll();
+                $jobOfferList = array();
+                $User = $this->UserDAO->SearchUserByEmail($_SESSION['loggedUser']);
+                
+                foreach($offerList as $offer){
+                    $jobPosition= new Job();
+                    $career= new Career();
+                    $company = new Company();
+
+
+                    
+
+                    $jobPosition= $this->JobDAO->SearchById($offer->getIdJobPosition());
+
+                    $career = $this->CareerDAO->SearchCareerById($jobPosition->getCareerId());
+
+                    $company = $this->CompanyDAO->SearchById($offer->getIdCompany());
+
+                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail());
+                    
+                    array_push($jobOfferList, $jobOffer);
+                }
+                $jobList = $this->JobDAO->GetAll();
+                $companyList = $this->CompanyDAO->GetAll();
+                require_once(VIEWS_PATH."offer-view.php");
+            }
+
+            public function apply($userId,$offerId)
+            {
+                try{
+                    $aux = new UserXOffer("",$userId,$offerId);
+                    
+                    
+                    $this->UserXOfferDAO->Add($aux);
+                    $this->ShowOfferView();
+                    
+                }
+                catch(Exception $ex){
+                    $this->ShowAddMesaggeView("Error al cargar esta oferta laboral");
+                }
             }
 
 

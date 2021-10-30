@@ -45,6 +45,7 @@
                 foreach ($resultSet as $row)
                 {                
                     $user = new User();
+                    
                     $user->setEmail($row["email"]);
                     $user->setPassword($row["password"]);
                     $user->setAdmin($row["admin"]);
@@ -73,7 +74,8 @@
             if(!empty($resultSet[0]))
             {
                 
-                $UserAux = new User($resultSet[0]['email'],$resultSet[0]['password'],$resultSet[0]['admin']);       
+                $UserAux = new User($resultSet[0]['id'],$resultSet[0]['email'],$resultSet[0]['password'],$resultSet[0]['admin']); 
+                     
                 
             }
             
