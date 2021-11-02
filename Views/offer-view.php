@@ -1,8 +1,5 @@
 <?php
-
-use Models\Company;
-
-require_once('navAdmin.php');   
+require_once('nav.php');   
 ?>
 
 <div class="job-add">
@@ -24,7 +21,7 @@ require_once('navAdmin.php');
                          <th scope="col">Empleo</th>                         
                          <th scope="col">Carga Horaria</th>                                                 
                          <th scope="col">Salario</th>
-                         <th scope="col">Actualizar</th>
+                         <th scope="col">Ver/Postular</th>
                     </thead>
                     <tbody>
 
@@ -34,9 +31,9 @@ require_once('navAdmin.php');
                               {
                                    ?>
                                         <tr style="white-space:nowrap;">
-                                        
-                                             <td><li class="list-group-item list-group-item-info"><?php echo $offer->getTitle() ?></li></td> 
+                                             
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getNameCompany() ?> </li></td>
+                                             <td><li class="list-group-item list-group-item-info"><?php echo $offer->getTitle() ?></li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getCareerDescription() ?> </li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getPositionDescription() ?></li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getWorkLoad() ?></li></td>                              
@@ -45,19 +42,20 @@ require_once('navAdmin.php');
                                              
                                                   <button  class = "btn btn-success" type="button"  style="background-color:darkturquoise;" data-bs-toggle="modal" data-bs-target="#See<?= $offer->getId()."s"?> " >
                                                   <i class="fas fa-eye"></i>  
-                                                  </button>
-                                                  
-                                                  <button  class = "btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#Update<?= $offer->getId()?> " >
-                                                  <i class="fas fa-edit"></i>    
-                                                  </button>
-                                                  
-                                                  <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/Delete">
+                                                  </button>                                                  
 
-                                                       <input type="hidden" name="id" value="<?php echo $offer->getId()?>" class="form-control">
+                                                    <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/apply">
+                                                    
+                                                    <input type="hidden" name="userId" value="<?php echo $User->getId()?>" class="form-control">
+                                                    <input type="hidden" name="offerId" value="<?php echo $offer->getId()?>" class="form-control">
+
+                                                    <button type="submit" class="btn btn-danger" class="buttonF" style="background-color: greenyellow;"><i class="fas fa-address-card"></i></button>
+                                                                                                
+                                                    </form>
+                                                  
                                                  
-                                                       <button type="submit" class="btn btn-danger" class="buttonF" ><i class="fas fa-trash-alt"></i></button>
-                                                                                                   
-                                                  </form>
+                                                  
+                                                 
                                              </td>
 
            
@@ -142,112 +140,6 @@ require_once('navAdmin.php');
 
 
 
-
-
-
-                                                      
-                                                  <!-- Modal UPDATE -->
-                                                  <div class="modal fade" id="Update<?= $offer->getId()?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                  <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg">
-                                                  <div class="modal-content">
-                                                       <div class="modal-header">
-                                                       <h5 style="color:green;">Modificar</h5>
-                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                       </div>
-                                                       <div class="modal-body">
-                                                       
-                                                       <div class="container">
-                                                                 
-                                                                 <form action="<?php echo FRONT_ROOT ?>JobOffer/Update" method="post" class="bg-light-alpha p-5">
-                                                                      <div class="row">                         
-                                                                           
-                                                                                <div class="form">
-                                                                                     <label for="">Titulo</label>
-                                                                                     <input type="text" name="title" value="<?= $offer->getTitle()?>" class="form-control">
-                                                                                </div>
-                                                                                
-                                                                           
-                                                                               
-
-                                                                                <div class="form">
-                                                                                <label for="">Empresa</label>
-                                                                                     <select class="form-control" name="idCompany" id="Companys<?=$offer->getId()?>">
-                                                                                          <?php  foreach($companyList as $company){
-                                                                                              
-                                                                                               
-                                                                                                  ?>
-                                                                                                    <option value=<?= $company->getIdCompany() ?> <?php  if($company->getIdCompany()  == $offer->getIdCompany()){ echo 'selected="selected"'; } ?> ><?=$company->getNameCompany()?></option> 
-                                                                                                   
-                                                                                          <?php } ?>
-                                                                                     </select>
-                                                                                </div>
-
-                                                                                
-                                                                                
-                                                                                <div class="form">
-                                                                                     <label for="">Empleo</label>
-                                                                                     <select class="form-control" name="idJobPosition" id="JobPositions<?=$offer->getId()?>">
-                                                                                          <?php  foreach($jobList as $job){
-                                                                                              
-                                                                                               
-                                                                                                  ?>               
-                                                                                                    <option value=<?= $job->getJobPositionId() ?> <?php  if($offer->getIdJobPosition() == $job->getJobPositionId()){ echo 'selected="selected"'; } ?> ><?=$job->getDescription()?></option> 
-                                                                                                   
-                                                                                          <?php } ?>
-                                                                                     </select>
-                                                                                </div>
-                                                                           
-                                                                           
-                                                                                <div class="form">
-                                                                                     <label for="">Fecha de Publicacion</label>
-                                                                                     <input type="date" name="publicationDate" value="<?= $offer->getPublicationDate()?>" class="form-control">
-                                                                                </div> 
-
-                                                                                <div class="form">
-                                                                                     <label for="">Fecha de Expiracion</label>
-                                                                                     <input type="date" name="expirationDate" value="<?= $offer->getExpirationDate()?>" class="form-control">
-                                                                                </div>
-
-                                                                                <div class="form">
-                                                                                     <label for="">Carga Horaria</label>
-                                                                                     <input type="dateTime" name="workLoad" value="<?= $offer->getWorkLoad()?>" class="form-control">
-                                                                                </div>
-
-                                                                                <div class="form">
-                                                                                     <label for="">Salario</label>
-                                                                                     <input type="number" name="salary" value="<?= $offer->getSalary()?>" class="form-control">
-                                                                                </div>
-
-                                                                                <div class="form">
-                                                                                     <label for="">Requisitos</label>
-                                                                                     <input type="text" name="requirements" value="<?= $offer->getRequirements()?>" class="form-control">
-                                                                                </div>
-
-                                                                                <div class="form">
-                                                                                     <label for="">Descripcion</label>
-                                                                                     <input type="text" name="description" value="<?= $offer->getOfferDescription()?>" class="form-control">
-                                                                                </div>
-
-
-
-                                                                                <input type="hidden" name="id" value="<?php echo $offer->getId()?>" class="form-control">
-                                                                                
-
-                                                                      </div>
-                                                                        
-                                                                     
-        
-                                                                      
-                                                                
-                                                       </div>
-                                                       </div>
-                                                                                <div class="modal-footer">
-                                                                                <button type="submit" class="btn btn-dark ml-auto d-block">Confirmar</button>
-                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                                                                                
-                                                                                </div>
-                                                                 </form>
-                                                  </div></div></div>                                                  
-                                                  <!-////////////////////////////////////////////////////////////////////////////––> 
                                              
 
                                          </tr>

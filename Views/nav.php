@@ -4,10 +4,11 @@
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
     
      <div class="brand"></div>
+   
      <ul class="navbar-nav ml-auto">
           <li class="nav-item">
           <li class="nav-item">
-          <a class="nav-link" href="<?php echo FRONT_ROOT ?>"><span class="icon"><i class="fas fa-briefcase"> </i> </span> Ver Empleos</a>
+          <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/ShowOfferView"><span class="icon"><i class="fas fa-briefcase"> </i> </span> Ver Empleos</a>
           </li> 
           <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/CompanyList"><span class="icon"><i class="fas fa-th-list"> </i> </span> Ver Empresas</a>
           </li> 

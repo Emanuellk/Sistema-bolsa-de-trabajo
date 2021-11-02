@@ -4,11 +4,11 @@
     use \Exception as Exception;
     use Models\userXOffer;
 
-    class userXOffer{
+    class userXOfferDAO{
         private $connection;
-        private $tablename = "userXOffers";
+        private $tablename = "userxoffers";
 
-        public function Add{
+        public function Add($userXOffer){
             try{
                 $query = "INSERT INTO ". $this->tablename. "(idUser, idOffer) VALUES (:idUser, :idOffer);";
                 $parameters["idUser"] = $userXOffer->getIdUser();
@@ -36,7 +36,7 @@
                 
                 foreach($resultSet as $row)
                 {                
-                    $userXOffer = new UserXOffer($row["idUser"],$row["idOffer"]);
+                    $userXOffer = new UserXOffer($row["id"],$row["idUser"],$row["idOffer"]);
 
                     array_push($list, $userXOffer);
                 }
@@ -53,6 +53,3 @@
     }
     
 ?>
-        
-
-
