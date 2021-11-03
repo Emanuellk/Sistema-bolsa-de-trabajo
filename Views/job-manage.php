@@ -38,6 +38,7 @@ require_once('navAdmin.php');
                                         <tr style="white-space:nowrap;">
                                        
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getNameCompany() ?> </li></td>
+                                             <td><li class="list-group-item list-group-item-info"><?php echo $offer->getTitle() ?></li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getCareerDescription() ?> </li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getPositionDescription() ?></li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getWorkLoad() ?></li></td>                              

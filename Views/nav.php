@@ -16,9 +16,9 @@
           <li class="user">
           <a class="nav-link" href="#" ><span class="icon"><i class="fas fa-user"></i> </i></span>Mi Perfil <span><i class="fas fa-caret-down"></i></span></span></a>
                <ul id="desple">
-                    <a id="item" class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/ShowPostulationView">Ver Historial</a>
                     <a id="item" class="nav-link" href="<?php echo FRONT_ROOT ?>User/StudentStatus">Ver Estado</a>
-                    <a href="<?php echo FRONT_ROOT ?>User/Logout"><button class="button__logout">Cerrar sesión</button></a></a></li>
+                    <a id="item" class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/ShowPostulationView">Ver Historial</a>
+                    <a id="item" href="<?php echo FRONT_ROOT ?>User/Logout"><button class="button__logout">Cerrar sesión</button></a></a>
                </ul>
                </li>
      </ul>

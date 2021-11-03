@@ -11,7 +11,7 @@
 
         public function Add($userXOffer){
             try{
-                $query = "INSERT INTO ". $this->tablename. "(idUser, idOffer) VALUES (:idUser, :idOffer);";
+                $query = "INSERT INTO ". $this->tableName. "(idUser, idOffer) VALUES (:idUser, :idOffer);";
                 $parameters["idUser"] = $userXOffer->getIdUser();
                 $parameters["idOffer"] = $userXOffer->getIdOffer();
 
@@ -103,6 +103,21 @@
             }
         }
 
+        function deletePostulation($id){
+            try{
+                $query = "DELETE FROM `". $this->tableName."` WHERE id= :id";
+
+                $parameters["id"] = $id;
+
+                $this->connection = Connection::GetInstance();
+                
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+            }
+            catch(Exception $ex){
+                throw $ex;
+            }
+         }
 
     }
     
