@@ -12,31 +12,31 @@
                         <div class="row">                         
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label for="">title</label>
+                                    <label for="">Título</label>
                                     <input type="text" name="title" value="" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label for="">descripcion</label>
+                                    <label for="">Descripción</label>
                                     <input type="text" name="description" value="" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label for="">fecha de publicacion</label>
+                                    <label for="">Fecha de Publicacion</label>
                                     <input type="date" name="publicationDate" value="" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label for="">fecha de expiro</label>
+                                    <label for="">Fecha de Expiro</label>
                                     <input type="date" name="expirationDate" value="" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label for="">carga horaria</label>
+                                    <label for="">Carga Horaria</label>
                                     <input type="datetime" name="workLoad" value="" class="form-control" required>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label for="">requisitos</label>
+                                    <label for="">Requisitos</label>
                                     <input type="text" name="requirements" value="" class="form-control" required>
                                 </div>
                             </div>
