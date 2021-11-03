@@ -98,21 +98,26 @@
                 $resultSet = $this->connection->Execute($query);
               
 
-                $user = NULL;
-                $list = array();
+                $resultSet = $this->connection->Execute($query);
+            
+                $UserAux = NULL;
                 
-                foreach($resultSet as $row)
-                {                
-                    $user = new User($row["id"],$row["email"],$row["password"],$row["admin"]);
-
-                    array_push($list, $user);
+                if(!empty($resultSet[0]))
+                {
+                    
+                    $UserAux = new User($resultSet[0]['id'],$resultSet[0]['email'],$resultSet[0]['password'],$resultSet[0]['admin']); 
+                         
+                    
                 }
                 
-                return $list;
-
-            }catch(Exception $ex){
-                throw $ex;
+                 return $UserAux;           
+                
+                
+                } 
+                catch(Exception $ex)
+                {
+                    throw $ex;
+                } 
             }
-        }       
     }
 ?>

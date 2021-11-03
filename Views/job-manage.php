@@ -16,7 +16,7 @@ require_once('navAdmin.php');
                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAVFJREFUSEvVleExBEEQRt9FQAoiQATIgAgQASJABIgAESACZEAEyIAIqKd6qub2Zmen7N4P/eu2dqdf99dfz81YcsyWnJ8+wCpwBOwCG1HEC3APXAGfrYWVAAfABSCkFCY/AW5aIF2Aya/j4ANwCTzF8zZwBmzF8150VOXkACt+i8oPKxUKOQ2Z1obkygHpoJWrfS3syk7Oo6veb3OAQ1wHdjJZ+g4q1yPgmc1aJTngOz5stW7T92MBXxW3/db7V4mc0R3wDChX0wzSkF0mLdgyZPdBKzcBtOk7sBLO0CGlSIV8xJZXt7o70NS6ibWiyZTBUAr9nyQZtGh3Bqlat9m27aQUDtb3wrSpv2/7NKpddsexcO6G8RpXgwmVJe2N77yX3P6FaPV86Wx+b/VCxgBS0v2MvtDJWMAgZApAFzJ3E08FSBCtPfdHNCWg6NT/D/gBeOVFGZeTouUAAAAASUVORK5CYII="/>                      
                <input type="text" name="search" id="search" placeholder="Buscar..." class="src" autocomplete="off">
                </div>
-               <div  style="background-color:chocolate;" class="table-responsive ">
+               <div  style="background-color:chocolate;" >
                <table class="table bg-light-alpha table-primary">
                     <thead class="table-dark" style="white-space:nowrap;  text-align:center  ">
                         
@@ -60,9 +60,14 @@ require_once('navAdmin.php');
                                                        <button type="submit" class="btn btn-danger" class="buttonF" ><i class="fas fa-trash-alt"></i></button>
                                                                                                    
                                                   </form>
-                                                  <button  class = "btn btn-success" type="button"  style="background-color:darkturquoise;" data-bs-toggle="modal" data-bs-target="#Postulate<?= $offer->getId()."p"?> " >
-                                             <i class="fas fa-users"></i>  
-                                             </button>                                             
+                                                  
+                                                  <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/ShowPostulates">
+
+                                                  <input type="hidden" name="id" value="<?php echo $offer->getId()?>" class="form-control">
+                                                  
+                                                  <button type="submit" class="btn btn-danger" style="background-color:darkturquoise;" class="buttonF" ><i class="fas fa-users"></i></button>                                                    
+                                                                                         
+                                                  </form>                                            
                                              
                                              </td>
 
@@ -141,7 +146,7 @@ require_once('navAdmin.php');
                                                                                
                                                                 
                                              </div></div></div>                                                  
-                                             <!-////////////////////////////////////////////////////////////////////////////––> 
+                                             
 
 
 
@@ -252,7 +257,7 @@ require_once('navAdmin.php');
                                                                                 </div>
                                                                  </form>
                                                   </div></div></div>                                                  
-                                                  <!-////////////////////////////////////////////////////////////////////////////––> 
+                                                  
                                              
                                                                                      
 
@@ -261,69 +266,15 @@ require_once('navAdmin.php');
 
                                                    <!-- Modal SeePostulants -->
                                                    
-                                                   <div class="modal fade" id="Postulate<?= $offer->getId()."p"?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                  <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl">
-                                                  <div class="modal-content">
-                                                       <div class="modal-header">
-                                                       <h5 style="color:green;">owo</h5>
-                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                       </div>
-                                                       
-                                                       <div class="modal-body">
-                                                       <div class = "container" >
-                                                       <table class="table" id="g<?= $offer->getId()."zzz"?>">
-                                                       <thead>
-                                                       <tr>
-                                                           
-                                                            <th scope="col">Nombre</th>
-                                                            <th scope="col">Apellido</th>
-                                                            <th scope="col">Email</th>
-                                                            <th scope="col">Dni</th>
-                                                       </tr>
-                                                       </thead>
-                                                       <tbody>
-                                                            <?php
-                                                            
-                                                             $userxofferList = array();
-                                                             
-                                                             $userxofferList = $this->UserXOfferDAO->SearchByOfferId($offer->getId());
-                                                             
-
-
-                                                             
-                                             
-                                                             foreach($userxofferList as $userxoffer){
-                                                                 
-                                                                 $user = $this->UserDAO->SearchById($userxoffer->getIdUser());
-                                                                 
-                                                                 $student = $this->StudentsDAO->SearchStudentByEmail($user[0]->getEmail());
-                                                                
-                                                                 ?>
-   
-                                                                       <tr style="white-space:nowrap;">
-                                                                    
-                                                                      <td>Mark</td>
-                                                                      <td>Otto</td>
-                                                                      <td>@mdo</td>
-                                                                      </tr>
-                                                                   
-
-                                                                 
-                                                                 
-                                                                                                                                
-                                                                 <?php
-                                                                 }
-
-                                                                 ?>
-                                                                 </tbody>
-                                                                 </table> 
-                                                                                                         
+                                                  
+                                                     
+                              
                                                                                                     
                                                                                                     
                                                                                                               
                                                                                                
-                                                                 </div> </div></div></div></div>                                                  
-                                                                                               <!-////////////////////////////////////////////////////////////////////////////––> 
+                                                                                        
+                                                                                                
                                     </tr>
                                    <?php
                               }
@@ -349,7 +300,6 @@ require_once('navAdmin.php');
           });
      });
 </script>
-        </div>
-    </section>
+        
 
-</div>
+
