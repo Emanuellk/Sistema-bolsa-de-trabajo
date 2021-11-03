@@ -55,7 +55,7 @@
                 header('location: /TP_LabIV');
             }
 
-            
+    
 
             public function registerUser($email,$password) {
                 

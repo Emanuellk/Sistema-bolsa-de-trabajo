@@ -6,7 +6,7 @@
             <div class="container">
                 <br>
                 <br>
-                <h2 class="mb-4">Agregar empresa</h2>
+                <h2 class="mb-4">Agregar Empleo</h2>
                 <form action="<?php echo FRONT_ROOT ?>JobOffer/Add" method="POST" class="bg-light-alpha p-5">
                 
                         <div class="row">                         

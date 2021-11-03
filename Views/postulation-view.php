@@ -33,8 +33,8 @@ require_once('nav.php');
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getPositionDescription() ?></li></td>
                                              
                                              <td>
-                                             <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>Company/Delete">
-                                                  <input type="hidden" name="id" value="<?php echo $company->getIdCompany()?>" class="form-control">
+                                             <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/Delete">
+                                                  <input type="hidden" name="id" value="<?php echo $offer->getId()?>" class="form-control">
                                                   <button type="submit" class="btn btn-danger" class="buttonF" ><i class="fas fa-trash-alt"></i></button>                                                 
                                                   </form>
                                              </td>

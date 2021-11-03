@@ -147,9 +147,8 @@ class JobOfferController{
         
             public function Delete($id)
             {
-                
                 $this->OfferDAO->deleteOffer($id);
-                $this->ShowManageView();
+                $this-> ShowPostulationView();
             }
 
             public function Update( $title,$idCompany ,$idJobPosition, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$description, $id)

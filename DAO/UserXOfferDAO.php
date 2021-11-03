@@ -102,15 +102,15 @@
                 throw $ex;
             }
         }
-
+       
         function deletePostulation($id){
             try{
-                $query = "DELETE FROM `". $this->tableName."` WHERE id= :id";
+                $query = "DELETE FROM ". $this->tableName." WHERE id= :id";
 
                 $parameters["id"] = $id;
 
                 $this->connection = Connection::GetInstance();
-                
+
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
             }
