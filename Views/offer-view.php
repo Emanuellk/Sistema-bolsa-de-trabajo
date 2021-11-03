@@ -15,13 +15,15 @@ require_once('nav.php');
                <div  style="background-color:chocolate;" class="table-responsive ">
                <table class="table bg-light-alpha table-primary">
                     <thead class="table-dark" style="white-space:nowrap;  text-align:center  ">
-                         <th scope="col">Título</th>
-                         <th scope="col">Empresa</th>
-                         <th scope="col">Carrera</th>
-                         <th scope="col">Empleo</th>                         
-                         <th scope="col">Carga Horaria</th>                                                 
-                         <th scope="col">Salario</th>
-                         <th scope="col">Ver/Postular</th>
+                    <tr>
+                         <th scope="row">Título</th>
+                         <th scope="row">Empresa</th>
+                         <th scope="row">Carrera</th>
+                         <th scope="row">Empleo</th>                         
+                         <th scope="row">Carga Horaria</th>                                                 
+                         <th scope="row">Salario</th>
+                         <th scope="row">Ver/Postular</th>
+                    </tr>
                     </thead>
                     <tbody>
 

@@ -10,10 +10,7 @@
         private $StudentsList = array();
         
     
-        public function __construct()
-        {
-            
-        }       
+        public function __construct(){}       
        
     
         public function GetAll()
@@ -66,8 +63,7 @@
                     $students->setPhoneNumber($valuesArray["phoneNumber"]);
                     $students->setActive($valuesArray["active"]);
                     
-                    
-
+                
                     array_push($this->StudentsList, $students);
                     
                 }
@@ -91,9 +87,7 @@
                 }
             }
             return $studentsAux;
-                    
-            
-                    
+                              
         }
         
         

@@ -3,12 +3,9 @@
 
     class HomeController
     {
-        public function __construct() {
-            
-        }
+        public function __construct(){}
         
-        public function Index($message = "")
-        {
+        public function Index($message = ""){
             require_once(VIEWS_PATH."login.php");
         }        
     }

@@ -3,6 +3,7 @@
 
     use DAO\CompanyDAO as CompanyDAO;
     use Models\Company as Company;
+
     class CompanyController
     {
         private $companyDAO;
@@ -18,16 +19,13 @@
             require_once(VIEWS_PATH."company-add.php");
         }
         
-        public function ShowAddMesaggeView($message = ""){
-            echo "<script>alert('$message');</script>"; 
-        }
-
         public function ShowManageView()
         {
             $companyList = $this->companyDAO->GetAll();
            
             require_once(VIEWS_PATH."company-manage.php");
         }
+
 
         public function Add($nameCompany, $email, $createDate, $description)
         {
@@ -47,7 +45,6 @@
         }
 
         
-
         public function Delete($id){
             
             $this->companyDAO->deleteCompany($id);
@@ -60,11 +57,18 @@
             $this->companyDAO->updateCompany($nameCompany, $email, $createDate,$description, $id);
             $this->ShowManageView();
         }   
+
+
         public function CompanyList()
         {
             $companyList = $this->companyDAO->GetAll();
            
             require_once(VIEWS_PATH."company-list.php");
+        }
+
+
+        public function ShowAddMesaggeView($message = ""){
+            echo "<script>alert('$message');</script>"; 
         }
 
     }

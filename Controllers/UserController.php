@@ -13,6 +13,7 @@
         private $UserDAO;
         private $CareerDAO;
 
+
         public function __construct()
         {
             $this->StudentsDAO = new StudentsDAO();
@@ -20,6 +21,7 @@
             $this->CareerDAO = new CareerDAO();
 
         }
+
 
         public function login($email = "", $password = "") {               
                 $userAux = $this->UserDAO->SearchUserByEmail($email);
@@ -50,11 +52,11 @@
                 }
             }
             
+
             public function Logout(){
                 session_destroy();
                 header('location: /TP_LabIV');
             }
-
     
 
             public function registerUser($email,$password) {
@@ -83,13 +85,7 @@
                         $this->ShowLoginView("ERROR! Ya existe una cuenta registrada con ese email!");
                     }
             }
-       
-
-            public function ShowLoginView($message = "")
-            {   
-                 echo "<script>alert('$message');</script>"; 
-                 echo "<script>setTimeout(\"location.href = '/TP_LabIV';\",1500);</script>"; 
-            }
+    
             
             public function StudentStatus()
             {   
@@ -99,6 +95,8 @@
                 require_once(VIEWS_PATH."student-view.php");
                 
             }
+
+
             public static function CheckUserLog() {
                 if(!isset($_SESSION['loggedUser']))
                 {
@@ -108,6 +106,12 @@
                
             }
 
+
+            public function ShowLoginView($message = "")
+            {   
+                 echo "<script>alert('$message');</script>"; 
+                 echo "<script>setTimeout(\"location.href = '/TP_LabIV';\",1500);</script>"; 
+            }
         
     }
 
