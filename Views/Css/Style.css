@@ -410,16 +410,3 @@ input.src:hover{
     font-family: "FuenteLogin";
     src: url('../Fonts/Roboto-Light.ttf');
 }
-
-#lista1 {
-    font-family:Arial;
-    font-weight:bold;
-    font-size:13px;
-}
-
-#lista1 li {
-    display:inline;
-    padding-left:3px;
-    padding-right:3px;
-   background-color:rgb(214, 116, 4);
-}

@@ -11,7 +11,7 @@
 
         public function Add($userXOffer){
             try{
-                $query = "INSERT INTO ". $this->tablename. "(idUser, idOffer) VALUES (:idUser, :idOffer);";
+                $query = "INSERT INTO ". $this->tableName. "(idUser, idOffer) VALUES (:idUser, :idOffer);";
                 $parameters["idUser"] = $userXOffer->getIdUser();
                 $parameters["idOffer"] = $userXOffer->getIdOffer();
 

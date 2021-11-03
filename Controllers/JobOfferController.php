@@ -167,6 +167,24 @@ class JobOfferController{
 
 
 
+            
+		public function ShowPostulates($id)
+		{
+			
+			$userxofferList = $this->UserXOfferDAO->SearchByOfferId($id);
+            $studentsList = array();
+    
+			foreach($userxofferList as  $userxoffer){
+                $user = $this->UserDAO->SearchById($userxoffer->getIdUser());
+                $student = $this->StudentsDAO->SearchStudentByEmail($user->getEmail());
+            
+                
+                array_push($studentsList, $student);
+            }
+
+			require_once(VIEWS_PATH."jobOffer-postulates.php");
+		}
+
             public function ShowPostulationView()
             {
 
