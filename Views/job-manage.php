@@ -1,6 +1,7 @@
 <?php
 
 use Models\Company;
+use Models\user;
 
 require_once('navAdmin.php');   
 ?>
@@ -18,6 +19,7 @@ require_once('navAdmin.php');
                <div  style="background-color:chocolate;" class="table-responsive ">
                <table class="table bg-light-alpha table-primary">
                     <thead class="table-dark" style="white-space:nowrap;  text-align:center  ">
+                        
                          <th scope="col">Título</th>
                          <th scope="col">Empresa</th>
                          <th scope="col">Carrera</th>
@@ -34,8 +36,7 @@ require_once('navAdmin.php');
                               {
                                    ?>
                                         <tr style="white-space:nowrap;">
-                                        
-                                             <td><li class="list-group-item list-group-item-info"><?php echo $offer->getTitle() ?></li></td> 
+                                       
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getNameCompany() ?> </li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getCareerDescription() ?> </li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getPositionDescription() ?></li></td>
@@ -58,6 +59,10 @@ require_once('navAdmin.php');
                                                        <button type="submit" class="btn btn-danger" class="buttonF" ><i class="fas fa-trash-alt"></i></button>
                                                                                                    
                                                   </form>
+                                                  <button  class = "btn btn-success" type="button"  style="background-color:darkturquoise;" data-bs-toggle="modal" data-bs-target="#Postulate<?= $offer->getId()."p"?> " >
+                                             <i class="fas fa-users"></i>  
+                                             </button>                                             
+                                             
                                              </td>
 
            
@@ -78,8 +83,7 @@ require_once('navAdmin.php');
                                                                  
                                                                 
                                                                       <div class="row">                         
-                                                                           
-                                                                               
+                                                                      
                                                                      
                                                                                 <div class="">
                                                                                 <li class="list-group-item list-group-item-info"> <Strong>Empleo: </Strong><?php echo $offer->getPositionDescription() ?></li>                                                                                     
@@ -249,8 +253,77 @@ require_once('navAdmin.php');
                                                   </div></div></div>                                                  
                                                   <!-////////////////////////////////////////////////////////////////////////////––> 
                                              
+                                                                                     
 
-                                         </tr>
+
+                                             
+
+                                                   <!-- Modal SeePostulants -->
+                                                   
+                                                   <div class="modal fade" id="Postulate<?= $offer->getId()."p"?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog modal-dialog-centered modal-dialog modal-xl">
+                                                  <div class="modal-content">
+                                                       <div class="modal-header">
+                                                       <h5 style="color:green;">owo</h5>
+                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                       </div>
+                                                       
+                                                       <div class="modal-body">
+                                                       <div class = "container" >
+                                                       <table class="table" id="g<?= $offer->getId()."zzz"?>">
+                                                       <thead>
+                                                       <tr>
+                                                           
+                                                            <th scope="col">Nombre</th>
+                                                            <th scope="col">Apellido</th>
+                                                            <th scope="col">Email</th>
+                                                            <th scope="col">Dni</th>
+                                                       </tr>
+                                                       </thead>
+                                                       <tbody>
+                                                            <?php
+                                                            
+                                                             $userxofferList = array();
+                                                             
+                                                             $userxofferList = $this->UserXOfferDAO->SearchByOfferId($offer->getId());
+                                                             
+
+
+                                                             
+                                             
+                                                             foreach($userxofferList as $userxoffer){
+                                                                 
+                                                                 $user = $this->UserDAO->SearchById($userxoffer->getIdUser());
+                                                                 
+                                                                 $student = $this->StudentsDAO->SearchStudentByEmail($user[0]->getEmail());
+                                                                
+                                                                 ?>
+   
+                                                                       <tr style="white-space:nowrap;">
+                                                                    
+                                                                      <td>Mark</td>
+                                                                      <td>Otto</td>
+                                                                      <td>@mdo</td>
+                                                                      </tr>
+                                                                   
+
+                                                                 
+                                                                 
+                                                                                                                                
+                                                                 <?php
+                                                                 }
+
+                                                                 ?>
+                                                                 </tbody>
+                                                                 </table> 
+                                                                                                         
+                                                                                                    
+                                                                                                    
+                                                                                                              
+                                                                                               
+                                                                 </div> </div></div></div></div>                                                  
+                                                                                               <!-////////////////////////////////////////////////////////////////////////////––> 
+                                    </tr>
                                    <?php
                               }
                          ?>

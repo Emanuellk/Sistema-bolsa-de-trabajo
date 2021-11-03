@@ -7,6 +7,7 @@
     use Models\Job;   
     use Models\User;
     use Models\userXOffer as UserXOffer;
+    use Models\Students as Students;    
 
     use DAO\userXOfferDAO as UserXOfferDAO;
     use DAO\UserDAO as UserDAO;
@@ -14,6 +15,7 @@
     use DAO\CareerDAO as CareerDAO;
     use DAO\JobDAO as JobDAO;
     use DAO\CompanyDAO as CompanyDAO;
+    use DAO\StudentsDAO as StudentsDAO;
     use \Exception as Exception;
     use Models\Company;
 
@@ -25,6 +27,7 @@ class JobOfferController{
             private $CareerDAO;
             private $CompanyDAO;
             private $UserXOfferDAO;
+            private $StudentsDAO;
 
             public function __construct()
             {
@@ -33,7 +36,8 @@ class JobOfferController{
                 $this->JobDAO = new JobDAO();
                 $this->CareerDAO = new CareerDAO();
                 $this->CompanyDAO = new CompanyDAO(); 
-                $this->UserDAO = new UserDAO();         
+                $this->UserDAO = new UserDAO();
+                $this->StudentsDAO = new StudentsDAO;         
             }
 
            
@@ -159,6 +163,49 @@ class JobOfferController{
             {
                 $jobList = $this->OfferDAO->GetAll(); 
                 require_once(VIEWS_PATH."job-list.php");
+            }
+
+
+
+            public function ShowPostulationView()
+            {
+
+                $offerList = array();
+                $jobOfferList = array();
+                $User = $this->UserDAO->SearchUserByEmail($_SESSION['loggedUser']);
+                $listPostulation = $this->UserXOfferDAO->SearchByUserId($User->getId());  
+                
+
+                foreach($listPostulation as $postulation){
+
+                    $jobOffer = $this->OfferDAO->SearchOffer($postulation->getIdOffer());
+                    array_push($offerList, $jobOffer);
+
+                    
+
+                }
+                
+                foreach($offerList as $offer){
+                    $jobPosition= new Job();
+                    $career= new Career();
+                    $company = new Company();
+
+
+                    
+
+                    $jobPosition= $this->JobDAO->SearchById($offer->getIdJobPosition());
+
+                    $career = $this->CareerDAO->SearchCareerById($jobPosition->getCareerId());
+
+                    $company = $this->CompanyDAO->SearchById($offer->getIdCompany());
+
+                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail());
+                    
+                    array_push($jobOfferList, $jobOffer);
+                }
+                $jobList = $this->JobDAO->GetAll();
+                $companyList = $this->CompanyDAO->GetAll();
+                require_once(VIEWS_PATH."postulation-view.php");
             }
 
         }     

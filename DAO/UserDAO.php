@@ -88,6 +88,31 @@
                 throw $ex;
             } 
         }
-       
+
+        public function SearchById($id)
+        {
+            try{
+               
+                $query = "SELECT * FROM `".$this->tableName."` WHERE id='$id'";
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+              
+
+                $user = NULL;
+                $list = array();
+                
+                foreach($resultSet as $row)
+                {                
+                    $user = new User($row["id"],$row["email"],$row["password"],$row["admin"]);
+
+                    array_push($list, $user);
+                }
+                
+                return $list;
+
+            }catch(Exception $ex){
+                throw $ex;
+            }
+        }       
     }
 ?>

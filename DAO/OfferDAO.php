@@ -75,7 +75,7 @@
                 
                 if(!empty($resultSet[0]))
                 {        
-                    $OfferAux = new Offer($resultSet[0]['id'],$resultSet[0]['idCompany'],$resultSet[0]['idJobPosition'],$resultSet[0]['title'],$resultSet[0]['description'],$resultSet[0]['publicationDate'],$resultSet[0]['expirationDate'],$resultSet[0]['workLoad'],$resultSet[0]['salary'],$resultSet[0]['requirement']);       
+                    $OfferAux = new Offer($resultSet[0]['id'],$resultSet[0]['idCompany'],$resultSet[0]['idJobPosition'],$resultSet[0]['title'],$resultSet[0]['description'],$resultSet[0]['publicationDate'],$resultSet[0]['expirationDate'],$resultSet[0]['workLoad'],$resultSet[0]['salary'],$resultSet[0]['requirements']);       
                 }
                 
                 return $OfferAux;

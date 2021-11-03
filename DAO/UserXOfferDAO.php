@@ -2,11 +2,12 @@
     namespace DAO;
     
     use \Exception as Exception;
-    use Models\userXOffer;
+    use Models\userXOffer as userXOffer;
+    use DAO\Connection as Connection;
 
     class userXOfferDAO{
         private $connection;
-        private $tablename = "userxoffers";
+        private $tableName = "userxoffers";
 
         public function Add($userXOffer){
             try{
@@ -45,6 +46,59 @@
             }
             catch(Exception $ex)
             {
+                throw $ex;
+            }
+        }
+
+
+        public function SearchByUserId($id)
+        {
+            try{
+               
+                $query = "SELECT * FROM `".$this->tableName."` WHERE idUser='$id'";
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+              
+
+                $userXOffer = NULL;
+                $list = array();
+                
+                foreach($resultSet as $row)
+                {                
+                    $userXOffer = new UserXOffer($row["id"],$row["idUser"],$row["idOffer"]);
+
+                    array_push($list, $userXOffer);
+                }
+                
+                return $list;
+
+            }catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+        public function SearchByOfferId($id)
+        {
+            try{
+               
+                $query = "SELECT * FROM `".$this->tableName."` WHERE idOffer='$id'";
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+              
+
+                $userXOffer = NULL;
+                $list = array();
+                
+                foreach($resultSet as $row)
+                {                
+                    $userXOffer = new UserXOffer($row["id"],$row["idUser"],$row["idOffer"]);
+
+                    array_push($list, $userXOffer);
+                }
+                
+                return $list;
+
+            }catch(Exception $ex){
                 throw $ex;
             }
         }
