@@ -20,8 +20,8 @@ require_once('navAdmin.php');
                <table class="table bg-light-alpha table-primary">
                     <thead class="table-dark" style="white-space:nowrap;  text-align:center  ">
                         
-                         <th scope="col">Título</th>
                          <th scope="col">Empresa</th>
+                         <th scope="col">Título</th>
                          <th scope="col">Carrera</th>
                          <th scope="col">Empleo</th>                         
                          <th scope="col">Carga Horaria</th>                                                 
@@ -79,7 +79,7 @@ require_once('navAdmin.php');
                                                   <div class="modal-content" style="background-color:cadetblue;">
                                                        <div class="modal-header" style="text-align: center;">
                                                            
-                                                                  <Strong><?php echo $offer->getTitle() ?> </Strong>                                                                                     
+                                                                  <h5><?php echo $offer->getTitle() ?> </h5>                                                                                    
                                                             
                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                        </div>
@@ -168,7 +168,7 @@ require_once('navAdmin.php');
                                                        
                                                        <div class="container">
                                                                  
-                                                                 <form action="<?php echo FRONT_ROOT ?>JobOffer/Update" method="post" class="bg-light-alpha p-5">
+                                                                 <form action="<?php echo FRONT_ROOT ?>JobOffer/Update" method="post" class="bg-light-alpha">
                                                                       <div class="row">                         
                                                                            
                                                                                 <div class="form">

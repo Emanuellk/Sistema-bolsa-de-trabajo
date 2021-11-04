@@ -50,6 +50,31 @@
             }
         }
 
+        public function SearchOfferByUser($idOffer,$idUser) {           
+            try{
+            
+            $query = "SELECT * FROM `".$this->tableName."` WHERE idOffer='$idOffer' AND idUser='$idUser'";
+            $this->connection = Connection::GetInstance();            
+            $resultSet = $this->connection->Execute($query);
+            
+            $userXOffer= NULL;
+            
+            if(!empty($resultSet[0]))
+            {
+                
+                $userXOffer = new userXOffer($resultSet[0]['id'],$resultSet[0]['idUser'],$resultSet[0]['idOffer']); 
+                                   
+            }
+            
+             return $userXOffer;           
+                        
+            } 
+            catch(Exception $ex)
+            {
+                throw $ex;
+            } 
+        }
+
 
         public function SearchByUserId($id)
         {

@@ -1,10 +1,12 @@
 <?php
     require_once('navAdmin.php');
 ?>
-
-
+<br>
+<section id = "listado" class="mb-5 bg-light-alpha">
+<div class = "container" >
 <div  style="background-color:primay;" class="table-responsive ">
-               <table class="table bg-light-alpha table-primary ">
+
+               <table class="table bg-light-alpha table-primary">
                     <thead class="table" style="background-color: orange;"  text-align:center >
                         
                          <th scope="col">Nombre</th>
@@ -32,4 +34,6 @@
                             ?>
                     </tbody>
                  </table>
-</div>          
+</div>   
+</div>       
+</section>

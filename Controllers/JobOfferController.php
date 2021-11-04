@@ -143,8 +143,6 @@ class JobOfferController{
             //USUARIO---------------------------------------------------------------------------------------------------------------------------
             //==================================================================================================================================
             
-
-            
             //Ver empleos / offer-view.php
 
 
@@ -178,6 +176,21 @@ class JobOfferController{
             
             public function apply($userId,$offerId)
             {
+                $userxoffer = $this->UserXOfferDAO->SearchOfferByUser($offerId,$userId);
+
+                if(empty($userxoffer)) {
+                     $aux = new UserXOffer("",$userId,$offerId);
+                    
+                     $this->UserXOfferDAO->Add($aux);
+                     $this->ShowOfferView();
+                     $this->ShowAddMesaggeView("Postulación cargada con éxito.");
+                        
+                }else{            
+                        $this->ShowOfferView();          
+                        $this->ShowAddMesaggeView("Error! Ya se encuentra postulado a esta oferta   ");
+                }
+
+                /*
                 try{
                     $aux = new UserXOffer("",$userId,$offerId);
                     
@@ -189,8 +202,11 @@ class JobOfferController{
                 }
                 catch(Exception $ex){
                     $this->ShowAddMesaggeView("Error al cargar esta oferta laboral");
-                }
+                }*/
             }
+                
+                
+            
 
 
 
@@ -242,7 +258,7 @@ class JobOfferController{
 
 
 
-            //Extraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            //Extra
            
             public function ShowAddMesaggeView($message = "")
             {

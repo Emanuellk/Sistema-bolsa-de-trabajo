@@ -109,7 +109,6 @@
         function updateOffer($title,$idCompany ,$idJobPosition, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$description, $id){
             try
             {
-                var_dump($description);
                 $query = "UPDATE ".$this->tableName." SET title=:title,idCompany=:idCompany,idJobPosition=:idJobPosition,publicationDate=:publicationDate,expirationDate=:expirationDate,workLoad=:workLoad,salary=:salary,requirements=:requirements,description=:description where id =:id";
                 
                 $parameters["id"] = $id;
