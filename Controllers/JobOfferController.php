@@ -276,7 +276,7 @@ class JobOfferController{
                 $this->ShowPostulationView();
             }
 
-
+            
 
             //Extra
            
