@@ -105,7 +105,15 @@ class JobOfferController{
                 $user = $this->UserDAO->SearchById($userxoffer->getIdUser());
                 $student = $this->StudentsDAO->SearchStudentByEmail($user->getEmail());
 
-                array_push($studentsList, $student);
+                if($student->getActive()==true){ 
+                    array_push($studentsList, $student);
+                }
+                else
+                {
+                    $this->UserXOfferDAO->deletePostulationsByUserId($userxoffer->getIdUser());
+                }
+
+               
             }
 
             require_once(VIEWS_PATH."jobOffer-postulates.php");
@@ -151,6 +159,7 @@ class JobOfferController{
 
                 $offerList = $this->OfferDAO->GetAll();
                 $jobOfferList = array();
+                $alreadyPostulated = array();
                 $User = $this->UserDAO->SearchUserByEmail($_SESSION['loggedUser']);
                 
                 foreach($offerList as $offer){
@@ -163,9 +172,20 @@ class JobOfferController{
 
                     $career = $this->CareerDAO->SearchCareerById($jobPosition->getCareerId());
 
-                    $company = $this->CompanyDAO->SearchById($offer->getIdCompany());
+                    $company = $this->CompanyDAO->SearchById($offer->getIdCompany());                
+                    
+                    
 
                     $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail());
+
+                    $userxoffer = $this->UserXOfferDAO->SearchOfferByUser($offer->getId(),$User->getId());
+
+                    if(!empty($userxoffer)) {                        
+                        array_push($alreadyPostulated,"exist");
+                            
+                    }else{            
+                        array_push($alreadyPostulated,"not-exist");
+                    }
                     
                     array_push($jobOfferList, $jobOffer);
                 }
