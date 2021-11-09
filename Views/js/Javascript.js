@@ -1,19 +1,18 @@
-function togglePW(){
-    var password =  document.querySelectorAll('[name=password]');
-    var div_array = [...password];
+function togglePW(id){
+    var password =  document.querySelector(`#input-${id}`);
+    console.log(password);
 
-    div_array.forEach(password => {
     if(password.getAttribute('type')==='password'){
         password.setAttribute('type', 'text');
-        document.getElementById("font").style.color='black';
+        document.getElementById(`font-${id}`).style.color='black';
     }
 
     else{
         password.setAttribute('type', 'password');
-        document.getElementById("font").style.color='gray';
+        document.getElementById(`font-${id}`).style.color='gray';
     }
-});
 }
+
 
 /*
 function togglePW(){
@@ -28,4 +27,9 @@ function togglePW(){
         password.setAttribute('type', 'password');
         document.getElementById("font").style.color='gray';
     }
+}
 }*/
+
+
+
+

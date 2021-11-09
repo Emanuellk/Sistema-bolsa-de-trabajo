@@ -20,7 +20,7 @@
                          
                          
                          <?php
-                              foreach($userList as $user)
+                              foreach($userList as $key=>$user)
                               {
                                    ?>
                                         <tr>
@@ -61,9 +61,9 @@
                                                                                      <div class="form-group">
                                                                                           
                                                                                           <label for="">Cambiar Contraseña: </label>
-                                                                                          <input class="inputPassword" type="password"  name="password" placeholder="Password" value="<?= $user->getPassword()?>">
+                                                                                          <input class="inputPassword" id="input-<?=$key?>"type="password"  name="password" placeholder="Password" value="<?= $user->getPassword()?>">
                                                                                           <span class="spanPassword">
-                                                                                               <i  class="fa fa-eye"  onclick="togglePW()" aria-hidden="true"></i>
+                                                                                               <i  class="fa fa-eye" id="font-<?=$key?>"  onclick="togglePW(<?=$key?>)" aria-hidden="true"></i>
                                                                                           </span>
                                                                                      </div>
 
