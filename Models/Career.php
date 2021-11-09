@@ -6,7 +6,6 @@ class Career{
        private $id;
        private $description;        
        private $active;
-       
        public function __construct( $id = '', $description = '', $active = '') {
            
            $this->id = $id;

@@ -5,7 +5,7 @@
 <section id = "listado" class="mb-5 bg-light-alpha">
 <div class = "container" >
 <div  style="background-color:primay;" class="table-responsive ">
-
+               <h2>Historial de postulantes</h2>
                <table class="table bg-light-alpha table-primary">
                     <thead class="table" style="background-color: orange;"  text-align:center >
                         

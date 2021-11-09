@@ -411,3 +411,34 @@ input.src:hover{
     font-family: "FuenteLogin";
     src: url('../Fonts/Roboto-Light.ttf');
 }
+
+/*Boton Toggle*/
+
+.inputPassword{
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid white;
+    padding: 10px 10px;
+}
+
+.inputPassword ::placeholder{
+    color: white;
+    opacity: 0.7;
+}
+
+.spanPassword{
+    position: absolute;
+    right: 230px;
+    transform: translate(0, -50%);
+    top: 62%;
+    cursor: pointer;
+}
+
+.fa{
+    font-size: 20px;
+    color: grey;
+}

@@ -46,6 +46,7 @@
                 {                
                     $user = new User();
                     
+                    $user->setId($row["id"]);
                     $user->setEmail($row["email"]);
                     $user->setPassword($row["password"]);
                     $user->setAdmin($row["admin"]);
@@ -118,6 +119,33 @@
                 {
                     throw $ex;
                 } 
+        }
+
+        
+        function modify($admin,$password,$id){
+            try
+            {
+                $query = "UPDATE ".$this->tableName." SET admin=:admin, password=:password where id =:id";
+                
+                $parameters["id"] = $id;
+                $parameters["password"] = $password;
+                $parameters["admin"] = $admin;  
+                
+               
+                
+                
+                $this->connection = Connection::GetInstance();
+                    
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            
             }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+           
+        }  
+
+
     }
 ?>

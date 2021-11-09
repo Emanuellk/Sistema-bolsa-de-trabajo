@@ -112,6 +112,19 @@
                  echo "<script>alert('$message');</script>"; 
                  echo "<script>setTimeout(\"location.href = '/TP_LabIV';\",1500);</script>"; 
             }
+
+            public function ShowListView()
+            {
+            $userList = $this->UserDAO->GetAll();
+           
+            require_once(VIEWS_PATH."user-list.php");
+            }
+
+            public function Update($admin,$password,$id){
+            
+                $this->UserDAO->modify($admin,$password,$id);
+                $this->ShowListView();
+            }  
         
     }
 
