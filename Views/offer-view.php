@@ -23,7 +23,7 @@ require_once('nav.php');
                     <tbody>
 
                     <?php
-
+                         $i=0;
                               foreach($jobOfferList as $offer)
                               {
                                    ?>
@@ -46,7 +46,7 @@ require_once('nav.php');
                                                     <input type="hidden" name="userId" value="<?php echo $User->getId()?>" class="form-control">
                                                     <input type="hidden" name="offerId" value="<?php echo $offer->getId()?>" class="form-control">
 
-                                                    <button type="submit" class="btn btn-danger" class="buttonF" style="background-color: greenyellow;"><i class="fas fa-address-card"></i></button>
+                                                    <button type="submit" class="btn btn-danger" class="buttonF" <?php if($alreadyPostulated[$i] == "exist"){ echo ( 'style="background-color: red;" ');}else{ echo ( 'style="background-color: greenyellow;" ');} ?>><i class="fas fa-address-card"></i></button>
                                                                                                 
                                                     </form>
                                                   
@@ -63,7 +63,7 @@ require_once('nav.php');
                                                   <div class="modal-content" style="background-color:cadetblue;">
                                                        <div class="modal-header" style="text-align: center;">
                                                            
-                                                                  <Strong><?php echo $offer->getTitle() ?> </Strong>                                                                                     
+                                                            <Strong><?php echo $offer->getTitle() ?> </Strong>                                                                                     
                                                             
                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                        </div>
@@ -141,6 +141,7 @@ require_once('nav.php');
 
                                          </tr>
                                    <?php
+                                   $i= $i + 1;
                                   
                               }
                          ?>

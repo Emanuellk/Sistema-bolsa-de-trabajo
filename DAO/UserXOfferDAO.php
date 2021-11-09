@@ -143,6 +143,21 @@
                 throw $ex;
             }
          }
+         function deletePostulationsByUserId($idUser){
+            try{
+                $query = "DELETE FROM ". $this->tableName." WHERE idUser= :idUser";
+
+                $parameters["idUser"] = $idUser;
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+            }
+            catch(Exception $ex){
+                throw $ex;
+            }
+         }
 
     }
     

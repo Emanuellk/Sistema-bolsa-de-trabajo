@@ -28,84 +28,92 @@
                 if(!empty($userAux)){
                     
                     $studentAux = $this->StudentsDAO->SearchStudentByEmail($userAux->getEmail());
-                    
-                    if($userAux->getPassword() == $password && $userAux->getAdmin() == 1)
-                    {    
-                        $_SESSION['loggedUser'] = $userAux->getEmail();                   
-                        require_once(VIEWS_PATH."pagAdmin.php");                    
-                    }
-                    elseif($userAux->getPassword() == $password)
-                    
-                    {
-                        $_SESSION['loggedUser'] = $userAux->getEmail();
-                        require_once(VIEWS_PATH."pagPrincipal.php");
-                    }
-                    else
-                    {                    
+                    if($studentAux->getActive()==true){
+                        if($userAux->getPassword() == $password && $userAux->getAdmin() == 1){
+
+                            $_SESSION['loggedUser'] = $userAux->getEmail();                   
+                            require_once(VIEWS_PATH."pagAdmin.php");
+
+                        }
+                        elseif($userAux->getPassword() == $password){
+
+                            $_SESSION['loggedUser'] = $userAux->getEmail();
+                            require_once(VIEWS_PATH."pagPrincipal.php");
+
+                        }
+                        else{            
                         
-                        $this->ShowLoginView("ERROR! USUARIO Y/O password INCORRECTOS");
-                        
+                            $this->ShowLoginView("ERROR! USUARIO Y/O password INCORRECTOS");                        
+                        }                        
+                    } 
+                    else{                                    
+                        $this->ShowLoginView("ERROR! Esta cuenta no esta activa!");
                     }
                 }
                 else{                          
                     $this->ShowLoginView("ERROR! EL USUARIO NO EXISTE"); 
                 }
-            }
+        }
             
 
-            public function Logout(){
-                session_destroy();
-                header('location: /TP_LabIV');
-            }
-    
+        public function Logout(){
+            session_destroy();
+            header('location: /TP_LabIV');
+        }
 
-            public function registerUser($email,$password) {
+
+        public function registerUser($email,$password) {
+            
+            $User = $this->UserDAO->SearchUserByEmail($email);
+            
+            
+            if(empty($User)) {
+
+                $Student= $this->StudentsDAO->SearchStudentByEmail($email);
                 
-                   $User = $this->UserDAO->SearchUserByEmail($email);
-                    
-                    
-                    if(empty($User)) {
-
-                        $Student= $this->StudentsDAO->SearchStudentByEmail($email);
+                
+                if(!empty($Student)){
+                    if($Student->getActive()==true){
+                        $newUser = new User();
+                        $newUser->setEmail($email);
+                        $newUser->setPassword($password);
+                        $this->UserDAO->Add($newUser);
                         
-                        if(!empty($Student)){
-                            $newUser = new User();
-                            $newUser->setEmail($email);
-                            $newUser->setPassword($password);
-                            $this->UserDAO->Add($newUser);
-                            
-                            $this->ShowLoginView("Registro de Usuario Exitoso!");
-                        }
-                        else{
-                            
-                            $this->ShowLoginView("Email incorrecto");
-                        }
+                        $this->ShowLoginView("Registro de Usuario Exitoso!");
                     }
-                    else {                      
-                        $this->ShowLoginView("ERROR! Ya existe una cuenta registrada con ese email!");
+                    else{                                    
+                        $this->ShowLoginView("ERROR! Esta cuenta no esta activa!");
                     }
-            }
-    
-            
-            public function StudentStatus()
-            {   
-
-                $Student= $this->StudentsDAO->SearchStudentByEmail($_SESSION['loggedUser']);
-                $Career = $this->CareerDAO->SearchCareerById($Student->getCareerId());
-                require_once(VIEWS_PATH."student-view.php");
-                
-            }
-
-
-            public static function CheckUserLog() {
-                if(!isset($_SESSION['loggedUser']))
-                {
-                    require_once(VIEWS_PATH."login.php");
+                }                            
+                else{
+                        
+                    $this->ShowLoginView("Email incorrecto");
                 }
+            }           
+            else{                      
+                $this->ShowLoginView("ERROR! Ya existe una cuenta registrada con ese email!");
+            }
+        }
 
-               
+        
+        public function StudentStatus()
+        {   
+
+            $Student= $this->StudentsDAO->SearchStudentByEmail($_SESSION['loggedUser']);
+            $Career = $this->CareerDAO->SearchCareerById($Student->getCareerId());
+            require_once(VIEWS_PATH."student-view.php");
+            
+        }
+
+
+        public static function CheckUserLog() {
+            if(!isset($_SESSION['loggedUser']))
+            {
+                require_once(VIEWS_PATH."login.php");
             }
 
+            
+        }
 
             public function ShowLoginView($message = "")
             {   
