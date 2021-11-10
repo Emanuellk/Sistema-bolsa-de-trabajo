@@ -23,7 +23,7 @@
                 </div>
 
 
-                <form action="" class="formulario" id="formulario">
+            <form action="<?php echo FRONT_ROOT ?>User/UpdatePassword" method="post" class="formulario" id="formulario">
                 <!--Grupo primera password-->
                 <div class="form-group" id="grupo__password">
                     <label for="password" class="formulario__label">Nueva Contraseña:</label>
@@ -47,16 +47,20 @@
                 <!----Fin Passwords------->
                 <br>
                 <div class="formulario__grupo formulario__grupo-btn-enviar">
-                <a id="boton-form">
+                <!--
+                <a type="submit" id="boton-form">
                 <span></span> 
                 <span></span> 
                 <span></span> 
                 <span></span> 
-				Confirmar
+				
                 </a>  
+                -->
+                <button type="submit" class="boton animado"><span>Confirmar</span></button>
+                <br>
 				<p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Contraseña cambiada exitosamente!</p>
 			    </div>
-                </form>
+            </form>
 
             </div>
     </div>
