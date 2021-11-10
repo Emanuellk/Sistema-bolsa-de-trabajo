@@ -10,6 +10,9 @@
      </span>
      <ul class="navbar-nav ml-auto">
           <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ShowListView"><span class="icon-admin"> <i class="fas fa-book"></i> </span> Lista usuarios</a>
+          </li>
+          <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowAddView"><span class="icon-admin"> <i class="fas fa-plus"> </i> </span> Agregar Empresa</a>
           </li>
            <li class="nav-item">

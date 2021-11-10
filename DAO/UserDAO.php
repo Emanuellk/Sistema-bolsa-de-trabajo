@@ -144,7 +144,22 @@
                 throw $ex;
             }
            
-        }  
+        } 
+
+        function modifyPassword($password,$id){
+            try{
+                $query = "UPDATE ".$this->tableName." SET password=:password where id =:id";
+
+                $parameters["id"] = $id;
+                $parameters["password"] = $password;
+
+                $this->connection = Connection::GetInstance();
+                    
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }catch(Exception $ex){
+                throw $ex;
+            }
+        }
 
 
     }

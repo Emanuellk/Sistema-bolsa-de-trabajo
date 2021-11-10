@@ -345,7 +345,7 @@ input.src:hover{
     display: none;
     min-width: 200px;
     left: -50px;
-    height: 100px;
+    height: 145px;
 }
 
 #menu:hover #desple{
@@ -416,10 +416,10 @@ input.src:hover{
 
 .inputPassword{
     box-sizing: border-box;
-    width: 100%;
-    font-size: 18px;
-    border: none;
-    outline: none;
+    width: 58%;
+    font-size: 15px;
+    border: 1px solid;
+    outline: 1px solid;
     background-color: transparent;
     border-bottom: 1px solid white;
     padding: 10px 10px;
@@ -441,4 +441,329 @@ input.src:hover{
 .fa{
     font-size: 20px;
     color: grey;
+}
+
+
+/* Vista cambiar contraseña */
+
+
+.userPassword{
+    position: absolute;
+    right: 18px;
+    transform: translate(0, -50%);
+    top: 44%;
+    cursor: pointer;
+}
+
+.card-box{
+    display: flex;
+    justify-content: center;
+    height: 84vh;
+    align-items: center;
+}
+
+.card{
+    height: 620px;
+    border-radius: 100px;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    margin: 100px;
+    overflow: hidden;
+    width: 400px;
+    backdrop-filter: blur(1rem);
+    background-color: rgba(10, 94, 143, 0.883);
+    border: .1rem solid rgba(47, 118, 175, 0.644);
+}
+
+
+
+.card h6{
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+}
+
+.card h2{
+    letter-spacing: .1rem;
+    margin: 1rem 0;
+
+}
+
+.top-row{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.top-row i{
+    font-size: 2rem;
+}
+
+.content{
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.content p{
+    font-size: .9rem;    
+}
+
+.background-top-row{
+    background-color: rgba(3, 16, 93, 0.733);
+    backdrop-filter: blur(.4rem);
+}
+
+.formulario {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+
+}
+
+.formulario__label {
+	display: block;
+	font-weight: 700;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.formulario__grupo-input {
+	position: relative;
+}
+
+.formulario__input {
+	width: 100%;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 40px 0 10px;
+	transition: .3s ease all;
+}
+
+.formulario__input:focus {
+	border: 3px solid #0075FF;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+
+.formulario__input-error {
+	font-size: 12px;
+	margin-bottom: 0;
+	display: none;
+}
+
+.formulario__input-error-activo {
+	display: block;
+}
+
+.formulario__validacion-estado {
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+	z-index: 100;
+	font-size: 16px;
+	opacity: 0;
+}
+
+.formulario__checkbox {
+	margin-right: 10px;
+}
+
+.formulario__grupo-terminos, 
+.formulario__mensaje,
+.formulario__grupo-btn-enviar {
+	grid-column: span 2;
+}
+
+.formulario__mensaje {
+	height: 45px;
+	line-height: 45px;
+	background: #F66060;
+	padding: 0 15px;
+	border-radius: 3px;
+	display: none;
+}
+
+.formulario__mensaje-activo {
+	display: block;
+}
+
+.formulario__mensaje p {
+	margin: 0;
+}
+
+.formulario__grupo-btn-enviar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.formulario__btn {
+	height: 45px;
+	line-height: 45px;
+	width: 30%;
+	background: #000;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: .1s ease all;
+}
+
+.formulario__btn:hover {
+	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+
+.formulario__mensaje-exito {
+	font-size: 14px;
+	color: #119200;
+	display: none;
+}
+
+.formulario__mensaje-exito-activo {
+	display: block;
+}
+
+/* ----- -----  Estilos para Validacion ----- ----- */
+.formulario__grupo-correcto .formulario__validacion-estado {
+	color: #1ed12d;
+	opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__label {
+	color: #bb2929;
+}
+
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+	color: #bb2929;
+	opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__input {
+	border: 3px solid #bb2929;
+}
+
+
+/* ----- -----  Mediaqueries ----- ----- */
+@media screen and (max-width: 800px) {
+	.formulario {
+		grid-template-columns: 1fr;
+	}
+
+	.formulario__grupo-terminos, 
+	.formulario__mensaje,
+	.formulario__grupo-btn-enviar {
+		grid-column: 1;
+	}
+
+	.formulario__btn {
+		width: 100%;
+	}
+}
+
+/*---- Boton Formulario ----*/
+
+#boton-form{
+    position: relative;
+    display: inline-block;
+    padding: 10px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255,0.4);
+    background: #262c37;
+    letter-spacing: 2px;
+    font-size: 10px;
+    transition: 0.5s;
+}
+
+#boton-form:hover{
+    color: rgb(233, 232, 232);
+}
+
+#boton-form span{
+    display: block;
+    position: absolute;
+    background: #2894ff;
+}
+
+#boton-form span:nth-child(1)
+{
+    left: 0;
+    bottom: 0;
+    width: 2px;
+    height: 100%;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s;
+}
+
+#boton-form:hover span:nth-child(1){
+    transform: scaleY(1);
+    transform-origin: bottom;
+    transition: transform 0.5s;
+}
+
+#boton-form span:nth-child(2)
+{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s;
+}
+
+#boton-form:hover span:nth-child(2){
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.5s;
+}
+
+#boton-form span:nth-child(3)
+{
+    right: 0;
+    bottom: 0;
+    width: 2px;
+    height: 100%;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s;
+    transition-delay: 0.5s;
+}
+
+#boton-form:hover span:nth-child(3){
+    transform: scaleY(1);
+    transform-origin: bottom;
+    transition: transform 0.5s;
+    transition-delay: 0.5s;
+}
+
+
+#boton-form span:nth-child(4)
+{
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s;
+    transition-delay: 0.5s;
+}
+
+#boton-form:hover span:nth-child(4){
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.5s;
+    transition-delay: 0.5s; 
 }
