@@ -121,18 +121,30 @@
                  echo "<script>setTimeout(\"location.href = '/TP_LabIV';\",1500);</script>"; 
             }
 
-            public function ShowListView()
-            {
-            $userList = $this->UserDAO->GetAll();
-           
-            require_once(VIEWS_PATH."user-list.php");
-            }
 
-            public function Update($admin,$password,$id){
-            
-                $this->UserDAO->modify($admin,$password,$id);
-                $this->ShowListView();
-            }  
+        public function ShowListView()
+        {
+        $userList = $this->UserDAO->GetAll();
+       
+        require_once(VIEWS_PATH."user-list.php");
+        }
+
+        public function Update($admin,$password,$id){
+        
+            $this->UserDAO->modify($admin,$password,$id);
+            $this->ShowListView();
+        }  
+
+
+        public function ShowUserPassword(){
+            $user = $this->UserDAO->SearchUserByEmail($_SESSION['loggedUser']);
+            require_once(VIEWS_PATH."student-password.php");
+        }
+
+        public function UpdatePassword($password,$id){
+            $this->UserDAO->modifyPassword($password,$id);
+            $this->ShowUserPassword($id);
+        }
         
     }
 

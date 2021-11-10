@@ -14,8 +14,8 @@ function togglePW(id){
 }
 
 
-/*
-function togglePW(){
+
+function togglePWUser(){
     var password =  document.querySelector('[name=password]');
 
     if(password.getAttribute('type')==='password'){
@@ -28,7 +28,7 @@ function togglePW(){
         document.getElementById("font").style.color='gray';
     }
 }
-}*/
+
 
 
 
