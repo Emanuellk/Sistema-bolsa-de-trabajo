@@ -31,7 +31,7 @@
                         <input type="password" class="formulario__input" name="password" id="password">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
-                    <p class="formulario__input-error">La contraseña debe tener 4 a 15 digitos.</p>
+                    <p class="formulario__input-error">La contraseña debe tener 3 a 15 digitos.</p>
                 </div>
 
                 <!--Grupo segunda password-->
@@ -60,6 +60,10 @@
                 <br>
 				<p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Contraseña cambiada exitosamente!</p>
 			    </div>
+                
+               
+                <input type="hidden" name="id" value="<?php echo $user->getId()?>" class="form-control">
+                
             </form>
 
             </div>
