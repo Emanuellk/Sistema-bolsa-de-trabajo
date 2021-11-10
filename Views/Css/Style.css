@@ -450,7 +450,7 @@ input.src:hover{
 .userPassword{
     position: absolute;
     right: 195px;
-    transform: translate(0, -50%);
+    transform: translate(0, -60%);
     top: 44%;
     cursor: pointer;
 }
@@ -523,7 +523,7 @@ input.src:hover{
 .formulario {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 7px;
 
 }
 
