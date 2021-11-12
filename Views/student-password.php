@@ -31,7 +31,7 @@
                         <input type="password" class="formulario__input" name="password" id="password" placeholder="Contraseña">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
-                    <p class="formulario__input-error">La contraseña debe tener 4 a 15 digitos.</p>
+                    <p class="formulario__input-error">La contraseña debe tener 3 a 15 digitos.</p>
                 </div>
 
                 

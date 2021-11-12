@@ -2,7 +2,7 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-	password: /^.{4,15}$/, // 4 a 12 digitos.
+	password: /^.{3,15}$/, // 4 a 12 digitos.
 }
 
 const campos = {
@@ -69,9 +69,8 @@ inputs.forEach((input) => {
 formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
 	
-
 	if(campos.password){
-		formulario.reset();
+		document.getElementById("formulario").submit();
 
 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
 		setTimeout(() => {
