@@ -1,6 +1,9 @@
 <?php
     require_once('header.php');
-   
+
+    if(!isset($_SESSION['loggedUser'])){
+     header("location:login.php");
+   }
 ?>
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
     

@@ -146,6 +146,7 @@
            
         } 
 
+        
         function modifyPassword($password,$id){
             try{
                 $query = "UPDATE ".$this->tableName." SET password=:password where id =:id";

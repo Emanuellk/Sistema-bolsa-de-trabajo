@@ -146,13 +146,12 @@
             require_once(VIEWS_PATH."student-password.php");
         }
 
-        public function UpdatePassword($password,$password2,$id){            
-
+        public function UpdatePassword($password,$password2,$id){
             $this->UserDAO->modifyPassword($password,$id);
-            
-            $this->ShowUserPassword($id);
+            $this->ShowUserPassword();
         }
-        
+
+       
     }
 
 ?>
