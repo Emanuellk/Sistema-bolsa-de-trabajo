@@ -200,10 +200,17 @@ class JobOfferController{
 
                 if(empty($userxoffer)) {
                      $aux = new UserXOffer("",$userId,$offerId);
-                    
+                     $user= $this->UserDAO->SearchById($userId);
+                     $student = $this->StudentsDAO->SearchStudentByEmail($user->getEmail());
+                     if($student->getActive()==true){
                      $this->UserXOfferDAO->Add($aux);
                      $this->ShowOfferView();
                      $this->ShowAddMesaggeView("Postulación cargada con éxito.");
+                     }
+                     else{
+                        $this->ShowOfferView();          
+                        $this->ShowAddMesaggeView("No esta activo");
+                     }
                         
                 }else{            
                         $this->ShowOfferView();          
@@ -211,6 +218,17 @@ class JobOfferController{
                 }
 
                 /*
+
+                $user = $this->UserDAO->SearchById($userxoffer->getIdUser());
+                $student = $this->StudentsDAO->SearchStudentByEmail($user->getEmail());
+
+                if($student->getActive()==true){ 
+                    array_push($studentsList, $student);
+                }
+                else
+                {
+                    $this->UserXOfferDAO->deletePostulationsByUserId($userxoffer->getIdUser());
+                }
                 try{
                     $aux = new UserXOffer("",$userId,$offerId);
                     

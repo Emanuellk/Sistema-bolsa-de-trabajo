@@ -523,7 +523,7 @@ input.src:hover{
 .formulario {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-    gap: 7px;
+    gap: 5px;
 
 }
 
@@ -801,7 +801,7 @@ input.src:hover{
 
 .boton.animado::after {
 	content: "";
-	width: 138%;
+	width: 144%;
 	position: absolute;
 	z-index: 1;
 	top: 0;

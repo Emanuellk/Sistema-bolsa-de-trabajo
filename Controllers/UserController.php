@@ -133,7 +133,12 @@
         
             $this->UserDAO->modify($admin,$password,$id);
             $this->ShowListView();
-        }  
+        } 
+        
+        public function DeleteUser($id){
+            $this->UserDAO->deleteUser($id);
+            $this->ShowListView();
+        }
 
 
         public function ShowUserPassword(){
@@ -141,13 +146,12 @@
             require_once(VIEWS_PATH."student-password.php");
         }
 
-        public function UpdatePassword($password,$password2,$id){            
-
+        public function UpdatePassword($password,$password2,$id){
             $this->UserDAO->modifyPassword($password,$id);
-            
-            $this->ShowUserPassword($id);
+            $this->ShowUserPassword();
         }
-        
+
+       
     }
 
 ?>
