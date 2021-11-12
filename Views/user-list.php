@@ -31,6 +31,12 @@
                                                   <button  class = "btn btn-primary" type="button"  data-bs-toggle="modal" data-bs-target="#Update<?= $user->getId() ?> " >
                                                   <i class="fas fa-user-edit"></i>   
                                                   </button>
+                                                  
+                                                  <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>User/deleteUser">
+                                                  <input type="hidden" name="id" value="<?php echo $user->getId()?>" class="form-control">
+
+                                                  <button type="submit" class="btn btn-danger" class="buttonF" ><i class="fas fa-trash-alt"></i></button>
+                                                  </form>
 
 
                                                   <!-- Modal Modify rank--->
