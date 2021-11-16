@@ -814,3 +814,15 @@ input.src:hover{
 .boton.animado:hover::after {
 	left: 0;
 }
+
+.user-uploadCv{
+    text-align: center;
+    margin-top: 83px;
+    font-size: 23px;
+}
+
+.cv{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 48px;
+}

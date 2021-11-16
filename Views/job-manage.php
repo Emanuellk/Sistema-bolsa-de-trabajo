@@ -45,11 +45,11 @@ require_once('navAdmin.php');
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getSalary() ?></li></td>
                                              <td>                     
                                              
-                                                  <button  class = "btn btn-success" type="button"  style="background-color:darkturquoise;" data-bs-toggle="modal" data-bs-target="#See<?= $offer->getId()."s"?> " >
+                                                  <button  class = "btn btn-success" title="Ver" type="button"  style="background-color:darkturquoise;" data-bs-toggle="modal" data-bs-target="#See<?= $offer->getId()."s"?> " >
                                                   <i class="fas fa-eye"></i>  
                                                   </button>
                                                   
-                                                  <button  class = "btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#Update<?= $offer->getId()?> " >
+                                                  <button  class = "btn btn-success" title="Modificar" type="button" data-bs-toggle="modal" data-bs-target="#Update<?= $offer->getId()?> " >
                                                   <i class="fas fa-edit"></i>    
                                                   </button>
                                                   
@@ -57,7 +57,7 @@ require_once('navAdmin.php');
 
                                                        <input type="hidden" name="id" value="<?php echo $offer->getId()?>" class="form-control">
                                                  
-                                                       <button type="submit" class="btn btn-danger" class="buttonF" ><i class="fas fa-trash-alt"></i></button>
+                                                       <button type="submit" class="btn btn-danger" title="Eliminar" class="buttonF" ><i class="fas fa-trash-alt"></i></button>
                                                                                                    
                                                   </form>
                                                   
@@ -65,7 +65,7 @@ require_once('navAdmin.php');
 
                                                   <input type="hidden" name="id" value="<?php echo $offer->getId()?>" class="form-control">
                                                   
-                                                  <button type="submit" class="btn btn-danger" style="background-color:darkturquoise;" class="buttonF" ><i class="fas fa-users"></i></button>                                                    
+                                                  <button type="submit" class="btn btn-danger" title="Postulados" style="background-color:darkturquoise;" class="buttonF" ><i class="fas fa-users"></i></button>                                                    
                                                                                          
                                                   </form>                                            
                                              

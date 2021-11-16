@@ -9,6 +9,7 @@ require_once('nav.php');
                
                <h2 class="mb-4">Historial de Postulaciones</h2>
                <br>
+              
                <div  style="background-color:primary;" class="table-responsive ">
                <table class="table bg-light-alpha table-primary">
                     <thead class="table-dark" style="white-space:nowrap;  text-align:center  ">
@@ -16,7 +17,8 @@ require_once('nav.php');
                          <th scope="col">Empresa</th>
                          <th scope="col">Carrera</th>
                          <th scope="col">Empleo</th>   
-                         <th scope="col">Cancelar</th>                        
+                         <th scope="col">Cancelar</th>  
+                                               
                     </thead>
                     <tbody>
                     <br>
@@ -37,7 +39,7 @@ require_once('nav.php');
                                              <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/DeletePostulation">
                                                   
                                                   <input type="hidden" name="id" value="<?php echo $listPostulation[$i]->getId()?>" class="form-control">
-                                                  <button type="submit" class="btn btn-danger" class="buttonF" ><i class="fas fa-trash-alt"></i></button>                                                 
+                                                  <button type="submit" class="btn btn-danger" title="Eliminar" class="buttonF" ><i class="fas fa-trash-alt"></i></button>                                                 
                                                   </form>
                                              </td>
                                              

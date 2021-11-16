@@ -193,6 +193,8 @@ class JobOfferController{
                 require_once(VIEWS_PATH."offer-view.php");
             }
 
+
+            
             
             public function apply($userId,$offerId)
             {
@@ -216,6 +218,7 @@ class JobOfferController{
                         $this->ShowOfferView();          
                         $this->ShowAddMesaggeView("Error! Ya se encuentra postulado a esta oferta   ");
                 }
+                
 
                 /*
 
@@ -294,7 +297,26 @@ class JobOfferController{
                 $this->ShowPostulationView();
             }
 
-            
+
+            public function UploadCv()
+            { 
+                $dir = "archivo/";
+                $ruta_carga = $dir . $_FILES['archivo']['name'];
+
+                if(!file_exists($dir))
+                {
+                    mkdir('archivo',0777,true);
+                
+                }
+               if(move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta_carga))
+                    {
+                        $this->ShowAddMesaggeView("Archivo subido con éxito");
+                    }else{
+                        $this->ShowAddMesaggeView("Error! No se pudo subir el archivo");
+                    }           
+            require_once(VIEWS_PATH."upload-cv.php");
+            }
+
 
             //Extra
            

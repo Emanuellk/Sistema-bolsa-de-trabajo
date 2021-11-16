@@ -37,18 +37,25 @@ require_once('nav.php');
                                              <td scope="row"><li class="list-group-item list-group-item-info"><?php echo $offer->getSalary() ?></li></td>
                                              <td>                     
                                              
-                                                  <button  class = "btn btn-success" type="button"  style="background-color:darkturquoise;" data-bs-toggle="modal" data-bs-target="#See<?= $offer->getId()."s"?> " >
+                                                  <button  class = "btn btn-success" title="Ver" type="button"  style="background-color:darkturquoise;" data-bs-toggle="modal" data-bs-target="#See<?= $offer->getId()."s"?> " >
                                                   <i class="fas fa-eye"></i>  
-                                                  </button>                                                  
+                                                  </button>  
+                                                  
+       
+                                                  <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/UploadCv">
+                                                  <button type="submit" class="btn btn-white" class="buttonF" title="Subir CV" ><i class="fas fa-upload"></i></button>
+                                                  </form>
 
-                                                    <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/apply">
+
+                                                 <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/apply">
                                                     
                                                     <input type="hidden" name="userId" value="<?php echo $User->getId()?>" class="form-control">
                                                     <input type="hidden" name="offerId" value="<?php echo $offer->getId()?>" class="form-control">
 
-                                                    <button type="submit" class="btn btn-danger" class="buttonF" <?php if($alreadyPostulated[$i] == "exist"){ echo ( 'style="background-color: red;" ');}else{ echo ( 'style="background-color: greenyellow;" ');} ?>><i class="fas fa-address-card"></i></button>
+                                                    <button type="submit"  title="Postular" class="btn btn-danger" class="buttonF" <?php if($alreadyPostulated[$i] == "exist"){ echo ( 'style="background-color: red;" ');}else{ echo ( 'style="background-color: greenyellow;" ');} ?> data-bs-target="#Apply<?= $offer->getId()."s"?> "><i class="fas fa-address-card"></i></button>
                                                                                                 
-                                                    </form>
+                                                  </form>
+                                                  
                                                   
                                                  
                                                   
@@ -132,7 +139,8 @@ require_once('nav.php');
                                                                 
                                              </div></div></div>                                                  
                                              <!-////////////////////////////////////////////////////////////////////////////––> 
-
+                                         
+ 
                                          </tr>
                                    <?php
                                    $i= $i + 1;
