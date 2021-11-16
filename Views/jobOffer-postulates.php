@@ -38,7 +38,6 @@
                  <h3>Descargar en Pdf -><form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>User/Pdf">
                  <button type="submit" class="btn btn-dark" class="buttonF" title="Pdf" ><i class="fas fa-file-pdf"></i></button>
                  </form></h3>
-               
 </div>   
 </div>       
 </section>
