@@ -203,6 +203,8 @@ class JobOfferController{
                 require_once(VIEWS_PATH."offer-view.php");
             }
 
+
+            
             
             public function apply($userId,$offerId)
             {
@@ -210,17 +212,34 @@ class JobOfferController{
 
                 if(empty($userxoffer)) {
                      $aux = new UserXOffer("",$userId,$offerId);
-                    
+                     $user= $this->UserDAO->SearchById($userId);
+                     $student = $this->StudentsDAO->SearchStudentByEmail($user->getEmail());
+                     if($student->getActive()==true){
                      $this->UserXOfferDAO->Add($aux);
                      $this->ShowOfferView();
                      $this->ShowAddMesaggeView("Postulación cargada con éxito.");
+                     }
+                     else{
+                        $this->ShowOfferView();          
+                        $this->ShowAddMesaggeView("No esta activo");
+                     }
                         
                 }else{            
                         $this->ShowOfferView();          
                         $this->ShowAddMesaggeView("Error! Ya se encuentra postulado a esta oferta   ");
                 }
+                
 
                 /*
+                $user = $this->UserDAO->SearchById($userxoffer->getIdUser());
+                $student = $this->StudentsDAO->SearchStudentByEmail($user->getEmail());
+                if($student->getActive()==true){ 
+                    array_push($studentsList, $student);
+                }
+                else
+                {
+                    $this->UserXOfferDAO->deletePostulationsByUserId($userxoffer->getIdUser());
+                }
                 try{
                     $aux = new UserXOffer("",$userId,$offerId);
                     
@@ -285,7 +304,26 @@ class JobOfferController{
                 $this->ShowPostulationView();
             }
 
-            
+
+            public function UploadCv()
+            { 
+                $dir = "archivo/";
+                $ruta_carga = $dir . $_FILES['archivo']['name'];
+
+                if(!file_exists($dir))
+                {
+                    mkdir('archivo',0777,true);
+                
+                }
+               if(move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta_carga))
+                    {
+                        $this->ShowAddMesaggeView("Archivo subido con éxito");
+                    }else{
+                        $this->ShowAddMesaggeView("Error! No se pudo subir el archivo");
+                    }           
+            require_once(VIEWS_PATH."upload-cv.php");
+            }
+
 
             //Extra
            
@@ -406,7 +444,6 @@ class JobOfferController{
             __________0B________BBBB_BBB__________BB,
             __________0BBBBBBBBBBBB__BBBBB_________B,
             ____________________________BBBB0BBBBBBB
-
         
         */
 ?>

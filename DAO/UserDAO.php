@@ -146,22 +146,7 @@
            
         } 
 
-        function deleteUser($id){
-            try{
-                $query = "DELETE FROM `". $this->tableName."` WHERE id= :id";
-
-                $parameters["id"] = $id;
-
-                $this->connection = Connection::GetInstance();
-                
-                $this->connection->ExecuteNonQuery($query, $parameters);
-
-            }
-            catch(Exception $ex){
-                throw $ex;
-            }
-         }
-
+        
         function modifyPassword($password,$id){
             try{
                 $query = "UPDATE ".$this->tableName." SET password=:password where id =:id";
@@ -176,6 +161,22 @@
                 throw $ex;
             }
         }
+
+        function deleteUser($id){
+            try{
+                $query = "DELETE FROM ". $this->tableName." WHERE id= :id";
+
+                $parameters["id"] = $id;
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+            }
+            catch(Exception $ex){
+                throw $ex;
+            }
+         }
 
 
     }

@@ -133,7 +133,12 @@
         
             $this->UserDAO->modify($admin,$password,$id);
             $this->ShowListView();
-        }  
+        } 
+        
+        public function DeleteUser($id){
+            $this->UserDAO->deleteUser($id);
+            $this->ShowListView();
+        }
 
 
         public function ShowUserPassword(){
@@ -146,11 +151,12 @@
             $this->ShowUserPassword();
         }
 
-        public function DeleteUser($id){
-            $this->UserDAO->deleteUser($id);
-            $this->ShowListView();
+          
+        public function Pdf()
+        {       
+        require_once(VIEWS_PATH."postulates-pdf.php");
         }
-        
+
     }
 
 ?>

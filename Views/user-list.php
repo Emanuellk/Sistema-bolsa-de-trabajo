@@ -28,15 +28,23 @@
                                              <td><?php echo $user->getEmail() ?> </td>
                                              <td><?php if($user->getAdmin() == 1){echo "Administrador";}else{echo("Estudiante");}?> </td>
                                              <td>
-                                                  <button  class = "btn btn-primary" type="button"  data-bs-toggle="modal" data-bs-target="#Update<?= $user->getId() ?> " >
+                                                  <button  class = "btn btn-primary" type="button" title="Modificar" data-bs-toggle="modal" data-bs-target="#Update<?= $user->getId() ?> " >
                                                   <i class="fas fa-user-edit"></i>   
                                                   </button>
-
+                                                  
                                                   <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>User/deleteUser">
                                                   <input type="hidden" name="id" value="<?php echo $user->getId()?>" class="form-control">
-                                                 
-                                                  <button type="submit" class="btn btn-danger" class="buttonF" ><i class="fas fa-trash-alt"></i></button>
+
+                                                  <button type="submit" class="btn btn-danger" class="buttonF" title="Eliminar" ><i class="fas fa-trash-alt"></i></button>
                                                   </form>
+
+                                                  <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>User/deleteUser">
+                                                  <input type="hidden" name="id" value="<?php echo $user->getId()?>" class="form-control">                                              
+                                                  </form>
+
+                                                  
+
+
                                                   <!-- Modal Modify rank--->
                                                      
                                                   <div class="modal fade" id="Update<?= $user->getId()?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

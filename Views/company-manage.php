@@ -31,14 +31,14 @@
                                              <td><?php echo $company->getCreateDate() ?></td>
                                              <td>
                                                   
-                                                  <button  class = "btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#Update<?= $company->getIdCompany()?> " >
+                                                  <button  class = "btn btn-success" title="Modificar" type="button"  data-bs-toggle="modal" data-bs-target="#Update<?= $company->getIdCompany()?> " >
                                                   <i class="fas fa-edit"></i>    
                                                   </button>
                                                   
                                                   <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>Company/Delete">
                                                   <input type="hidden" name="id" value="<?php echo $company->getIdCompany()?>" class="form-control">
                                                  
-                                                  <button type="submit" class="btn btn-danger" class="buttonF" ><i class="fas fa-trash-alt"></i></button>
+                                                  <button type="submit" class="btn btn-danger" title="Eliminar" class="buttonF" ><i class="fas fa-trash-alt"></i></button>
                                                   
                                                  
                                                   </form>
