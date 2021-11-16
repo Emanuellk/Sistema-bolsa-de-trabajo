@@ -151,7 +151,12 @@
             $this->ShowUserPassword();
         }
 
-       
+          
+        public function Pdf()
+        {       
+        require_once(VIEWS_PATH."postulates-pdf.php");
+        }
+
     }
 
 ?>

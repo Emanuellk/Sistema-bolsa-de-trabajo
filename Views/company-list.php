@@ -32,7 +32,7 @@
                                              <td><li class="list-group-item list-group-item-info" style="white-space:nowrap;"><?php echo $company->getEmail() ?> </li></td>
                                              <td><li class="list-group-item list-group-item-info" style="white-space:nowrap;"><?php echo $company->getCreateDate() ?> </li></td>
                                              <td>
-                                             <button  class = "btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#See<?= $company->getIdCompany()?> " >
+                                             <button  class = "btn btn-success" title="Ver" type="button"  data-bs-toggle="modal" data-bs-target="#See<?= $company->getIdCompany()?> " >
                                                    <i class="fas fa-eye"></i>    
                                              </button>
                                              <!-- Modal -->
