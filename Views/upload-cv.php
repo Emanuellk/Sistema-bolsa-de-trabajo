@@ -6,10 +6,10 @@
      <section id="listado" class="mb-5">
           <div class="container">
                <br>
-            <form action="<?php echo FRONT_ROOT ?>JobOffer/UploadCv" method="post" encype="multipart/form-data">
-                <input type="file" name="archivo"/>
+            <form action="<?php echo FRONT_ROOT ?>JobOffer/UploadCv" method="POST" encype="multipart/form-data">
+                <input type="file" name="archivo">
                 <br><br>
-                <button type="submit">Subir Archivo</button>
+                <button>Subir Archivo</button>
             </form>
           </div>
      </section>
