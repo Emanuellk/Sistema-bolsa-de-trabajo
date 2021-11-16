@@ -313,7 +313,7 @@ class JobOfferController{
                         $this->ShowAddMesaggeView("Archivo subido con éxito");
                     }else{
                         $this->ShowAddMesaggeView("Error! No se pudo subir el archivo");
-                    }           
+                    }          
             require_once(VIEWS_PATH."upload-cv.php");
             }
 
