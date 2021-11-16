@@ -34,6 +34,10 @@
                             $_SESSION['loggedUser'] = $userAux->getEmail();                   
                             require_once(VIEWS_PATH."pagAdmin.php");
 
+                        }elseif($userAux->getPassword() == $password && $userAux->getAdmin() == 2){
+
+                            $_SESSION['loggedUser'] = $userAux->getEmail();                   
+                            require_once(VIEWS_PATH."pagCompany.php");
                         }
                         elseif($userAux->getPassword() == $password){
 
