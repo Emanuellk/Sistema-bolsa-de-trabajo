@@ -4,7 +4,8 @@
 <br>
 <section id = "listado" class="mb-5 bg-light-alpha">
 <div class = "container" >
-<div  style="background-color:primay;" class="table-responsive ">
+<div style="background-color:primay;" class="table-responsive ">
+               <div id="areaImprimir">
                <h2>Historial de postulantes</h2>
                
                
@@ -35,9 +36,21 @@
                             ?>
                     </tbody>
                  </table>
-                 <h3>Descargar en Pdf -><form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>User/Pdf">
-                 <button type="submit" class="btn btn-dark" class="buttonF" title="Pdf" ><i class="fas fa-file-pdf"></i></button>
-                 </form></h3>
+                 </div>
+                 <input type="button" onclick="printDiv('areaImprimir')" value="Obtener PDF" />
+               
 </div>   
 </div>       
 </section>
+<script>
+function printDiv(nombreDiv) {
+var contenido= document.getElementById(nombreDiv).innerHTML;
+var contenidoOriginal= document.body.innerHTML;
+
+document.body.innerHTML = contenido;
+
+window.print();
+
+document.body.innerHTML = contenidoOriginal;
+}
+</script>

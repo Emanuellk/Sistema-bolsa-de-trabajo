@@ -3,6 +3,7 @@
     
     use DAO\UserDAO;
     use DAO\StudentsDAO;
+    use DAO\CompanyDAO as CompanyDAO;
     use DAO\CareerDAO;
     use Models\User;
     use Models\Students;
@@ -12,6 +13,7 @@
         private $StudentsDAO;
         private $UserDAO;
         private $CareerDAO;
+        private $CompanyDAO;
 
 
         public function __construct()
@@ -19,6 +21,7 @@
             $this->StudentsDAO = new StudentsDAO();
             $this->UserDAO = new UserDAO();
             $this->CareerDAO = new CareerDAO();
+            $this->CompanyDAO = new CompanyDAO();
 
         }
 
@@ -34,12 +37,7 @@
                             $_SESSION['loggedUser'] = $userAux->getEmail();                   
                             require_once(VIEWS_PATH."pagAdmin.php");
 
-                        }elseif($userAux->getPassword() == $password && $userAux->getAdmin() == 2){
-
-                            $_SESSION['loggedUser'] = $userAux->getEmail();                   
-                            require_once(VIEWS_PATH."pagCompany.php");
-                        }
-                        elseif($userAux->getPassword() == $password){
+                        }elseif($userAux->getPassword() == $password){
 
                             $_SESSION['loggedUser'] = $userAux->getEmail();
                             require_once(VIEWS_PATH."pagPrincipal.php");
@@ -69,15 +67,23 @@
         public function registerUser($email,$password) {
             
             $User = $this->UserDAO->SearchUserByEmail($email);
-            
-            
-            if(empty($User)) {
 
-                $Student= $this->StudentsDAO->SearchStudentByEmail($email);
-                
-                
-                if(!empty($Student)){
-                    if($Student->getActive()==true){
+            if(empty($User)){
+
+                $Student = $this->StudentsDAO->SearchStudentByEmail($email);
+                $Company = $this->CompanyDAO->SearchCompanyByEmail($email);
+
+                if(!empty($Company)){
+                    $newUser = new User();
+                    $newUser->setEmail($email);
+                    $newUser->setPassword($password);
+                    $newUser->setAdmin(2);
+                    $this->UserDAO->Add($newUser);
+
+                    $this->ShowLoginView("Registro de Empresa Exitoso!");
+                }else if(!empty($Student)){
+
+                        if($Student->getActive()==true){
                         $newUser = new User();
                         $newUser->setEmail($email);
                         $newUser->setPassword($password);
@@ -93,8 +99,9 @@
                         
                     $this->ShowLoginView("Email incorrecto");
                 }
-            }           
-            else{                      
+
+
+            }else{                      
                 $this->ShowLoginView("ERROR! Ya existe una cuenta registrada con ese email!");
             }
         }
@@ -155,11 +162,6 @@
             $this->ShowUserPassword();
         }
 
-          
-        public function Pdf()
-        {       
-        require_once(VIEWS_PATH."postulates-pdf.php");
-        }
 
     }
 

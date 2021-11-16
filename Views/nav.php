@@ -22,6 +22,7 @@
                <ul id="desple">
                     <a id="item" class="nav-link" href="<?php echo FRONT_ROOT ?>User/StudentStatus">Ver Estado</a>
                     <a id="item" class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/ShowPostulationView">Ver Historial</a>
+                    <a id="item" class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/ShowCvView">Subir CV</a>
                     <a id="item" class="nav-link" href="<?php echo FRONT_ROOT ?>User/ShowUserPassword">Cambiar contraseña</a>
                     <a id="item" href="<?php echo FRONT_ROOT ?>User/Logout"><button class="button__logout">Cerrar sesión</button></a></a>
                </ul>

@@ -8,6 +8,7 @@
     use Models\Company as Company;
     use Models\Offer as Offer;
     use Models\Job as Job;
+    use \Exception as Exception;
 
     class CompanyController
     {
@@ -109,7 +110,7 @@
             public function Updates( $title,$idCompany ,$idJobPosition, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$description, $id)
             {    
                 $this->OfferDAO->updateOffer($title,$idCompany ,$idJobPosition, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$description, $id);
-                $this->ShowManageViews();
+                $this->ShowManageView();
             } 
 
     }

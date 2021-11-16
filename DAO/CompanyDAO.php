@@ -3,6 +3,7 @@
 
     use \Exception as Exception;   
     use Models\Company as Company;    
+    use Models\User as User;
     use DAO\Connection as Connection;
 
     class CompanyDAO 
@@ -51,6 +52,36 @@
                 throw $ex;
             }
         }
+
+
+        public function SearchCompanyByEmail($companyEmail) {
+           
+           
+            try{
+            
+                $query = "SELECT * FROM `".$this->tableName."` WHERE email='$companyEmail'";
+                $this->connection = Connection::GetInstance();            
+                $resultSet = $this->connection->Execute($query);
+                
+                $CompanyAux = NULL;
+                
+                if(!empty($resultSet[0]))
+                {
+                    
+                   $CompanyAux = new User($resultSet[0]['id'],$resultSet[0]['nameCompany'],$resultSet[0]['email'],$resultSet[0]['createDate'],$resultSet[0]['description']); 
+                        
+                }
+                
+                 return $CompanyAux;           
+                
+                
+                } 
+                catch(Exception $ex)
+                {
+                    throw $ex;
+                } 
+        }
+        
 
         public function SearchNameCompany($nameCompany) {
 

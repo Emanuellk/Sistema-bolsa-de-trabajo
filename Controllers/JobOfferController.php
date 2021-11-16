@@ -18,9 +18,13 @@
     use DAO\JobDAO as JobDAO;
     use DAO\CompanyDAO as CompanyDAO;
     use DAO\StudentsDAO as StudentsDAO;
-    use \Exception as Exception;
+    /*use \Exception as Exception;*/
     use Models\Company;
 
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
 
 class JobOfferController{
             
@@ -28,7 +32,7 @@ class JobOfferController{
             private $OfferDAO;
             private $JobDAO;
             private $CareerDAO;
-            private $CompanyDAO;
+            private $CompanyDAO;    
             private $UserXOfferDAO;
             private $StudentsDAO;
 
@@ -54,7 +58,6 @@ class JobOfferController{
 
             public function ShowManageView()
             {
-
                 $offerList = $this->OfferDAO->GetAll();
                 $jobOfferList = array();
 
@@ -77,6 +80,7 @@ class JobOfferController{
                 }
                 $jobList = $this->JobDAO->GetAll();
                 $companyList = $this->CompanyDAO->GetAll();
+                
                 require_once(VIEWS_PATH."job-manage.php");
             }
          
@@ -87,12 +91,6 @@ class JobOfferController{
                 $this->ShowManageView();
             } 
 
-            
-            public function Delete($id)
-            {
-                $this->OfferDAO->deleteOffer($id);
-                $this->ShowManageView();
-            }
 
             //ver usuarios que postularon a una oferta / jobOffer-postulates.php
             public function ShowPostulates($id)
@@ -115,11 +113,22 @@ class JobOfferController{
 
                
             }
-
+        
             require_once(VIEWS_PATH."jobOffer-postulates.php");
+            
             }
 
 
+
+            public function Delete($id)
+            {
+                $offerAux = $this->OfferDAO->SearchOffer($id);
+                $companyAux = $this->CompanyDAO->SearchById($offerAux->getIdCompany());
+                $this->sendMailFinisheOffer($offerAux->getTitle(),$companyAux->getNameCompany());
+                $this->OfferDAO->deleteOffer($id);
+                 
+                $this->ShowManageView();
+            }
             
             //Agregar Empleo / offer-add.php
 
@@ -221,10 +230,8 @@ class JobOfferController{
                 
 
                 /*
-
                 $user = $this->UserDAO->SearchById($userxoffer->getIdUser());
                 $student = $this->StudentsDAO->SearchStudentByEmail($user->getEmail());
-
                 if($student->getActive()==true){ 
                     array_push($studentsList, $student);
                 }
@@ -285,7 +292,6 @@ class JobOfferController{
                     
                     array_push($jobOfferList, $jobOffer);
                 }
-                
                 require_once(VIEWS_PATH."postulation-view.php");
             }
 
@@ -297,26 +303,33 @@ class JobOfferController{
                 $this->ShowPostulationView();
             }
 
+            public function ShowCvView(){
+                require_once(VIEWS_PATH."upload-cv.php");
+            }
 
             public function UploadCv()
             { 
-                $dir = "archivo/";
-                $ruta_carga = $dir . $_FILES['archivo']['name'];
+                $nombre=$_FILES['archivo']['name'];
+                $guardado=$_FILES['archivo']['tmp_name'];
 
-                if(!file_exists($dir))
-                {
-                    mkdir('archivo',0777,true);
-                
-                }
-               if(move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta_carga))
-                    {
-                        $this->ShowAddMesaggeView("Archivo subido con éxito");
+                if(!file_exists('archivos')){
+                    mkdir('archivos',0777,true);
+                    if(file_exists('archivos')){
+                        if(move_uploaded_file($guardado, 'archivos/'.$nombre)){
+                            echo "Archivo guardado con exito";
+                        }else{
+                            echo "Archivo no se pudo guardar";
+                        }
+                    }
+                }else{
+                    if(move_uploaded_file($guardado, 'archivos/'.$nombre)){
+                        echo "Archivo guardado con exito";
                     }else{
-                        $this->ShowAddMesaggeView("Error! No se pudo subir el archivo");
-                    }          
-            require_once(VIEWS_PATH."upload-cv.php");
+                        echo "Archivo no se pudo guardar";
+                    }
+             
             }
-
+           }
 
             //Extra
            
@@ -326,7 +339,70 @@ class JobOfferController{
             }
  
 
+            public function sendMailFinisheOffer($titleJob,$nameCompany){
+                require_once(ROOT.'PHPMailer/PHPMailer.php');
+                require_once(ROOT.'PHPMailer/SMTP.php');
+                require_once(ROOT.'PHPMailer/Exception.php');
+
+                $mail = new PHPMailer(true);
+
+                try {
+                    //Server settings
+                    $mail->SMTPDebug = 0;                      //Enable verbose debug output
+                    $mail->isSMTP();                                            //Send using SMTP
+                    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                    $mail->Username   = 'linkedinUTN@gmail.com';                     //SMTP username
+                    $mail->Password   = 'linkedinutn123';                               //SMTP password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                
+                    //Recipients
+                    $mail->setFrom('linkedinUTN@gmail.com', 'Empleos UTN');
+                    $mail->addAddress('linkedinUTN@gmail.com');     //Add a recipient
+            
+                    ///RECIBIR EL LISTADO DE MAILS
+                    /*
+                    $emails = $array;
+                    for($i = 0; $i < count($emails); $i++){
+                        $mail->AddAddress($emails[$i]);
+                    }
+                    /*
+
+                    //Attachments
+                    $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+                    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+                    */
+                    //Content
+                    $mail->isHTML(true);                                  //Set email format to HTML
+                    $mail->Subject = 'Linkedin UTN';
+                    $mail->Body    = "
+                    <table style='border: 8px groove orange;width: 600px;height: 300px;margin: 15px auto 0px auto; background-color:silver'>
+                    <tr>
+                    <td style='font-size:40px; text-align:center;'>Bolsa de Trabajo UTN</td>
+                    </tr>
+                    <tr> 
+                      <td style='text-align:center;font-size:25px;' colspan='3'>Oferta de trabajo finalizada.</td> 
+                    </tr>
+                    <tr>
+                    <td style='text-align:center;font-size:19px;'>Si quedaste seleccionad@ para el puesto la empresa se pondra
+                    en contacto contigo en la brevedad. Gracias por participar en las postulaciones!</td> 
+                    </tr>
+                    <tr>
+                    <td style='text-align:center;font-size:20px;'><strong>Titulo del trabajo: </strong>".$titleJob."<br><strong>Empresa: </strong>".$nameCompany."</td>
+                    </tr>
+                    </table>
+                    ";
+                    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                
+                    $mail->send();
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
+            }
         }     
+
+
 
         /*
             ________________________________BBBBBBBBBBBB
@@ -374,7 +450,6 @@ class JobOfferController{
             __________0B________BBBB_BBB__________BB,
             __________0BBBBBBBBBBBB__BBBBB_________B,
             ____________________________BBBB0BBBBBBB
-
         
         */
 ?>
