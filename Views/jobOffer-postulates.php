@@ -38,18 +38,19 @@
                  </table>
                  </div>
                  <input type="button" onclick="printDiv('areaImprimir')" value="Obtener PDF" />
-               <script>
-                 function printDiv(nombreDiv) {
-                    var contenido= document.getElementById(nombreDiv).innerHTML;
-                    var contenidoOriginal= document.body.innerHTML;
-
-                    document.body.innerHTML = contenido;
-
-                    window.print();
-
-                    document.body.innerHTML = contenidoOriginal;
-               }
-               </script>
+               
 </div>   
 </div>       
 </section>
+<script>
+function printDiv(nombreDiv) {
+var contenido= document.getElementById(nombreDiv).innerHTML;
+var contenidoOriginal= document.body.innerHTML;
+
+document.body.innerHTML = contenido;
+
+window.print();
+
+document.body.innerHTML = contenidoOriginal;
+}
+</script>

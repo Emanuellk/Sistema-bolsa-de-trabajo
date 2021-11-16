@@ -4,6 +4,7 @@
     use \Exception as Exception;   
     use Models\User as User;    
     use DAO\Connection as Connection;
+    
 
     class UserDAO 
     {
@@ -76,8 +77,8 @@
             {
                 
                 $UserAux = new User($resultSet[0]['id'],$resultSet[0]['email'],$resultSet[0]['password'],$resultSet[0]['admin']); 
-                     
-                
+                    
+            
             }
             
              return $UserAux;           
@@ -89,6 +90,7 @@
                 throw $ex;
             } 
         }
+
 
         public function SearchById($id)
         {
@@ -130,10 +132,8 @@
                 $parameters["id"] = $id;
                 $parameters["password"] = $password;
                 $parameters["admin"] = $admin;  
-                
-               
-                
-                
+
+
                 $this->connection = Connection::GetInstance();
                     
                 $this->connection->ExecuteNonQuery($query, $parameters);
