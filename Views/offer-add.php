@@ -7,7 +7,7 @@
                 <br>
                 <br>
                 <h2 class="mb-4">Agregar Empleo</h2>
-                <form action="<?php echo FRONT_ROOT ?>JobOffer/Add" method="POST" class="bg-light-alpha p-5">
+                <form action="<?php echo FRONT_ROOT ?>JobOffer/Add" method="POST" enctype="multipart/form-data" class="bg-light-alpha p-5">
                 
                         <div class="row">                         
                             <div class="col-lg-4">
@@ -50,6 +50,12 @@
                                 <div class="form-group">
                                     <label for="">Requisitos</label>
                                     <input type="text" name="requirements" value="" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="">Imagen</label>
+                                    <input type="file" name="image" value="" class="form-control" required>
                                 </div>
                             </div>
                             

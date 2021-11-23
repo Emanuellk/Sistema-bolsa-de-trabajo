@@ -2,9 +2,9 @@
     namespace Controllers;
     
     use DAO\UserDAO;
-    use DAO\StudentsDAO;
+    use DAO\JSON\StudentsDAO;
     use DAO\CompanyDAO as CompanyDAO;
-    use DAO\CareerDAO;
+    use DAO\JSON\CareerDAO;
     use Models\User;
     use Models\Students;
 

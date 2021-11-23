@@ -14,10 +14,10 @@
     use DAO\userXOfferDAO as UserXOfferDAO;
     use DAO\UserDAO as UserDAO;
     use DAO\OfferDAO as OfferDAO;    
-    use DAO\CareerDAO as CareerDAO;
-    use DAO\JobDAO as JobDAO;
+    use DAO\JSON\CareerDAO as CareerDAO;
+    use DAO\JSON\JobDAO as JobDAO;
     use DAO\CompanyDAO as CompanyDAO;
-    use DAO\StudentsDAO as StudentsDAO;
+    use DAO\JSON\StudentsDAO as StudentsDAO;
     /*use \Exception as Exception;*/
     use Models\Company;
 
@@ -141,12 +141,12 @@ class JobOfferController{
             }
 
 
-            public function Add($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements)
+            public function Add($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$image)
             {
                 try{
                     $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
                     
-                    $this->OfferDAO->Add($offer);
+                    $this->OfferDAO->Add($offer,$image);
                     $this->ShowAddMesaggeView("Registro de oferta laboral exitoso");
                     $this->ShowManageView();
                 }
