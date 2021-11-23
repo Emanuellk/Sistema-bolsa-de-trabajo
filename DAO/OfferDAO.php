@@ -10,7 +10,8 @@
         private $connection;
         private $tableName = "offers";
 
-        public function Add(Offer $offer){
+        public function Add(Offer $offer ,$image){
+            var_dump($image);
             
             try{
                 $query = "INSERT INTO ".$this->tableName."( idCompany, idJobPosition, title, description, publicationDate,expirationDate,workLoad,salary,requirements) VALUES ( :idCompany, :idJobPosition, :title, :description,:publicationDate,:expirationDate,:workLoad,:salary,:requirements);";

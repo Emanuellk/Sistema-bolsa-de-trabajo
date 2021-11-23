@@ -14,10 +14,10 @@
     use DAO\userXOfferDAO as UserXOfferDAO;
     use DAO\UserDAO as UserDAO;
     use DAO\OfferDAO as OfferDAO;    
-    use DAO\CareerDAO as CareerDAO;
-    use DAO\JobDAO as JobDAO;
+    use DAO\JSON\CareerDAO as CareerDAO;
+    use DAO\JSON\JobDAO as JobDAO;
     use DAO\CompanyDAO as CompanyDAO;
-    use DAO\StudentsDAO as StudentsDAO;
+    use DAO\JSON\StudentsDAO as StudentsDAO;
     /*use \Exception as Exception;*/
     use Models\Company;
 
@@ -141,12 +141,12 @@ class JobOfferController{
             }
 
 
-            public function Add($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements)
+            public function Add($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$image)
             {
                 try{
                     $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
                     
-                    $this->OfferDAO->Add($offer);
+                    $this->OfferDAO->Add($offer,$image);
                     $this->ShowAddMesaggeView("Registro de oferta laboral exitoso");
                     $this->ShowManageView();
                 }
@@ -309,27 +309,22 @@ class JobOfferController{
 
             public function UploadCv()
             { 
-                $nombre=$_FILES['archivo']['name'];
-                $guardado=$_FILES['archivo']['tmp_name'];
+                $dir = "archivo/";
+                $ruta_carga = $dir . $_FILES['archivo']['name'];
 
-                if(!file_exists('archivos')){
-                    mkdir('archivos',0777,true);
-                    if(file_exists('archivos')){
-                        if(move_uploaded_file($guardado, 'archivos/'.$nombre)){
-                            echo "Archivo guardado con exito";
-                        }else{
-                            echo "Archivo no se pudo guardar";
-                        }
-                    }
-                }else{
-                    if(move_uploaded_file($guardado, 'archivos/'.$nombre)){
-                        echo "Archivo guardado con exito";
+                if(!file_exists($dir))
+                {
+                    mkdir('archivo',0777,true);
+                
+                }
+               if(move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta_carga))
+                    {
+                        $this->ShowAddMesaggeView("Archivo subido con éxito");
                     }else{
-                        echo "Archivo no se pudo guardar";
-                    }
-             
+                        $this->ShowAddMesaggeView("Error! No se pudo subir el archivo");
+                    }           
+            require_once(VIEWS_PATH."upload-cv.php");
             }
-           }
 
             //Extra
            
