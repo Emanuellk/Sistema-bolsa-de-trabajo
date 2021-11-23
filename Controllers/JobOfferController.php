@@ -52,6 +52,32 @@ class JobOfferController{
             //==================================================================================================================================            
 
             
+            //Administrar Empleo desde company
+            public function ShowOfferCompanyView(){
+                $Company = $this->CompanyDAO->SearchCompanyByEmail($_SESSION['loggedUser']);
+                $offerList = $this->OfferDAO->GetOffersCompany($Company->getNameCompany());
+                $jobOfferList = array();
+
+                foreach($offerList as $offer){
+                    $jobPosition= new Job();
+                    $career= new Career();
+                    $company = new Company();
+
+
+
+                    $jobPosition= $this->JobDAO->SearchById($offer->getIdJobPosition());
+
+                    $career = $this->CareerDAO->SearchCareerById($jobPosition->getCareerId());
+
+                    $company = $this->CompanyDAO->SearchById($offer->getIdCompany());
+
+                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail());
+                    
+                    array_push($jobOfferList, $jobOffer);
+                }
+                
+                require_once(VIEWS_PATH."offers-company.php");
+            }
 
             //Administrar Empleo / job-manage.php
 
@@ -138,6 +164,28 @@ class JobOfferController{
                 $jobList = $this->JobDAO->GetAll();                
                 $companyList = $this->CompanyDAO->GetAll();
                 require_once(VIEWS_PATH."offer-add.php");
+            }
+
+            //Agregar empleo desde una empresa
+
+            public function ShowAddOfferView(){
+                $jobList = $this->JobDAO->GetAll();  
+                $company = $this->CompanyDAO->SearchCompanyByEmail($_SESSION['loggedUser']);
+                require_once(VIEWS_PATH."offer-addCompany.php");
+            }
+
+            public function AddOfferCompany($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements)
+            {
+                try{
+                    $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
+                    
+                    $this->OfferDAO->Add($offer);
+                    $this->ShowAddMesaggeView("Registro de oferta laboral exitoso");
+                    $this->ShowAddOfferView();
+                }
+                catch(Exception $ex){
+                    $this->ShowAddMesaggeView("Error al cargar esta oferta laboral");
+                }
             }
 
 
@@ -350,7 +398,7 @@ class JobOfferController{
                     //Server settings
                     $mail->SMTPDebug = 0;                      //Enable verbose debug output
                     $mail->isSMTP();                                            //Send using SMTP
-                    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                    $mail->Host       = 'smtp.gmail.com;smtp.live.com';                     //Set the SMTP server to send through
                     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
                     $mail->Username   = 'linkedinUTN@gmail.com';                     //SMTP username
                     $mail->Password   = 'linkedinutn123';                               //SMTP password
@@ -359,7 +407,8 @@ class JobOfferController{
                 
                     //Recipients
                     $mail->setFrom('linkedinUTN@gmail.com', 'Empleos UTN');
-                    $mail->addAddress('linkedinUTN@gmail.com');     //Add a recipient
+                    $mail->addAddress('linkedinUTN@gmail.com');
+                    $mail->addAddress('martinmolina0@hotmail.com');    //Add a recipient
             
                     ///RECIBIR EL LISTADO DE MAILS
                     /*

@@ -1,6 +1,6 @@
 <?php
     require_once('navCompany.php');
-    $Student= $this->StudentsDAO->SearchStudentByEmail($_SESSION['loggedUser']);
+    $Company= $this->CompanyDAO->SearchCompanyByEmail($_SESSION['loggedUser']);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
   <div class="ctn-welcome">
  
   <img src="" alt="" class="logo-welcome">
-  <h1 class="title-welcome">Bienvenido <strong><?php echo $Student->getFirstName();?></strong> a la Bolsa de Trabajo de la UTN</h1>
+  <h1 class="title-welcome">Bienvenido <strong><?php echo $Company->getNameCompany();?></strong> a la Bolsa de Trabajo de la UTN</h1>
   </div>
 </body>
 </html>

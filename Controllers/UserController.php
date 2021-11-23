@@ -31,7 +31,17 @@
                 if(!empty($userAux)){
                     
                     $studentAux = $this->StudentsDAO->SearchStudentByEmail($userAux->getEmail());
-                    if($studentAux->getActive()==true){
+                    $companyAux = $this->CompanyDAO->SearchCompanyByEmail($userAux->getEmail());
+                    if($companyAux){
+
+                        if($userAux->getPassword() == $password){
+                            $_SESSION['loggedUser'] = $userAux->getEmail();                   
+                            require_once(VIEWS_PATH."pagCompany.php");
+                        }else{
+                            $this->ShowLoginView("ERROR! USUARIO Y/O password INCORRECTOS");
+                        }
+
+                        }else if($studentAux->getActive()==true){
                         if($userAux->getPassword() == $password && $userAux->getAdmin() == 1){
 
                             $_SESSION['loggedUser'] = $userAux->getEmail();                   
@@ -73,7 +83,7 @@
                 $Student = $this->StudentsDAO->SearchStudentByEmail($email);
                 $Company = $this->CompanyDAO->SearchCompanyByEmail($email);
 
-                if(!empty($Company)){
+                if(!empty($Company)){   
                     $newUser = new User();
                     $newUser->setEmail($email);
                     $newUser->setPassword($password);
@@ -95,8 +105,7 @@
                         $this->ShowLoginView("ERROR! Esta cuenta no esta activa!");
                     }
                 }                            
-                else{
-                        
+                else{                        
                     $this->ShowLoginView("Email incorrecto");
                 }
 

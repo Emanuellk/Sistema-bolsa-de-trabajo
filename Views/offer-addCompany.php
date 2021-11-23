@@ -5,7 +5,9 @@
                 <br>
                 <br>
                 <h2 class="mb-4">Agregar Empleo</h2>
-                <form action="<?php echo FRONT_ROOT ?>JobOffer/Add" method="POST" class="bg-light-alpha p-5">
+                <form action="<?php echo FRONT_ROOT ?>JobOffer/AddOfferCompany" method="POST" class="bg-light-alpha p-5">
+
+                        <input type="hidden" name="idCompany" value="<?php echo $company->getIdCompany()?>" class="form-control">
                 
                         <div class="row">                         
                             <div class="col-lg-4">
@@ -51,17 +53,7 @@
                                 </div>
                             </div>
                             
-                         <div class="col-lg-4">
-                              <div class="form-group">
-                                   <label for="">Empresa</label>
-                                   <select class="form-control" name="idCompany">
-                                        <?php  foreach($companyList as $company){
-                                                   ?>
-                                                       <option value=<?php echo $company->getIdCompany() ?>><?php echo $company->getNameCompany() ?></option>
-                                        <?php } ?>
-                                   </select>
-                              </div>
-                        </div>
+                        
                         <div class="col-lg-4">
                               <div class="form-group">
                                    <label for="">Empleo</label>
@@ -72,6 +64,7 @@
                                         <?php } ?>
                                    </select>
                               </div>
+                        
                         <button type="submit" class="btn btn-dark ml-auto d-block">Agregar</button>
                 </form>
             </div>

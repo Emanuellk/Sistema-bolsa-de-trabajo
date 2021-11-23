@@ -64,6 +64,39 @@
             }
         }
 
+        public function GetOffersCompany($idOffer) {
+
+            try{
+                $OfferList = array();
+
+                $query = "SELECT * FROM `".$this->tableName."` WHERE idOffer='$idOffer'";
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                foreach($resultSet as $row){
+                
+                    $offer = new Offer();
+                    $offer->setId($row["id"]);
+                    $offer->setIdCompany($row["idCompany"]);
+                    $offer->setIdJobPosition($row["idJobPosition"]);
+                    $offer->setTitle($row["title"]);
+                    $offer->setDescription($row["description"]);
+                    $offer->setPublicationDate($row["publicationDate"]);
+                    $offer->setExpirationDate($row["expirationDate"]);
+                    $offer->setWorkLoad($row["workLoad"]);
+                    $offer->setSalary($row["salary"]);
+                    $offer->setRequirements($row["requirements"]);
+                
+                    array_push($OfferList,$offer);
+               }
+
+               return $OfferList;
+            }catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+
         public function SearchOffer($id) {
 
             try{
