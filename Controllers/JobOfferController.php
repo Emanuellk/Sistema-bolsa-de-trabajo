@@ -309,27 +309,22 @@ class JobOfferController{
 
             public function UploadCv()
             { 
-                $nombre=$_FILES['archivo']['name'];
-                $guardado=$_FILES['archivo']['tmp_name'];
+                $dir = "archivo/";
+                $ruta_carga = $dir . $_FILES['archivo']['name'];
 
-                if(!file_exists('archivos')){
-                    mkdir('archivos',0777,true);
-                    if(file_exists('archivos')){
-                        if(move_uploaded_file($guardado, 'archivos/'.$nombre)){
-                            echo "Archivo guardado con exito";
-                        }else{
-                            echo "Archivo no se pudo guardar";
-                        }
-                    }
-                }else{
-                    if(move_uploaded_file($guardado, 'archivos/'.$nombre)){
-                        echo "Archivo guardado con exito";
+                if(!file_exists($dir))
+                {
+                    mkdir('archivo',0777,true);
+                
+                }
+               if(move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta_carga))
+                    {
+                        $this->ShowAddMesaggeView("Archivo subido con éxito");
                     }else{
-                        echo "Archivo no se pudo guardar";
-                    }
-             
+                        $this->ShowAddMesaggeView("Error! No se pudo subir el archivo");
+                    }           
+            require_once(VIEWS_PATH."upload-cv.php");
             }
-           }
 
             //Extra
            

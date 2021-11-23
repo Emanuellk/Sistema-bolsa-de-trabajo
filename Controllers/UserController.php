@@ -26,18 +26,20 @@
         }
 
 
-        public function login($email = "", $password = "") {               
+         public function login($email = "", $password = "") {               
                 $userAux = $this->UserDAO->SearchUserByEmail($email);
                 if(!empty($userAux)){
-                    
-                    $studentAux = $this->StudentsDAO->SearchStudentByEmail($userAux->getEmail());
-                    if($studentAux->getActive()==true){
+         
+                        $studentAux = $this->StudentsDAO->SearchStudentByEmail($userAux->getEmail());
+                
+                        if($studentAux->getActive()==true){
                         if($userAux->getPassword() == $password && $userAux->getAdmin() == 1){
 
                             $_SESSION['loggedUser'] = $userAux->getEmail();                   
                             require_once(VIEWS_PATH."pagAdmin.php");
 
-                        }elseif($userAux->getPassword() == $password){
+                        }
+                        elseif($userAux->getPassword() == $password){
 
                             $_SESSION['loggedUser'] = $userAux->getEmail();
                             require_once(VIEWS_PATH."pagPrincipal.php");
@@ -56,6 +58,7 @@
                     $this->ShowLoginView("ERROR! EL USUARIO NO EXISTE"); 
                 }
         }
+            
             
 
         public function Logout(){
