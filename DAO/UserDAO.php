@@ -32,7 +32,7 @@
         }
 
         public function GetAll()
-        {
+        {   
             try
             {
                 $userList = array();

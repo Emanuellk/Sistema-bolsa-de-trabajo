@@ -26,7 +26,7 @@
             $this->birthDate = $birthDate;
             $this->email = $email;
             $this->phoneNumber = $phoneNumber;
-            $this->phoneNumber = $active;
+            $this->active = $active;
         }       
 
         /**

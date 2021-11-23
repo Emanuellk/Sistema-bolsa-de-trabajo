@@ -26,7 +26,7 @@
         }
 
 
-        public function login($email = "", $password = "") {               
+         public function login($email = "", $password = "") {               
                 $userAux = $this->UserDAO->SearchUserByEmail($email);
                 if(!empty($userAux)){
                     
@@ -47,7 +47,8 @@
                             $_SESSION['loggedUser'] = $userAux->getEmail();                   
                             require_once(VIEWS_PATH."pagAdmin.php");
 
-                        }elseif($userAux->getPassword() == $password){
+                        }
+                        elseif($userAux->getPassword() == $password){
 
                             $_SESSION['loggedUser'] = $userAux->getEmail();
                             require_once(VIEWS_PATH."pagPrincipal.php");
@@ -66,6 +67,7 @@
                     $this->ShowLoginView("ERROR! EL USUARIO NO EXISTE"); 
                 }
         }
+            
             
 
         public function Logout(){
@@ -171,6 +173,29 @@
             $this->ShowUserPassword();
         }
 
+           public function ShowAddMesaggeView($message = "")
+            {
+                 echo "<script>alert('$message');</script>"; 
+            }
+ 
+
+        public function ShowApply()
+        {
+            require_once(VIEWS_PATH."upload-cv.php");
+        }
+
+        public function ShowAddApplyMesaggeView($message = "")
+        {
+             echo "<script>alert('$message');</script>"; 
+        }
+        
+        public function Apply($IdjobOffer, $fileNumber, $CV, $AplicantDescription)
+        {
+            $aplicant = new Students($fileNumber, $IdjobOffer, $CV, $AplicantDescription);
+            $this->ShowAddApplyMesaggeView("Archivo subido con éxito");
+            require_once(VIEWS_PATH."upload-cv.php");
+            //$this->StudentsDAO->Add($aplicant);
+        }
 
     }
 

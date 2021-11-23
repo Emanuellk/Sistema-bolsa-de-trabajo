@@ -42,7 +42,7 @@ require_once('nav.php');
                                                   </button>  
                                                   
        
-                                                  <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/UploadCv">
+                                                  <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>User/ShowApply">
                                                   <button type="submit" class="btn btn-white" class="buttonF" title="Subir CV" ><i class="fas fa-upload"></i></button>
                                                   </form>
 
