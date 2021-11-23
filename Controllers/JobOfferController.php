@@ -74,7 +74,7 @@ class JobOfferController{
                     $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail());
                     
                     array_push($jobOfferList, $jobOffer);
-                }
+             }
                 
                 require_once(VIEWS_PATH."offers-company.php");
             }
@@ -174,12 +174,12 @@ class JobOfferController{
                 require_once(VIEWS_PATH."offer-addCompany.php");
             }
 
-            public function AddOfferCompany($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements)
+            public function AddOfferCompany($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$image)
             {
                 try{
                     $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
                     
-                    $this->OfferDAO->Add($offer);
+                    $this->OfferDAO->Add($offer,$image);
                     $this->ShowAddMesaggeView("Registro de oferta laboral exitoso");
                     $this->ShowAddOfferView();
                 }
