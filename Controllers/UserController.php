@@ -165,6 +165,29 @@
             $this->ShowUserPassword();
         }
 
+           public function ShowAddMesaggeView($message = "")
+            {
+                 echo "<script>alert('$message');</script>"; 
+            }
+ 
+
+        public function ShowApply()
+        {
+            require_once(VIEWS_PATH."upload-cv.php");
+        }
+
+        public function ShowAddApplyMesaggeView($message = "")
+        {
+             echo "<script>alert('$message');</script>"; 
+        }
+        
+        public function Apply($IdjobOffer, $fileNumber, $CV, $AplicantDescription)
+        {
+            $aplicant = new Students($fileNumber, $IdjobOffer, $CV, $AplicantDescription);
+            $this->ShowAddApplyMesaggeView("Archivo subido con éxito");
+            require_once(VIEWS_PATH."upload-cv.php");
+            //$this->StudentsDAO->Add($aplicant);
+        }
 
     }
 
