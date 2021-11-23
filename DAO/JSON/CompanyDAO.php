@@ -1,5 +1,5 @@
 <?php
-    namespace DAO;
+    namespace DAO\JSON;
     
 
     use DAO\ICompanyDAO as ICompanyDAO;
@@ -12,7 +12,7 @@
     
         public function __construct()
         {
-            $this->fileName = dirname(__DIR__).'/Data/company.json';
+            $this->fileName = dirname(__DIR__).'/../Data/company.json';
         }
         
 

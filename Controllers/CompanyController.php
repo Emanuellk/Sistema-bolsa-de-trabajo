@@ -2,7 +2,7 @@
     namespace Controllers;
 
     use DAO\CompanyDAO as CompanyDAO;
-    use DAO\JobDAO as JobDAO;
+    use DAO\JSON\JobDAO as JobDAO;
     use DAO\OfferDAO as OfferDAO;
 
     use Models\Company as Company;
