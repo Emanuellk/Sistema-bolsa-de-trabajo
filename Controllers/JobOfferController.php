@@ -55,7 +55,7 @@ class JobOfferController{
             //Administrar Empleo desde company
             public function ShowOfferCompanyView(){
                 $Company = $this->CompanyDAO->SearchCompanyByEmail($_SESSION['loggedUser']);
-                $offerList = $this->OfferDAO->GetOffersCompany($Company->getNameCompany());
+                $offerList = $this->OfferDAO->GetOffersCompany($Company->getIdCompany());
                 $jobOfferList = array();
 
                 foreach($offerList as $offer){
@@ -75,7 +75,6 @@ class JobOfferController{
                     
                     array_push($jobOfferList, $jobOffer);
              }
-                
                 require_once(VIEWS_PATH."offers-company.php");
             }
 
@@ -128,6 +127,31 @@ class JobOfferController{
             foreach($userxofferList as  $userxoffer){
                 $user = $this->UserDAO->SearchById($userxoffer->getIdUser());
                 $student = $this->StudentsDAO->SearchStudentByEmail($user->getEmail());
+                
+                array_push($studentsList, $student);
+               
+            }        
+
+            require_once(VIEWS_PATH."jobOffer-postulates.php");    
+            }
+
+            //Eliminar postulacion de un alumno
+            public function DeletePostulationAdmin($id,$idOffer)
+            {
+                $this->UserXOfferDAO->deletePostulation($id);
+                $this->ShowPostulates($idOffer);
+                
+            }
+
+            public function ShowPostulatesCompany($id)
+            {
+
+            $userxofferList = $this->UserXOfferDAO->SearchByOfferId($id);
+            $studentsList = array();
+
+            foreach($userxofferList as  $userxoffer){
+                $user = $this->UserDAO->SearchById($userxoffer->getIdUser());
+                $student = $this->StudentsDAO->SearchStudentByEmail($user->getEmail());
 
                 if($student->getActive()==true){ 
                     array_push($studentsList, $student);
@@ -138,10 +162,9 @@ class JobOfferController{
                 }
 
                
-            }
-        
-            require_once(VIEWS_PATH."jobOffer-postulates.php");
+            }        
             
+            require_once(VIEWS_PATH."OfferCompany-postulates.php");    
             }
 
 
@@ -154,6 +177,16 @@ class JobOfferController{
                 $this->OfferDAO->deleteOffer($id);
                  
                 $this->ShowManageView();
+            }
+
+            public function DeleteInCompany($id)
+            {
+                $offerAux = $this->OfferDAO->SearchOffer($id);
+                $companyAux = $this->CompanyDAO->SearchById($offerAux->getIdCompany());
+                $this->sendMailFinisheOffer($offerAux->getTitle(),$companyAux->getNameCompany());
+                $this->OfferDAO->deleteOffer($id);
+                 
+                $this->ShowOfferCompanyView();
             }
             
             //Agregar Empleo / offer-add.php
@@ -174,12 +207,14 @@ class JobOfferController{
                 require_once(VIEWS_PATH."offer-addCompany.php");
             }
 
-            public function AddOfferCompany($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$image)
+
+
+            public function AddOfferCompany($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements)
             {
                 try{
                     $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
                     
-                    $this->OfferDAO->Add($offer,$image);
+                    $this->OfferDAO->Add($offer);
                     $this->ShowAddMesaggeView("Registro de oferta laboral exitoso");
                     $this->ShowAddOfferView();
                 }
@@ -189,12 +224,12 @@ class JobOfferController{
             }
 
 
-            public function Add($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$image)
+            public function Add($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements)
             {
                 try{
                     $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
                     
-                    $this->OfferDAO->Add($offer,$image);
+                    $this->OfferDAO->Add($offer);
                     $this->ShowAddMesaggeView("Registro de oferta laboral exitoso");
                     $this->ShowManageView();
                 }
@@ -353,6 +388,7 @@ class JobOfferController{
 
             
 
+
             //Extra
            
             public function ShowAddMesaggeView($message = "")
@@ -381,8 +417,7 @@ class JobOfferController{
                 
                     //Recipients
                     $mail->setFrom('linkedinUTN@gmail.com', 'Empleos UTN');
-                    $mail->addAddress('linkedinUTN@gmail.com');
-                    $mail->addAddress('martinmolina0@hotmail.com');    //Add a recipient
+                    $mail->addAddress('linkedinUTN@gmail.com');   //Add a recipient
             
                     ///RECIBIR EL LISTADO DE MAILS
                     /*

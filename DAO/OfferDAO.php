@@ -10,8 +10,8 @@
         private $connection;
         private $tableName = "offers";
 
-        public function Add(Offer $offer ,$image){
-            var_dump($image);
+        public function Add(Offer $offer){
+          
             
             try{
                 $query = "INSERT INTO ".$this->tableName."( idCompany, idJobPosition, title, description, publicationDate,expirationDate,workLoad,salary,requirements) VALUES ( :idCompany, :idJobPosition, :title, :description,:publicationDate,:expirationDate,:workLoad,:salary,:requirements);";
@@ -65,12 +65,12 @@
             }
         }
 
-        public function GetOffersCompany($idOffer) {
+        public function GetOffersCompany($idCompany) {
 
             try{
                 $OfferList = array();
 
-                $query = "SELECT * FROM `".$this->tableName."` WHERE idOffer='$idOffer'";
+                $query = "SELECT * FROM `".$this->tableName."` WHERE idCompany='$idCompany'";
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
 
