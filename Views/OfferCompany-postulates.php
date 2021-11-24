@@ -1,5 +1,5 @@
 <?php
-    require_once('navAdmin.php');
+    require_once('navCompany.php');
 ?>
 <br>
 <section id = "listado" class="mb-5 bg-light-alpha">
@@ -13,15 +13,13 @@
                     <thead class="table" style="background-color: orange;"  text-align:center >   
                          <th scope="col">Nombre</th>
                          <th scope="col">Apellido</th>
-                         <th scope="col">Email</th>    
-                         <th scope="col">Dni</th>
-                         <th scope="col">Borrar</th>                           
+                         <th scope="col">Email</th>
+                         <th scope="col">Dni</th>                         
                     </thead>
                     
                     <tbody>
-                    
+
                     <?php
-                    $i=0;
                               foreach($studentsList as $student)
                               {
                                    ?>
@@ -31,18 +29,9 @@
                                              <td><li class="list-group-item list-group-item-info"><?php echo $student->getLastName() ?></li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $student->getEmail() ?> </li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $student->getDni() ?></li></td>
-                                             <td>
-                                             <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/DeletePostulationAdmin">
-                                                  
-                                                  <input type="hidden" name="id" value="<?php echo $userxofferList[$i]->getId()?>" class="form-control">
-                                                  <input type="hidden" name="idOffer" value="<?php echo $userxofferList[$i]->getIdOffer()?>" class="form-control">
-                                                  <button type="submit" class="btn btn-danger" title="Eliminar" class="buttonF" ><i class="fas fa-trash-alt"></i></button>                                                 
-                                                  </form>
-                                             </td>
 
                                         </tr>
                                 <?php
-                                $i = $i+1;
                               }
                             ?>
                     </tbody>

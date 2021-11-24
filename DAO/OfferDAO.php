@@ -10,8 +10,8 @@
         private $connection;
         private $tableName = "offers";
 
-        public function Add(Offer $offer ,$image){
-            var_dump($image);
+        public function Add(Offer $offer){
+          
             
             try{
                 $query = "INSERT INTO ".$this->tableName."( idCompany, idJobPosition, title, description, publicationDate,expirationDate,workLoad,salary,requirements) VALUES ( :idCompany, :idJobPosition, :title, :description,:publicationDate,:expirationDate,:workLoad,:salary,:requirements);";
@@ -64,6 +64,39 @@
                 throw $ex;
             }
         }
+
+        public function GetOffersCompany($idCompany) {
+
+            try{
+                $OfferList = array();
+
+                $query = "SELECT * FROM `".$this->tableName."` WHERE idCompany='$idCompany'";
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                foreach($resultSet as $row){
+                
+                    $offer = new Offer();
+                    $offer->setId($row["id"]);
+                    $offer->setIdCompany($row["idCompany"]);
+                    $offer->setIdJobPosition($row["idJobPosition"]);
+                    $offer->setTitle($row["title"]);
+                    $offer->setDescription($row["description"]);
+                    $offer->setPublicationDate($row["publicationDate"]);
+                    $offer->setExpirationDate($row["expirationDate"]);
+                    $offer->setWorkLoad($row["workLoad"]);
+                    $offer->setSalary($row["salary"]);
+                    $offer->setRequirements($row["requirements"]);
+                
+                    array_push($OfferList,$offer);
+               }
+
+               return $OfferList;
+            }catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
 
         public function SearchOffer($id) {
 

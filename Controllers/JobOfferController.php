@@ -52,6 +52,31 @@ class JobOfferController{
             //==================================================================================================================================            
 
             
+            //Administrar Empleo desde company
+            public function ShowOfferCompanyView(){
+                $Company = $this->CompanyDAO->SearchCompanyByEmail($_SESSION['loggedUser']);
+                $offerList = $this->OfferDAO->GetOffersCompany($Company->getIdCompany());
+                $jobOfferList = array();
+
+                foreach($offerList as $offer){
+                    $jobPosition= new Job();
+                    $career= new Career();
+                    $company = new Company();
+
+
+
+                    $jobPosition= $this->JobDAO->SearchById($offer->getIdJobPosition());
+
+                    $career = $this->CareerDAO->SearchCareerById($jobPosition->getCareerId());
+
+                    $company = $this->CompanyDAO->SearchById($offer->getIdCompany());
+
+                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail());
+                    
+                    array_push($jobOfferList, $jobOffer);
+             }
+                require_once(VIEWS_PATH."offers-company.php");
+            }
 
             //Administrar Empleo / job-manage.php
 
@@ -102,6 +127,25 @@ class JobOfferController{
             foreach($userxofferList as  $userxoffer){
                 $user = $this->UserDAO->SearchById($userxoffer->getIdUser());
                 $student = $this->StudentsDAO->SearchStudentByEmail($user->getEmail());
+                
+                array_push($studentsList, $student);
+               
+            }        
+
+            require_once(VIEWS_PATH."jobOffer-postulates.php");    
+            }
+
+            
+
+            public function ShowPostulatesCompany($id)
+            {
+
+            $userxofferList = $this->UserXOfferDAO->SearchByOfferId($id);
+            $studentsList = array();
+
+            foreach($userxofferList as  $userxoffer){
+                $user = $this->UserDAO->SearchById($userxoffer->getIdUser());
+                $student = $this->StudentsDAO->SearchStudentByEmail($user->getEmail());
 
                 if($student->getActive()==true){ 
                     array_push($studentsList, $student);
@@ -112,10 +156,9 @@ class JobOfferController{
                 }
 
                
-            }
-        
-            require_once(VIEWS_PATH."jobOffer-postulates.php");
+            }        
             
+            require_once(VIEWS_PATH."OfferCompany-postulates.php");    
             }
 
 
@@ -129,7 +172,28 @@ class JobOfferController{
                  
                 $this->ShowManageView();
             }
+
+            public function DeleteInCompany($id)
+            {
+                $offerAux = $this->OfferDAO->SearchOffer($id);
+                $companyAux = $this->CompanyDAO->SearchById($offerAux->getIdCompany());
+                $this->sendMailFinisheOffer($offerAux->getTitle(),$companyAux->getNameCompany());
+                $this->OfferDAO->deleteOffer($id);
+                 
+                $this->ShowOfferCompanyView();
+            }
             
+            //Eliminar postulacion de un alumno
+            public function DeletePostulationAdmin($id,$idOffer)
+            {
+                $offerAux = $this->OfferDAO->SearchOffer($idOffer);
+                $companyAux = $this->CompanyDAO->SearchById($offerAux->getIdCompany());
+                $this->sendMailFinishePostulate($offerAux->getTitle(),$companyAux->getNameCompany());
+                $this->UserXOfferDAO->deletePostulation($id);
+                $this->ShowPostulates($idOffer);
+                        
+            }
+
             //Agregar Empleo / offer-add.php
 
 
@@ -140,13 +204,37 @@ class JobOfferController{
                 require_once(VIEWS_PATH."offer-add.php");
             }
 
+            //Agregar empleo desde una empresa
 
-            public function Add($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$image)
+            public function ShowAddOfferView(){
+                $jobList = $this->JobDAO->GetAll();  
+                $company = $this->CompanyDAO->SearchCompanyByEmail($_SESSION['loggedUser']);
+                require_once(VIEWS_PATH."offer-addCompany.php");
+            }
+
+
+
+            public function AddOfferCompany($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements)
             {
                 try{
                     $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
                     
-                    $this->OfferDAO->Add($offer,$image);
+                    $this->OfferDAO->Add($offer);
+                    $this->ShowAddMesaggeView("Registro de oferta laboral exitoso");
+                    $this->ShowAddOfferView();
+                }
+                catch(Exception $ex){
+                    $this->ShowAddMesaggeView("Error al cargar esta oferta laboral");
+                }
+            }
+
+
+            public function Add($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements)
+            {
+                try{
+                    $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
+                    
+                    $this->OfferDAO->Add($offer);
                     $this->ShowAddMesaggeView("Registro de oferta laboral exitoso");
                     $this->ShowManageView();
                 }
@@ -309,13 +397,6 @@ class JobOfferController{
                 require_once(VIEWS_PATH."jobOffer-postulates.php");
             }
 
-            public function DeletePostulationAdmin($id)
-            {              
-                $this->UserXOfferDAO->deletePostulation($id);
-                $this->ShowPostulationAdmin();
-            }
-
-            //--------------------------------------------------
             //Extra
            
             public function ShowAddMesaggeView($message = "")
@@ -335,7 +416,7 @@ class JobOfferController{
                     //Server settings
                     $mail->SMTPDebug = 0;                      //Enable verbose debug output
                     $mail->isSMTP();                                            //Send using SMTP
-                    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                    $mail->Host       = 'smtp.gmail.com;smtp.live.com';                     //Set the SMTP server to send through
                     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
                     $mail->Username   = 'linkedinUTN@gmail.com';                     //SMTP username
                     $mail->Password   = 'linkedinutn123';                               //SMTP password
@@ -344,7 +425,7 @@ class JobOfferController{
                 
                     //Recipients
                     $mail->setFrom('linkedinUTN@gmail.com', 'Empleos UTN');
-                    $mail->addAddress('linkedinUTN@gmail.com');     //Add a recipient
+                    $mail->addAddress('linkedinUTN@gmail.com');   //Add a recipient
             
                     ///RECIBIR EL LISTADO DE MAILS
                     /*
@@ -384,7 +465,71 @@ class JobOfferController{
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
             }
-        }     
+           
+
+
+        //Mandar email cuando borra
+        public function sendMailFinishePostulate($titleJob,$nameCompany){
+            require_once(ROOT.'PHPMailer/PHPMailer.php');
+            require_once(ROOT.'PHPMailer/SMTP.php');
+            require_once(ROOT.'PHPMailer/Exception.php');
+
+            $mail = new PHPMailer(true);
+
+            try {
+                //Server settings
+                $mail->SMTPDebug = 0;                      //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com;smtp.live.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = 'linkedinUTN@gmail.com';                     //SMTP username
+                $mail->Password   = 'linkedinutn123';                               //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            
+                //Recipients
+                $mail->setFrom('linkedinUTN@gmail.com', 'Empleos UTN');
+                $mail->addAddress('linkedinUTN@gmail.com'); 
+                $mail->addAddress('blancomarti87@gmail.com');  //Add a recipient
+        
+                ///RECIBIR EL LISTADO DE MAILS
+                /*
+                $emails = $array;
+                for($i = 0; $i < count($emails); $i++){
+                    $mail->AddAddress($emails[$i]);
+                }
+                /*
+                //Attachments
+                $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+                $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+                */
+                //Content
+                $mail->isHTML(true);                                  //Set email format to HTML
+                $mail->Subject = 'Linkedin UTN';
+                $mail->Body    = "
+                <table style='border: 8px groove orange;width: 600px;height: 300px;margin: 15px auto 0px auto; background-color:silver'>
+                <tr>
+                <td style='font-size:40px; text-align:center;'>Bolsa de Trabajo UTN</td>
+                </tr>
+                <tr> 
+                  <td style='text-align:center;font-size:25px;' colspan='3'>Se ha eliminado tu postulación.</td> 
+                </tr>
+                <tr>
+                <td style='text-align:center;font-size:19px;'>Para más información contactar con la facultad.</td> 
+                </tr>
+                <tr>
+                <td style='text-align:center;font-size:20px;'><strong>Titulo del trabajo: </strong>".$titleJob."<br><strong>Empresa: </strong>".$nameCompany."</td>
+                </tr>
+                </table>
+                ";
+                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            
+                $mail->send();
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+        }
+    }     
 
 
 
