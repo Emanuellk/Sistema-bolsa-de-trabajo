@@ -14,10 +14,12 @@
                          <th scope="col">Nombre</th>
                          <th scope="col">Apellido</th>
                          <th scope="col">Email</th>
-                         <th scope="col">Dni</th>                         
+                         <th scope="col">Dni</th>  
+                         <th scope="col">Declinar Postulación</th></th>                        
                     </thead>
                     
                     <tbody>
+                         
 
                     <?php
                               foreach($studentsList as $student)
@@ -28,13 +30,17 @@
                                              <td><li class="list-group-item list-group-item-info"><?php echo $student->getFirstName() ?> </li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $student->getLastName() ?></li></td>
                                              <td><li class="list-group-item list-group-item-info"><?php echo $student->getEmail() ?> </li></td>
-                                             <td><li class="list-group-item list-group-item-info"><?php echo $student->getDni() ?></li></td>
-
+                                             <td><li class="list-group-item list-group-item-info"><?php echo $student->getDni() ?></li></td>                                            
+                                             <td><form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/DeletePostulationAdmin">
+                                                  <input type="hidden" name="id" value="<?php echo $user->getId()?>" class="form-control">
+                                                  <button type="submit" class="btn btn-danger" class="buttonF" title="Eliminar" ><i class="fas fa-trash-alt"></i></button>
+                                                  </form></td>
                                         </tr>
                                 <?php
                               }
-                            ?>
+                            ?>             
                     </tbody>
+                    
                  </table>
                  </div>
                  <input type="button" onclick="printDiv('areaImprimir')" value="Obtener PDF" />

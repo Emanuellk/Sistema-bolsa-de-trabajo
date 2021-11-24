@@ -143,6 +143,7 @@
                 throw $ex;
             }
          }
+         
          function deletePostulationsByUserId($idUser){
             try{
                 $query = "DELETE FROM ". $this->tableName." WHERE idUser= :idUser";

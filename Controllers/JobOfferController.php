@@ -295,16 +295,27 @@ class JobOfferController{
                 require_once(VIEWS_PATH."postulation-view.php");
             }
 
-
+           //Eliminar Postulación-Estudiante
             public function DeletePostulation($id)
             {
-                
                 $this->UserXOfferDAO->deletePostulation($id);
                 $this->ShowPostulationView();
             }
 
-            
+            //Declinar Postulación de un Aplicante-Administrador
 
+            public function ShowPostulationAdmin()
+            {
+                require_once(VIEWS_PATH."jobOffer-postulates.php");
+            }
+
+            public function DeletePostulationAdmin($id)
+            {              
+                $this->UserXOfferDAO->deletePostulation($id);
+                $this->ShowPostulationAdmin();
+            }
+
+            //--------------------------------------------------
             //Extra
            
             public function ShowAddMesaggeView($message = "")
@@ -342,7 +353,6 @@ class JobOfferController{
                         $mail->AddAddress($emails[$i]);
                     }
                     /*
-
                     //Attachments
                     $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
                     $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
