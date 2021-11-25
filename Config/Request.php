@@ -39,18 +39,20 @@
                 else
                     $this->parameters = $urlArray;
             }
-            elseif ($_POST)
-                $this->parameters = $_POST;
-            
-            if($_FILES)
+            elseif ($_POST){
+                if($_FILES)
             {
-                unset($this->parameters["button"]);
                 
-                foreach($_FILES as $file)
-                {
-                    array_push($this->parameters, $file);
-                }
+                $_POST = array_merge($_FILES ,$_POST );
+                
+                
             }
+                $this->parameters = $_POST;
+            }
+            
+            
+            
+            
         }
 
         private static function getMethodRequest()

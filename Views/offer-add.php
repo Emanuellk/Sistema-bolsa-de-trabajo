@@ -52,12 +52,6 @@
                                     <input type="text" name="requirements" value="" class="form-control" required>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label for="">Imagen</label>
-                                    <input type="file" name="image" value="" class="form-control" required>
-                                </div>
-                            </div>
                             
                          <div class="col-lg-4">
                               <div class="form-group">
@@ -80,6 +74,12 @@
                                         <?php } ?>
                                    </select>
                               </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Imagen</label>
+                            <input type="file" name="image" value="" class="form-control" required>
+                         </div>
+                        
                         <button type="submit" class="btn btn-dark ml-auto d-block">Agregar</button>
                 </form>
             </div>

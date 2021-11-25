@@ -53,6 +53,7 @@ class JobOfferController{
 
             
             //Administrar Empleo desde company
+
             public function ShowOfferCompanyView(){
                 $Company = $this->CompanyDAO->SearchCompanyByEmail($_SESSION['loggedUser']);
                 $offerList = $this->OfferDAO->GetOffersCompany($Company->getIdCompany());
@@ -71,7 +72,7 @@ class JobOfferController{
 
                     $company = $this->CompanyDAO->SearchById($offer->getIdCompany());
 
-                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail());
+                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail(),$offer->getImage());
                     
                     array_push($jobOfferList, $jobOffer);
              }
@@ -99,7 +100,7 @@ class JobOfferController{
 
                     $company = $this->CompanyDAO->SearchById($offer->getIdCompany());
 
-                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail());
+                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail(),$offer->getImage());
                     
                     array_push($jobOfferList, $jobOffer);
                 }
@@ -201,10 +202,11 @@ class JobOfferController{
             {   
                 $jobList = $this->JobDAO->GetAll();                
                 $companyList = $this->CompanyDAO->GetAll();
+
                 require_once(VIEWS_PATH."offer-add.php");
             }
 
-            //Agregar empleo desde una empresa
+           
 
             public function ShowAddOfferView(){
                 $jobList = $this->JobDAO->GetAll();  
@@ -213,13 +215,22 @@ class JobOfferController{
             }
 
 
-
-            public function AddOfferCompany($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements)
+            //Agregar empleo desde una empresa
+            public function AddOfferCompany($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$image)
             {
                 try{
                     $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
+                    $nombre = $image["name"];
+                    $carpeta =  dirname(__DIR__).'/Views/images/Offer';
                     
-                    $this->OfferDAO->Add($offer);
+                    
+                    $temporal = $image["tmp_name"];
+                    
+                    
+                    move_uploaded_file($temporal,$carpeta."/". $nombre);
+                    
+                    $location = '../Views/images/Offer/'.$nombre;
+                    $this->OfferDAO->Add($offer,$location);
                     $this->ShowAddMesaggeView("Registro de oferta laboral exitoso");
                     $this->ShowAddOfferView();
                 }
@@ -229,12 +240,22 @@ class JobOfferController{
             }
 
 
-            public function Add($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements)
+            public function Add($idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$image)
             {
                 try{
-                    $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
                     
-                    $this->OfferDAO->Add($offer);
+                    $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
+                    $nombre = $image["name"];
+                    $carpeta =  dirname(__DIR__).'/Views/images/Offer';
+                    
+                    
+                    $temporal = $image["tmp_name"];
+                    
+                    
+                    move_uploaded_file($temporal,$carpeta."/". $nombre);
+                    
+                    $location = '../Views/images/Offer/'.$nombre;
+                    $this->OfferDAO->Add($offer,$location);
                     $this->ShowAddMesaggeView("Registro de oferta laboral exitoso");
                     $this->ShowManageView();
                 }
@@ -396,8 +417,15 @@ class JobOfferController{
             {
                 require_once(VIEWS_PATH."jobOffer-postulates.php");
             }
+            //==================================================================================================================================
+            //COMPAÑIA---------------------------------------------------------------------------------------------------------------------------
+            //==================================================================================================================================
+            
 
-            //Extra
+            
+
+
+           
            
             public function ShowAddMesaggeView($message = "")
             {
