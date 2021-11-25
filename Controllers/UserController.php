@@ -163,6 +163,7 @@
         }
 
 
+
         public function ShowUserPassword(){
             $user = $this->UserDAO->SearchUserByEmail($_SESSION['loggedUser']);
             require_once(VIEWS_PATH."student-password.php");

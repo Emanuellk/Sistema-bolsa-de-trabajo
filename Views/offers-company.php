@@ -3,7 +3,7 @@
 use Models\Company;
 use Models\user;
 
-require_once('navAdmin.php');   
+require_once('navCompany.php');   
 ?>
 
 <div class="job-add">
@@ -13,8 +13,6 @@ require_once('navAdmin.php');
                
                <h2 class="mb-4">Listado de Ofertas laborales</h2>
                <div class="mb-4">
-               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAVFJREFUSEvVleExBEEQRt9FQAoiQATIgAgQASJABIgAESACZEAEyIAIqKd6qub2Zmen7N4P/eu2dqdf99dfz81YcsyWnJ8+wCpwBOwCG1HEC3APXAGfrYWVAAfABSCkFCY/AW5aIF2Aya/j4ANwCTzF8zZwBmzF8150VOXkACt+i8oPKxUKOQ2Z1obkygHpoJWrfS3syk7Oo6veb3OAQ1wHdjJZ+g4q1yPgmc1aJTngOz5stW7T92MBXxW3/db7V4mc0R3wDChX0wzSkF0mLdgyZPdBKzcBtOk7sBLO0CGlSIV8xJZXt7o70NS6ibWiyZTBUAr9nyQZtGh3Bqlat9m27aQUDtb3wrSpv2/7NKpddsexcO6G8RpXgwmVJe2N77yX3P6FaPV86Wx+b/VCxgBS0v2MvtDJWMAgZApAFzJ3E08FSBCtPfdHNCWg6NT/D/gBeOVFGZeTouUAAAAASUVORK5CYII="/>                      
-               <input type="text" name="search" id="search" placeholder="Buscar..." class="src" autocomplete="off">
                </div>
                <div  style="background-color:chocolate;" >
                <table class="table bg-light-alpha table-primary">
@@ -45,15 +43,12 @@ require_once('navAdmin.php');
                                              <td><li class="list-group-item list-group-item-info"><?php echo $offer->getSalary() ?></li></td>
                                              <td>                     
                                              
-                                                  <button  class = "btn btn-success" title="Ver" type="button"  style="background-color:darkturquoise;" data-bs-toggle="modal" data-bs-target="#See<?= $offer->getId()."s"?> " >
+                                                  <button  class = "btn btn-success" title="Ver" type="button"  style="background-color:limegreen;" data-bs-toggle="modal" data-bs-target="#See<?= $offer->getId()."s"?> " >
                                                   <i class="fas fa-eye"></i>  
                                                   </button>
+                                             
                                                   
-                                                  <button  class = "btn btn-success" title="Modificar" type="button" data-bs-toggle="modal" data-bs-target="#Update<?= $offer->getId()?> " >
-                                                  <i class="fas fa-edit"></i>    
-                                                  </button>
-                                                  
-                                                  <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/Delete">
+                                                  <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/DeleteInCompany">
 
                                                        <input type="hidden" name="id" value="<?php echo $offer->getId()?>" class="form-control">
                                                  
@@ -61,7 +56,7 @@ require_once('navAdmin.php');
                                                                                                    
                                                   </form>
                                                   
-                                                  <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/ShowPostulates">
+                                                  <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/ShowPostulatesCompany">
 
                                                   <input type="hidden" name="id" value="<?php echo $offer->getId()?>" class="form-control">
                                                   
@@ -133,7 +128,12 @@ require_once('navAdmin.php');
 
                                                                                 <div class="">
                                                                                 <li class="list-group-item list-group-item-info"> <Strong>Email de la Empresa: </Strong><?php echo $offer->getCompanyEmail() ?></li>                                                                                     
-                                                                                </div>                              
+                                                                                </div>
+                                                                                
+                                                                                <div class="">
+                                                                                 <img src="<?php echo $offer->getImage() ?>" style="height: 100%; width: 100%;">
+
+                                                                                </div>
                                                                                                                                                             
                                                                               
                                                                               
@@ -286,20 +286,5 @@ require_once('navAdmin.php');
           </div>
      </section>
 </div>
-
-<script>
-     const searchInput = document.getElementById("search");
-     const rows = document.querySelectorAll("tbody tr");
-     console.log(rows);
-     searchInput.addEventListener("keyup", function (event) {
-     const q = event.target.value.toLowerCase();
-     rows.forEach((row) => {
-          row.querySelector("td").textContent.toLowerCase().startsWith(q)
-          ? (row.style.display = "table-row")
-          : (row.style.display = "none");
-          });
-     });
-</script>
-        
 
 

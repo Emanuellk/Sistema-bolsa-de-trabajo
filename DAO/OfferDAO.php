@@ -10,11 +10,11 @@
         private $connection;
         private $tableName = "offers";
 
-        public function Add(Offer $offer ,$image){
-            var_dump($image);
+        public function Add(Offer $offer,$image){
+          
             
             try{
-                $query = "INSERT INTO ".$this->tableName."( idCompany, idJobPosition, title, description, publicationDate,expirationDate,workLoad,salary,requirements) VALUES ( :idCompany, :idJobPosition, :title, :description,:publicationDate,:expirationDate,:workLoad,:salary,:requirements);";
+                $query = "INSERT INTO ".$this->tableName."( idCompany, idJobPosition, title, description, publicationDate,expirationDate,workLoad,salary,requirements,image) VALUES ( :idCompany, :idJobPosition, :title, :description,:publicationDate,:expirationDate,:workLoad,:salary,:requirements,:image);";
                 
                 $parameters["idCompany"] = $offer->getIdCompany();
                 $parameters["idJobPosition"] = $offer->getIdJobPosition();
@@ -25,6 +25,7 @@
                 $parameters["workLoad"] = $offer->getWorkLoad();
                 $parameters["salary"] = $offer->getSalary();                
                 $parameters["requirements"] = $offer->getRequirements();
+                $parameters["image"] = $image;
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query,$parameters);
@@ -55,6 +56,7 @@
                     $offer->setWorkLoad($row["workLoad"]);
                     $offer->setSalary($row["salary"]);
                     $offer->setRequirements($row["requirements"]);
+                    $offer->setImage($row["image"]);
                     
                     array_push($OfferList,$offer);
                 }
@@ -65,12 +67,12 @@
             }
         }
 
-        public function GetOffersCompany($idOffer) {
+        public function GetOffersCompany($idCompany) {
 
             try{
                 $OfferList = array();
 
-                $query = "SELECT * FROM `".$this->tableName."` WHERE idOffer='$idOffer'";
+                $query = "SELECT * FROM `".$this->tableName."` WHERE idCompany='$idCompany'";
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
 
@@ -87,12 +89,30 @@
                     $offer->setWorkLoad($row["workLoad"]);
                     $offer->setSalary($row["salary"]);
                     $offer->setRequirements($row["requirements"]);
+                    $offer->setImage($row["image"]);
                 
                     array_push($OfferList,$offer);
                }
 
                return $OfferList;
             }catch(Exception $ex){
+                throw $ex;
+            }
+        }
+        public function AddImage($image, $id)
+        {
+            try{
+                $query = "UPDATE ".$this->tableName." SET image=:image where id =:id";
+                
+                
+                $parameters["image"] = $image;
+
+                
+                $this->connection = Connection::GetInstance();
+                    
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch(Exception $ex){
                 throw $ex;
             }
         }
