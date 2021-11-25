@@ -65,10 +65,6 @@ require_once('navAdmin.php');
                                                   <i class="fas fa-edit"></i>
                                              </button>
 
-                                             <button class="btn btn-success" title="imagenn" type="button" style="background-color:darkturquoise;" data-bs-toggle="modal" data-bs-target="#pic<?= $offer->getId() . "z" ?> ">
-                                                  <i class="fas fa-image"></i>
-                                             </button>
-
                                              <form style="display:inline;" method="POST" action="<?php echo FRONT_ROOT ?>JobOffer/Delete">
 
                                                   <input type="hidden" name="id" value="<?php echo $offer->getId() ?>" class="form-control">

@@ -1,6 +1,8 @@
 <?php
     namespace Controllers;
     
+     use \Exception as Exception;   
+
     use DAO\UserDAO;
     use DAO\JSON\StudentsDAO;
     use DAO\CompanyDAO as CompanyDAO;
@@ -190,11 +192,29 @@
              echo "<script>alert('$message');</script>"; 
         }
         
-        public function Apply($IdjobOffer, $fileNumber, $CV, $AplicantDescription)
+
+
+        public function AddCv($cv,$id,$accepted)
         {
-            $aplicant = new Students($fileNumber, $IdjobOffer, $CV, $AplicantDescription);
-            $this->ShowAddApplyMesaggeView("Archivo subido con éxito");
-            require_once(VIEWS_PATH."upload-cv.php");
+            try{
+                $nombre = $cv["name"];
+                $carpeta = dirname(__DIR__).'/Views/images/Curriculums';
+
+                $temporal = $cv["tmp_name"];
+
+                move_uploaded_file($temporal,$carpeta."/". $nombre);
+                    
+                $location = '../Views/images/Curriculums/'.$nombre;
+
+                $this->UserDAO->AddCv($location,$id);
+                $this->ShowAddMesaggeView("Curriculum cargado con exito!");
+                require_once(VIEWS_PATH."upload-cv.php");
+
+            }catch(Exception $ex){
+                    $this->ShowAddMesaggeView("Error al cargar CV");
+                }
+           
+            
             //$this->StudentsDAO->Add($aplicant);
         }
 

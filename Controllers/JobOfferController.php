@@ -79,37 +79,7 @@ class JobOfferController{
                 require_once(VIEWS_PATH."offers-company.php");
             }
 
-            //Administrar Empleo / job-manage.php
-
-
-            public function ShowManageView()
-            {
-                $offerList = $this->OfferDAO->GetAll();
-                $jobOfferList = array();
-
-                foreach($offerList as $offer){
-                    $jobPosition= new Job();
-                    $career= new Career();
-                    $company = new Company();
-
-
-
-                    $jobPosition= $this->JobDAO->SearchById($offer->getIdJobPosition());
-
-                    $career = $this->CareerDAO->SearchCareerById($jobPosition->getCareerId());
-
-                    $company = $this->CompanyDAO->SearchById($offer->getIdCompany());
-
-                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail(),$offer->getImage());
-                    
-                    array_push($jobOfferList, $jobOffer);
-                }
-                $jobList = $this->JobDAO->GetAll();
-                $companyList = $this->CompanyDAO->GetAll();
-                
-                require_once(VIEWS_PATH."job-manage.php");
-            }
-         
+            //Administrar Empleo / job-manage.php      
 
             public function Update( $title,$idCompany ,$idJobPosition, $publicationDate, $expirationDate, $workLoad, $salary, $requirements,$description, $id)
             {    
@@ -244,7 +214,9 @@ class JobOfferController{
             {
                 try{
                     
+                    
                     $offer = new Offer("",$idCompany,$idJobPosition,$title, $description, $publicationDate, $expirationDate, $workLoad, $salary, $requirements);
+                    
                     $nombre = $image["name"];
                     $carpeta =  dirname(__DIR__).'/Views/images/Offer';
                     
@@ -269,8 +241,37 @@ class JobOfferController{
             //USUARIO---------------------------------------------------------------------------------------------------------------------------
             //==================================================================================================================================
             
+            
+
             //Ver empleos / offer-view.php
 
+            public function ShowManageView()
+            {
+                $offerList = $this->OfferDAO->GetAll();
+                $jobOfferList = array();
+
+                foreach($offerList as $offer){
+                    $jobPosition= new Job();
+                    $career= new Career();
+                    $company = new Company();
+
+
+
+                    $jobPosition= $this->JobDAO->SearchById($offer->getIdJobPosition());
+
+                    $career = $this->CareerDAO->SearchCareerById($jobPosition->getCareerId());
+
+                    $company = $this->CompanyDAO->SearchById($offer->getIdCompany());
+
+                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail(),$offer->getImage());
+                    
+                    array_push($jobOfferList, $jobOffer);
+                }
+                $jobList = $this->JobDAO->GetAll();
+                $companyList = $this->CompanyDAO->GetAll();
+                
+                require_once(VIEWS_PATH."job-manage.php");
+            }
 
             public function ShowOfferView()
             {
@@ -294,7 +295,7 @@ class JobOfferController{
                     
                     
 
-                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail());
+                    $jobOffer = new JobOffer($offer->getId(),$offer->getIdCompany(),$offer->getIdjobPosition(),$offer->getTitle(),$offer->getDescription(),$offer->getPublicationDate(),$offer->getExpirationDate(),$offer->getWorkLoad(),$offer->getSalary(),$offer->getRequirements(),$jobPosition->getCareerId(),$jobPosition->getDescription(),$career->getDescription(),$company->getNameCompany(),$company->getEmail(),$offer->getImage());
 
                     $userxoffer = $this->UserXOfferDAO->SearchOfferByUser($offer->getId(),$User->getId());
 
@@ -517,8 +518,7 @@ class JobOfferController{
             
                 //Recipients
                 $mail->setFrom('linkedinUTN@gmail.com', 'Empleos UTN');
-                $mail->addAddress('linkedinUTN@gmail.com'); 
-                $mail->addAddress('blancomarti87@gmail.com');  //Add a recipient
+                $mail->addAddress('linkedinUTN@gmail.com');   //Add a recipient
         
                 ///RECIBIR EL LISTADO DE MAILS
                 /*

@@ -6,12 +6,14 @@
         private $email;
         private $password;        
         private $admin;
+        private $cv;
         
-        public function __construct($id = "",$email = '', $password = '', $admin = 0) {
+        public function __construct($id = "",$email = '', $password = '', $admin = 0,$cv = '') {
             $this->id = $id;
             $this->email = $email;
             $this->password = $password;            
             $this->admin = $admin;
+            $this->cv = $cv;
         }
 
 
@@ -67,6 +69,26 @@
         public function setId($id)
         {
                 $this->id = $id;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of cv
+         */ 
+        public function getCv()
+        {
+                return $this->cv;
+        }
+
+        /**
+         * Set the value of cv
+         *
+         * @return  self
+         */ 
+        public function setCv($cv)
+        {
+                $this->cv = $cv;
 
                 return $this;
         }

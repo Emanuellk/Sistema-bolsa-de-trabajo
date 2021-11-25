@@ -51,6 +51,7 @@
                     $user->setEmail($row["email"]);
                     $user->setPassword($row["password"]);
                     $user->setAdmin($row["admin"]);
+                    $user->setCv($row["cv"]);
 
                     array_push($userList, $user);
                 }
@@ -76,7 +77,7 @@
             if(!empty($resultSet[0]))
             {
                 
-                $UserAux = new User($resultSet[0]['id'],$resultSet[0]['email'],$resultSet[0]['password'],$resultSet[0]['admin']); 
+                $UserAux = new User($resultSet[0]['id'],$resultSet[0]['email'],$resultSet[0]['password'],$resultSet[0]['admin'],$resultSet[0]['cv']); 
                     
             
             }
@@ -108,7 +109,7 @@
                 if(!empty($resultSet[0]))
                 {
                     
-                    $UserAux = new User($resultSet[0]['id'],$resultSet[0]['email'],$resultSet[0]['password'],$resultSet[0]['admin']); 
+                    $UserAux = new User($resultSet[0]['id'],$resultSet[0]['email'],$resultSet[0]['password'],$resultSet[0]['admin'],$resultSet[0]['cv']); 
                          
                     
                 }
@@ -123,6 +124,23 @@
                 } 
         }
 
+
+        public function AddCv($cv,$id){
+            try
+            {
+                $query = "UPDATE ".$this->tableName." SET cv=:cv where id =:id;";
+                
+                $parameters["id"] = $id;
+                $parameters["cv"] = $cv;
+               
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
         
         function modify($admin,$password,$id){
             try
