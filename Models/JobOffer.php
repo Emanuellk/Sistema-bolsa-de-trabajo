@@ -17,9 +17,10 @@ namespace Models;
         private $careerDescription;
         private $nameCompany;
         private $companyEmail;
+        private $image;
         
         
-        public function __construct($id = '',$idCompany = '',$idJobPosition = '', $title = "", $offerDescription = '', $publicationDate = '', $expirationDate = '', $workLoad = '', $salary = '', $requirements = '', $careerId = '', $positionDescription = '', $careerDescription = '', $nameCompany = '', $companyEmail = '')
+        public function __construct($id = '',$idCompany = '',$idJobPosition = '', $title = "", $offerDescription = '', $publicationDate = '', $expirationDate = '', $workLoad = '', $salary = '', $requirements = '', $careerId = '', $positionDescription = '', $careerDescription = '', $nameCompany = '', $companyEmail = '',$image = '')
         {
             $this->id = $id;
             $this->idCompany = $idCompany;  
@@ -36,6 +37,7 @@ namespace Models;
             $this->careerDescription = $careerDescription;
             $this->nameCompany = $nameCompany;
             $this->companyEmail = $companyEmail;
+            $this->image = $image;
         }       
 
 
@@ -335,6 +337,26 @@ namespace Models;
         public function setCompanyEmail($companyEmail)
         {
                 $this->companyEmail = $companyEmail;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of image
+         */ 
+        public function getImage()
+        {
+                return $this->image;
+        }
+
+        /**
+         * Set the value of image
+         *
+         * @return  self
+         */ 
+        public function setImage($image)
+        {
+                $this->image = $image;
 
                 return $this;
         }

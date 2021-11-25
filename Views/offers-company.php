@@ -128,7 +128,12 @@ require_once('navCompany.php');
 
                                                                                 <div class="">
                                                                                 <li class="list-group-item list-group-item-info"> <Strong>Email de la Empresa: </Strong><?php echo $offer->getCompanyEmail() ?></li>                                                                                     
-                                                                                </div>                              
+                                                                                </div>
+                                                                                
+                                                                                <div class="">
+                                                                                 <img src="<?php echo $offer->getImage() ?>" style="height: 100%; width: 100%;">
+
+                                                                                </div>
                                                                                                                                                             
                                                                               
                                                                               

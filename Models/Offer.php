@@ -12,8 +12,9 @@ namespace Models;
         private $workLoad;
         private $salary;
         private $requirements;
+        private $image;
         
-        public function __construct($id = '',$idCompany = '',$idJobPosition = '',  $title = '', $description = '', $publicationDate = '', $expirationDate = '', $workLoad = '', $salary= '', $requirements = '') {
+        public function __construct($id = '',$idCompany = '',$idJobPosition = '',  $title = '', $description = '', $publicationDate = '', $expirationDate = '', $workLoad = '', $salary= '', $requirements = '',$image = '') {
                 $this->id = $id;
                 $this->idCompany = $idCompany; 
                 $this->idJobPosition= $idJobPosition;
@@ -24,6 +25,7 @@ namespace Models;
                 $this->workLoad=$workLoad;
                 $this->salary=$salary;
                 $this->requirements=$requirements;
+                $this->image=$image;
         }
         /**
          * Get the value of id
@@ -221,6 +223,26 @@ namespace Models;
         public function setRequirements($requirements)
         {
                 $this->requirements = $requirements;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of image
+         */ 
+        public function getImage()
+        {
+                return $this->image;
+        }
+
+        /**
+         * Set the value of image
+         *
+         * @return  self
+         */ 
+        public function setImage($image)
+        {
+                $this->image = $image;
 
                 return $this;
         }
