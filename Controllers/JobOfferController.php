@@ -454,7 +454,8 @@ class JobOfferController{
                 
                     //Recipients
                     $mail->setFrom('linkedinUTN@gmail.com', 'Empleos UTN');
-                    $mail->addAddress('linkedinUTN@gmail.com');   //Add a recipient
+                    $mail->addAddress('linkedinUTN@gmail.com');
+                    //$mail->addAddress('lucreciadenisebazan@gmail.com');  //Add a recipient
             
                     ///RECIBIR EL LISTADO DE MAILS
                     /*
@@ -518,7 +519,8 @@ class JobOfferController{
             
                 //Recipients
                 $mail->setFrom('linkedinUTN@gmail.com', 'Empleos UTN');
-                $mail->addAddress('linkedinUTN@gmail.com');   //Add a recipient
+                $mail->addAddress('linkedinUTN@gmail.com');
+                //$mail->addAddress('lucreciadenisebazan@gmail.com');   //Add a recipient
         
                 ///RECIBIR EL LISTADO DE MAILS
                 /*
